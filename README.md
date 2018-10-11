@@ -1,6 +1,3 @@
-Word to Markdown Converter
-Results of converting "MarkDown"
-Markdown
 # Introduction
 
 _RFID Gin Data Management_ is an application that runs on a Windows 10 computer at the gin office.   This application is capable of aggregating data from multiple input sources including:
