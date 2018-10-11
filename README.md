@@ -93,7 +93,3 @@ Nuvo 5100 VTC automotive PC equipped with 4G cellular modem
 Touch screen display
 Online Services Pre-requisites
 To share data between the truck and gin software, a Microsoft Azure Cosmos database subscription is required. You must also obtain a Google Maps API key so that the system can plot module locations.
-
-Want to convert another document?
-
-@benbalter | source | feedback
