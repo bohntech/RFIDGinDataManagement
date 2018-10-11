@@ -38,7 +38,7 @@ The _RFID Gin Data Management_ software has the following system pre-requisites:
 
 ### RFID Truck Scan Software
 
-The _RFID Truck Scan_ software has the following hardware and software pre-requisites:
+The _RFID Truck Scan_ software has the following hardware and software pre-requisites which may require purchasing and/or licensing from their respective vendors:
 
 - Windows 10 operating system
 - Impinj Speedway Revolution R420 RFID Reader and antennas
