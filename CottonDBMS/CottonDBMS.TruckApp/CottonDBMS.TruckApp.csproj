@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA9E0C53-1AE9-4A0B-971F-4865F4CE9972}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CottonDBMS.TruckApp</RootNamespace>
+    <AssemblyName>CottonDBMS.TruckApp</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\mbohn\Documents\Bitbucket\usda-dbms\CottonDBMS\Published\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>truck_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Impinj.OctaneSdk, Version=2.28.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OctaneSDK.2.28.1\lib\net461\Impinj.OctaneSdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LLRP, Version=10.28.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\libltknet-sdk.10.28.0\lib\net461\LLRP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LLRP.Impinj, Version=10.28.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\libltknet-sdk.10.28.0\lib\net461\LLRP.Impinj.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Documents.Client, Version=1.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.DocumentDB.1.15.0\lib\net45\Microsoft.Azure.Documents.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NmeaParser.WinDesktop, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpGIS.NmeaParser.1.6.1\lib\net40-client\NmeaParser.WinDesktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.0.0\lib\net40\Renci.SshNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Device" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="USDigital">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\US Digital\USDigital.dll</HintPath>
+    </Reference>
+    <Reference Include="USDQSB">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\US Digital\USDQSB.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.14\lib\net\WpfAnimatedGif.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\StringToBrushConverter.cs" />
+    <Compile Include="Helpers\SettingsHelper.cs" />
+    <Compile Include="Helpers\TruckPullFromCloud.cs" />
+    <Compile Include="Messages\AllAggEventsProcessComplete.cs" />
+    <Compile Include="Messages\FirstSetupWizardComplete.cs" />
+    <Compile Include="Messages\ManualUnloadCorrectionMessage.cs" />
+    <Compile Include="Messages\MapVisibilityChanged.cs" />
+    <Compile Include="Messages\PickupListAddedMessage.cs" />
+    <Compile Include="Messages\ReaderExceptionMessage.cs" />
+    <Compile Include="Messages\ShutdownMessage.cs" />
+    <Compile Include="Messages\TriggerPasswordModalMessage.cs" />
+    <Compile Include="ViewModels\LoadingAtGin.cs" />
+    <Compile Include="ViewModels\TruckSetupViewModel.cs" />
+    <Compile Include="ViewModels\UnloadCorrectionViewModel.cs" />
+    <Compile Include="ViewModels\UnloadingAtGin.cs" />
+    <Compile Include="Windows\ChangeFieldWindow.xaml.cs">
+      <DependentUpon>ChangeFieldWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddFieldWindow.xaml.cs">
+      <DependentUpon>AddFieldWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="DataProviders\AggregateDataProvider.cs" />
+    <Compile Include="DataProviders\GPSDataProvider.cs" />
+    <Compile Include="DataProviders\QuadratureEncoderDataProvider.cs" />
+    <Compile Include="DataProviders\TagDataProvider.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Windows\FirstRunWindow.xaml.cs">
+      <DependentUpon>FirstRunWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LoadingAtGin.xaml.cs">
+      <DependentUpon>LoadingAtGin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LoadingIncorrectModuleWindow.xaml.cs">
+      <DependentUpon>LoadingIncorrectModuleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Messages\DialogOpenedMessage.cs" />
+    <Compile Include="Messages\GpsEventMessage.cs" />
+    <Compile Include="Messages\NetworkStatus.cs" />
+    <Compile Include="Messages\QuadratureStateChangeMessage.cs" />
+    <Compile Include="Messages\StartBusyMessage.cs" />
+    <Compile Include="Messages\TagLoadingMessage.cs" />
+    <Compile Include="Messages\TagUnloadingMessage.cs" />
+    <Compile Include="Navigation\IWindowService.cs" />
+    <Compile Include="Windows\OverrideGPS.xaml.cs">
+      <DependentUpon>OverrideGPS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PickupWindow.xaml.cs">
+      <DependentUpon>PickupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BusyModalControl.xaml.cs">
+      <DependentUpon>BusyModalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DataSyncSettingsControl.xaml.cs">
+      <DependentUpon>DataSyncSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DiagnosticsControl.xaml.cs">
+      <DependentUpon>DiagnosticsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HomeControl.xaml.cs">
+      <DependentUpon>HomeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReaderSettingsControl.xaml.cs">
+      <DependentUpon>ReaderSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SetPasswordModal.xaml.cs">
+      <DependentUpon>SetPasswordModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TruckSettingsControl.xaml.cs">
+      <DependentUpon>TruckSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AddFieldViewModel.cs" />
+    <Compile Include="ViewModels\ChangeListViewModel.cs" />
+    <Compile Include="ViewModels\DiagnosticsViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\LoadingIncorrectModuleViewModel.cs" />
+    <Compile Include="ViewModels\LoadingWindowViewModel.cs" />
+    <Compile Include="ViewModels\ModuleViewModel.cs" />
+    <Compile Include="ViewModels\PickupListViewModel.cs" />
+    <Compile Include="ViewModels\TruckSettingsViewModel.cs" />
+    <Compile Include="UserControls\UnlockSettingsControl.xaml.cs">
+      <DependentUpon>UnlockSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DataSyncSettingsViewModel.cs" />
+    <Compile Include="ViewModels\NavViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\UnloadingModuleViewModel.cs" />
+    <Compile Include="Windows\UnloadingCorrectionWindow.xaml.cs">
+      <DependentUpon>UnloadingCorrectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UnloadingWindow.xaml.cs">
+      <DependentUpon>UnloadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WaitingForUnloadWindow.xaml.cs">
+      <DependentUpon>WaitingForUnloadWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Windows\ChangeFieldWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddFieldWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FirstRunWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LoadingAtGin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LoadingIncorrectModuleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\OverrideGPS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PickupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BusyModalControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DataSyncSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DiagnosticsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\HomeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ReaderSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SetPasswordModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TruckSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UnlockSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UnloadingCorrectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UnloadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WaitingForUnloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="LICENSE.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CottonDBMS.Cloud\CottonDBMS.Cloud.csproj">
+      <Project>{313e99e3-25fc-4d35-a2ad-0731d9220677}</Project>
+      <Name>CottonDBMS.Cloud</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CottonDBMS.DataModels\CottonDBMS.DataModels.csproj">
+      <Project>{61d5c839-4177-4f59-ad7c-b1841dfbf1c3}</Project>
+      <Name>CottonDBMS.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CottonDBMS.TruckApp.EF\CottonDBMS.Data.EF.csproj">
+      <Project>{54765db7-67fb-47ae-9892-ca12902e0bcd}</Project>
+      <Name>CottonDBMS.Data.EF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\busygif.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Html\map.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="truck_icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\truck_icon.ico" />
+    <Resource Include="LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Azure.DocumentDB.1.15.0\build\Microsoft.Azure.DocumentDB.targets" Condition="Exists('..\packages\Microsoft.Azure.DocumentDB.1.15.0\build\Microsoft.Azure.DocumentDB.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Azure.DocumentDB.1.15.0\build\Microsoft.Azure.DocumentDB.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Azure.DocumentDB.1.15.0\build\Microsoft.Azure.DocumentDB.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

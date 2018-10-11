@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{61D5C839-4177-4F59-AD7C-B1841DFBF1C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CottonDBMS.DataModels</RootNamespace>
+    <AssemblyName>CottonDBMS.DataModels</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PCLCrypto, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d4421c8a4786956c, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLCrypto.2.0.147\lib\net45\PCLCrypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PInvoke.BCrypt, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.BCrypt.0.3.2\lib\net40\PInvoke.BCrypt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PInvoke.Kernel32, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Kernel32.0.3.2\lib\net40\PInvoke.Kernel32.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PInvoke.NCrypt, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.NCrypt.0.3.2\lib\net40\PInvoke.NCrypt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PInvoke.Windows.Core, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Windows.Core.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Validation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=2fc06f0d701809a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Validation.2.2.8\lib\dotnet\Validation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net461\zxing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net461\zxing.presentation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DocumentToDelete.cs" />
+    <Compile Include="EncryptionHelper.cs" />
+    <Compile Include="EntitySavedMessage.cs" />
+    <Compile Include="Enums\PickupListDestination.cs" />
+    <Compile Include="GPSCoords.cs" />
+    <Compile Include="Helpers\FolderConstants.cs" />
+    <Compile Include="Helpers\NetworkHelper.cs" />
+    <Compile Include="Interfaces\LocalStorage\IAggregateEventRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IClientRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IDocumentsToProcessRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IDriverRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IEntityRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IFarmRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IFieldRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IGenericRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IModuleRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IPickupListRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\ISettingsRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\ITruckRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IUnitOfWork.cs" />
+    <Compile Include="DriverEntity.cs" />
+    <Compile Include="FieldEntity.cs" />
+    <Compile Include="Interfaces\ModuleFilter.cs" />
+    <Compile Include="Interfaces\PickupListFilter.cs" />
+    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="ClientEntity.cs" />
+    <Compile Include="Enums\EnumTypes.cs" />
+    <Compile Include="Enums\ModuleEventType.cs" />
+    <Compile Include="Enums\ModuleStatus.cs" />
+    <Compile Include="Enums\PickUpListStatus.cs" />
+    <Compile Include="FarmEntity.cs" />
+    <Compile Include="MobileConnectionInfo.cs" />
+    <Compile Include="ModuleEntity.cs" />
+    <Compile Include="ModuleHistoryEntity.cs" />
+    <Compile Include="ModulePoint.cs" />
+    <Compile Include="ModuleSummary.cs" />
+    <Compile Include="PagedResult.cs" />
+    <Compile Include="PickupListEntity.cs" />
+    <Compile Include="Setting.cs" />
+    <Compile Include="SyncedSetting.cs" />
+    <Compile Include="TruckAppInstallParams.cs" />
+    <Compile Include="TruckEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TruckListsDownloaded.cs" />
+    <Compile Include="TruckPickupListRelease.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

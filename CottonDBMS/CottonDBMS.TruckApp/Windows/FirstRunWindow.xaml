@@ -1,0 +1,97 @@
+﻿<Window x:Class="CottonDBMS.TruckApp.Windows.FirstRunWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CottonDBMS.TruckApp.Windows"
+        mc:Ignorable="d"
+        WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded"  Closing="Window_Closing"  Activated="Window_Activated"
+        Title="FirstRunWindow" Height="1500" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="NoNetworkGrid" Visibility="{Binding HasBlockingError, Converter={StaticResource VisibleIfTrue}}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"></RowDefinition>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="24" Text="{Binding BlockingErrorMessage}" Foreground="Red" />
+            <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource PrimaryButton}" Command="{Binding CloseCommand}" Content="Close" Width="175" />
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Margin="50,50,50,50" Visibility="{Binding ShowStep1, Converter={StaticResource VisibleIfTrue}}"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />                            
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Truck Setup" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="28" HorizontalAlignment="Left" />
+
+            <TextBlock Text="Select a Truck ID: " HorizontalAlignment="Right" Grid.Row="2" Grid.Column="0" FontSize="18" Margin="10" />
+            <ComboBox x:Name="cboTruck" Grid.Row="2" Grid.Column="1"  Width="300" DisplayMemberPath="DisplayText"  ItemsSource="{Binding Trucks}" SelectedValue="{Binding SelectedTruck}"/>
+
+            <TextBlock Text="Select a Driver: " HorizontalAlignment="Right" Grid.Row="4" Grid.Column="0" FontSize="18" Margin="10" />
+            <ComboBox x:Name="cboDriver" Grid.Row="4" Grid.Column="1"  Width="300" DisplayMemberPath="DisplayText"  ItemsSource="{Binding Drivers}" SelectedValue="{Binding SelectedDriver}"/>
+
+            <TextBlock Text="{Binding ErrorMessage}" Grid.Row="5" Grid.Column="1" Margin="0, 20, 0,20" Foreground="Red"  />
+
+            <Button Grid.Row="6" Grid.Column="1" Style="{StaticResource PrimaryButton}" Command="{Binding ContinueCommand}" Content="Continue" Width="175" HorizontalAlignment="Left" Margin="0" />
+        </Grid>       
+        <Grid Grid.Row="2" Grid.Column="0" Margin="50,50,50,50" Visibility="{Binding ShowStep2, Converter={StaticResource VisibleIfTrue}}"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                <TextBlock Text="Set Password"  FontSize="28" HorizontalAlignment="Left" />
+                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Stretch" FontSize="16"  Text="To protect your database key and truck settings you may set a password.  Once set this password is required to change the truck id or database settings.  This step is optional. " />
+            </StackPanel>
+
+            <Label Content="Password: " Grid.Row="2" Grid.Column="0" FontSize="18" Margin="10" HorizontalAlignment="Right" />
+            <TextBox Grid.Row="2" Grid.Column="1"  Text="{Binding Password}" Width="370" HorizontalAlignment="Left"/>
+
+
+            <Label Content="Confirm Password: " Grid.Row="4" Grid.Column="0" FontSize="18" Margin="10" HorizontalAlignment="Right"/>
+            <TextBox Grid.Row="4" Grid.Column="1"  Text="{Binding ConfirmPassword}"   Width="370" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="{Binding PasswordErrorMessage}" Grid.Row="6" Grid.Column="1" Margin="0, 10, 0,10" Foreground="Red" FontSize="16"  />
+
+            <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1">
+                <Button  Style="{StaticResource PrimaryButton}" Command="{Binding SavePasswordCommand}" Content="Continue" Width="175" HorizontalAlignment="Left" Margin="0" />
+                <Button  Margin="20,0,0,0" Style="{StaticResource PrimaryButton}" Command="{Binding SkipPasswordCommand}" Content="Skip" Width="175" HorizontalAlignment="Left" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

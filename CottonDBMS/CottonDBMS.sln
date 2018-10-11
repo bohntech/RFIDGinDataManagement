@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.TruckApp", "CottonDBMS.TruckApp\CottonDBMS.TruckApp.csproj", "{AA9E0C53-1AE9-4A0B-971F-4865F4CE9972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.GinApp", "CottonDBMS.GinApp\CottonDBMS.GinApp.csproj", "{09F15D08-4A11-451E-B4CF-E2C09B6037C3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AFC970CB-CC6F-49A3-892F-CBA7D63BA023} = {AFC970CB-CC6F-49A3-892F-CBA7D63BA023}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.Data.EF", "CottonDBMS.TruckApp.EF\CottonDBMS.Data.EF.csproj", "{54765DB7-67FB-47AE-9892-CA12902E0BCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.Cloud", "CottonDBMS.Cloud\CottonDBMS.Cloud.csproj", "{313E99E3-25FC-4D35-A2AD-0731D9220677}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.DataModels", "CottonDBMS.DataModels\CottonDBMS.DataModels.csproj", "{61D5C839-4177-4F59-AD7C-B1841DFBF1C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.TestDataGenerator", "CottonDBMS.TestDataGenerator\CottonDBMS.TestDataGenerator.csproj", "{D7305F44-CB86-4A8E-8D0D-A75EF5BA4884}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.TruckApp.Sync", "CottonDBMS.TruckApp.Sync\CottonDBMS.TruckApp.Sync.csproj", "{2D003C1F-386C-4679-894A-0FDE1A112352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.TruckApp.Uninstall", "CottonDBMS.TruckApp.Uninstall\CottonDBMS.TruckApp.Uninstall.csproj", "{3BEF500E-E38B-4965-B110-DB3666FA5E80}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CottonDBMS.TruckApp.Install", "CottonDBMS.TruckApp.Install\CottonDBMS.TruckApp.Install.vdproj", "{AFC970CB-CC6F-49A3-892F-CBA7D63BA023}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CottonDBMS.GinApp.Uninstall", "CottonDBMS.GinApp.Uninstall\CottonDBMS.GinApp.Uninstall.csproj", "{7880FE41-7442-4332-8E00-94427108B4D3}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CottonDBMS.GinApp.Install", "CottonDBMS.GinApp.Install\CottonDBMS.GinApp.Install.vdproj", "{1292C65A-E380-47B8-B620-332C405346BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA9E0C53-1AE9-4A0B-971F-4865F4CE9972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA9E0C53-1AE9-4A0B-971F-4865F4CE9972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA9E0C53-1AE9-4A0B-971F-4865F4CE9972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA9E0C53-1AE9-4A0B-971F-4865F4CE9972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F15D08-4A11-451E-B4CF-E2C09B6037C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F15D08-4A11-451E-B4CF-E2C09B6037C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F15D08-4A11-451E-B4CF-E2C09B6037C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F15D08-4A11-451E-B4CF-E2C09B6037C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54765DB7-67FB-47AE-9892-CA12902E0BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54765DB7-67FB-47AE-9892-CA12902E0BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54765DB7-67FB-47AE-9892-CA12902E0BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54765DB7-67FB-47AE-9892-CA12902E0BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{313E99E3-25FC-4D35-A2AD-0731D9220677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{313E99E3-25FC-4D35-A2AD-0731D9220677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{313E99E3-25FC-4D35-A2AD-0731D9220677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{313E99E3-25FC-4D35-A2AD-0731D9220677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D5C839-4177-4F59-AD7C-B1841DFBF1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D5C839-4177-4F59-AD7C-B1841DFBF1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D5C839-4177-4F59-AD7C-B1841DFBF1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D5C839-4177-4F59-AD7C-B1841DFBF1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7305F44-CB86-4A8E-8D0D-A75EF5BA4884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7305F44-CB86-4A8E-8D0D-A75EF5BA4884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7305F44-CB86-4A8E-8D0D-A75EF5BA4884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7305F44-CB86-4A8E-8D0D-A75EF5BA4884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D003C1F-386C-4679-894A-0FDE1A112352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D003C1F-386C-4679-894A-0FDE1A112352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D003C1F-386C-4679-894A-0FDE1A112352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D003C1F-386C-4679-894A-0FDE1A112352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BEF500E-E38B-4965-B110-DB3666FA5E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BEF500E-E38B-4965-B110-DB3666FA5E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BEF500E-E38B-4965-B110-DB3666FA5E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BEF500E-E38B-4965-B110-DB3666FA5E80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC970CB-CC6F-49A3-892F-CBA7D63BA023}.Debug|Any CPU.ActiveCfg = Debug
+		{AFC970CB-CC6F-49A3-892F-CBA7D63BA023}.Release|Any CPU.ActiveCfg = Release
+		{AFC970CB-CC6F-49A3-892F-CBA7D63BA023}.Release|Any CPU.Build.0 = Release
+		{7880FE41-7442-4332-8E00-94427108B4D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7880FE41-7442-4332-8E00-94427108B4D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7880FE41-7442-4332-8E00-94427108B4D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7880FE41-7442-4332-8E00-94427108B4D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1292C65A-E380-47B8-B620-332C405346BE}.Debug|Any CPU.ActiveCfg = Debug
+		{1292C65A-E380-47B8-B620-332C405346BE}.Release|Any CPU.ActiveCfg = Release
+		{1292C65A-E380-47B8-B620-332C405346BE}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

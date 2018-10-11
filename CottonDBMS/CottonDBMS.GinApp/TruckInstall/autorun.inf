@@ -1,0 +1,6 @@
+﻿[autorun]
+Icon=truck_icon.ico
+Label=RFID Truck Scan Install
+;Open=setup.exe
+ShellExecute=setup.exe
+UseAutoPlay=1

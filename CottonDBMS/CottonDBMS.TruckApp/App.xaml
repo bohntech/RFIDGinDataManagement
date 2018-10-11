@@ -1,0 +1,178 @@
+﻿<Application x:Class="CottonDBMS.TruckApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CottonDBMS.TruckApp"                      
+             xmlns:converters="clr-namespace:CottonDBMS.TruckApp.Converters"        
+             StartupUri="MainWindow.xaml"  Startup="Application_Startup"  Exit="Application_Exit" ShutdownMode="OnMainWindowClose" SessionEnding="Application_SessionEnding"  >
+    <Application.Resources>
+        <Color x:Key="PrimaryBtnBg">#0E7FEF</Color>
+        <SolidColorBrush x:Key="WindowHeaderBrush" Color="#0E7FEF"></SolidColorBrush>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Padding" Value="5,5,5,5" />            
+        </Style>
+        <Style x:Key="FieldLabel" TargetType="Label" >
+            <Setter Property="Margin" Value="10,20,10,20" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>        
+        <Style x:Key="HomeFilterButton" TargetType="Button">            
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0,0,15,0" />
+            <Setter Property="Padding" Value="10, 0, 10, 0" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#0E7FEF" />
+        </Style>
+        <Style x:Key="ShutdownButton" TargetType="Button">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0,0,15,0" />
+            <Setter Property="Padding" Value="10, 0, 10, 0" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#FF0000" />
+        </Style>
+        <Style x:Key="FilterCombo" TargetType="ComboBox">
+            <Setter Property="Width" Value="160" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0,0,15,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />            
+        </Style>
+        <Style x:Key="ErrorLabel" TargetType="Label" >
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+        <Style x:Key="ErrorMessage" TargetType="TextBlock" >
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+        <Style x:Key="DialogHeader" TargetType="Label" >            
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#0E7FEF" />
+        </Style>
+        <Style x:Key="DialogHeaderWarning" TargetType="Label" >
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Red" />
+        </Style>
+        <Style x:Key="DialogHeaderGrid" TargetType="Grid" >            
+            <Setter Property="Background" Value="#0E7FEF" />
+        </Style>
+        <Style x:Key="PrimaryButton" TargetType="Button" >            
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#0E7FEF" />
+            <Setter Property="Margin" Value="10,10,10,10" />
+            <Setter Property="Padding" Value="20,10,20,10" />
+            <Setter Property="FontSize" Value="22" />
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button" >
+            <Setter Property="Margin" Value="10,10,10,10" />
+            <Setter Property="Padding" Value="10,10,10,10" />
+            <Setter Property="FontSize" Value="22" />
+        </Style>
+        <Style TargetType="TextBox" >
+            <Setter Property="Margin" Value="0,10,0,10" />
+            <Setter Property="Padding" Value="5,10,5,5" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+        <Style TargetType="Slider" >
+            <Setter Property="Height" Value="50" />
+            <Setter Property="IsSnapToTickEnabled" Value="True" />
+            <Setter Property="TickFrequency" Value="0.5" />
+        </Style>
+        <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border  BorderThickness="1" BorderBrush="Gray" Background="LightGray" Height="5"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderRepeatButton1" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border SnapsToDevicePixels="True" Background="#0E7FEF"  BorderThickness="1" BorderBrush="LightGray" Height="5"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderThumb" TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Canvas Width="50" Height="50">
+                            <Ellipse Canvas.Top="0" Canvas.Left="0" Height="50" Width="50" Fill="#0E7FEF"></Ellipse>
+                            <Grid Canvas.Top="0" Canvas.Left="0" Margin="0,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                            <Label Margin="0" Padding="0, 15, 0 , 0" FontSize="14" Content="{Binding (Slider.Value), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}}" Width="50" Height="auto" Grid.Row="0" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="Slider" TargetType="Slider">
+            <Grid Margin="0, 10, 0, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track Grid.Row="1" x:Name="PART_Track"   >
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton1}"  Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb}"  />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton}" Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="ValueSlider" TargetType="Slider">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="IsSnapToTickEnabled" Value="true" />
+            <Setter Property="TickFrequency" Value="1" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="MinHeight" Value="35" />
+                    <Setter Property="Template" Value="{StaticResource Slider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <converters:BoolToVisibilityConverter x:Key="VisibleIfTrue" IsInverse="False" />
+        <converters:BoolToVisibilityConverter x:Key="VisibleIfFalse" IsInverse="True" />
+        <converters:ItemToErrorBrushConverter x:Key="ItemToErrorBrush"/>
+    </Application.Resources>
+</Application>
+
+    

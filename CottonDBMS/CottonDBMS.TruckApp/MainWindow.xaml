@@ -1,0 +1,93 @@
+﻿<Window x:Class="CottonDBMS.TruckApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CottonDBMS.TruckApp" WindowState="Maximized" WindowStyle="None"
+        xmlns:controls="clr-namespace:CottonDBMS.TruckApp.UserControls"
+        xmlns:converters="clr-namespace:CottonDBMS.TruckApp.Converters"
+        mc:Ignorable="d"
+        Title="Cotton Module DBMS Truck Client" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_SizeChanged"  Activated="Window_Activated"  KeyDown="Window_KeyDown" >
+    <Window.Resources>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>           
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Canvas Grid.Column="0" Grid.Row="0" Background="LightGray"  x:Name="canvasLayout" >       
+            <TabControl x:Name="navTabControl" Canvas.Top="0" Canvas.Left="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <TabItem x:Name="tabHome" Visibility="{Binding HasCloudSettings, Converter={StaticResource VisibleIfTrue}}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Image Name="imgHome" Height="25" Width="25" Source="Images/home.png"/> -->
+                            <Label  Content="Home" FontSize="24"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <controls:HomeControl x:Name="homeControl" Visibility="{Binding HasCloudSettings, Converter={StaticResource VisibleIfTrue}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                </TabItem>
+                <!--<TabItem x:Name="tabDiagnostics" Visibility="{Binding HasCloudSettings, Converter={StaticResource VisibleIfTrue}}">
+                    <TabItem.Header>
+                        <Label Content="Diagnostics" FontSize="24" />
+                    </TabItem.Header>
+                    <controls:DiagnosticsControl x:Name="diagnosticsControl" Visibility="{Binding HasCloudSettings, Converter={StaticResource VisibleIfTrue}}" />
+                </TabItem> -->
+                <TabItem x:Name="tabTrucks" Visibility="{Binding TruckTabVisible, Converter={StaticResource VisibleIfTrue}}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Image  Name="imgTruck" Height="25" Width="25" Source="Images/home.png"/> -->
+                            <Label  Content="Truck" FontSize="24"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <controls:TruckSettingsControl x:Name="truckSettingsControl" />
+                </TabItem>
+                <TabItem Visibility="{Binding DataTabVisible, Converter={StaticResource VisibleIfTrue}}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Image  Name="imgData" Height="25" Width="25" Source="Images/home.png"/>-->
+                            <Label  Content="Data Sync" FontSize="24"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <controls:DataSyncSettingsControl x:Name="dataSyncSettingsControl" />
+                </TabItem>
+                <TabItem x:Name="tabSettings" Visibility="{Binding SettingsTabVisible, Converter={StaticResource VisibleIfTrue}}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">                            
+                            <Label  Content="Hardware" FontSize="24" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <controls:ReaderSettingsControl x:Name="readerSettingsControl" />
+                </TabItem>
+            </TabControl>
+
+            <Button x:Name="btnLock" Content="Lock Settings" Command="{Binding LockSettingsCommand}" Visibility="{Binding LockButtonVisible, Converter={StaticResource VisibleIfTrue}}" Style="{StaticResource PrimaryButton}" Canvas.Top="7" Canvas.Right="280" Height="40" FontSize="18"  Padding="15, 0, 15, 0" Margin="0" />
+            <Button x:Name="btnUnLock" Content="Unlock Settings" Command="{Binding UnlockCommand}" Visibility="{Binding UnlockButtonVisible, Converter={StaticResource VisibleIfTrue}}" Style="{StaticResource PrimaryButton}" Canvas.Top="7" Canvas.Right="280" Height="40" FontSize="18"  Padding="15, 0, 15, 0" Margin="0"/>
+
+            <Border x:Name="borderDriver" BorderThickness="2" Canvas.Top="7" Canvas.Right="15" Margin="0" VerticalAlignment="Top" BorderBrush="{Binding SelectedDriver, Converter={StaticResource ItemToErrorBrush}}">
+                <ComboBox Name="cboDriver"  Width="250" DisplayMemberPath="DisplayText"  ItemsSource="{Binding Drivers}" SelectedValue="{Binding SelectedDriver}" Visibility="{Binding HasCloudSettings, Converter={StaticResource VisibleIfTrue}}">
+                </ComboBox>
+            </Border>
+
+            <Grid x:Name="modalBG" Visibility="{Binding DialogOpen, Converter={StaticResource VisibleIfTrue}}" Canvas.Top="0" Canvas.Left="0" >
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            
+            <controls:SetPasswordModal x:Name="passwordModalControl" Visibility="{Binding PasswordModalVisible, Converter={StaticResource VisibleIfTrue}}"  />
+            <controls:UnlockSettingsControl x:Name="unlockSettingsControl" Visibility="{Binding UnlockPasswordModalVisible, Converter={StaticResource VisibleIfTrue}}"/>
+            <controls:BusyModalControl x:Name="busyModal" Visibility="{Binding IsBusy, Converter={StaticResource VisibleIfTrue}}" />
+
+            
+        </Canvas>        
+    </Grid>
+</Window>

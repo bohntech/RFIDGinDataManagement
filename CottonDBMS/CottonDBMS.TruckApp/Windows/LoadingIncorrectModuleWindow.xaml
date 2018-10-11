@@ -1,0 +1,91 @@
+﻿<Window x:Class="CottonDBMS.TruckApp.LoadingIncorrectModuleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CottonDBMS.TruckApp"
+        mc:Ignorable="d"
+        Title="Loading Window" Height="325" Width="600" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded" Closed="Window_Closed"
+        Activated="Window_Activated"
+        >
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="Black" Opacity="0.5"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="400" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="600" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" Margin="0" Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="WARNING: MODULE NOT ON LIST" Style="{StaticResource DialogHeaderWarning}" Grid.Row="0" Grid.Column="0" ></Label>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="10,5,10,0">
+                <Label Content="Current List: " Margin="0,0,0,0" Padding="0,0,5,0" FontSize="18" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Client}" FontSize="18" />
+                <TextBlock Text=" - " FontSize="18" />
+                <TextBlock Text="{Binding Farm}" FontSize="18"  />
+                <TextBlock Text=" - " FontSize="18" />
+                <TextBlock Text="{Binding Field}" FontSize="18" />
+                <TextBlock Text=" - " FontSize="18" />
+                <TextBlock Text="{Binding ListName}" FontSize="18" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0" Margin="10,0,10,0">
+                <Label Content="Modules on Truck " Margin="0,0,0,0" Padding="0,5,5,5" FontSize="18" FontWeight="Bold"/>
+                <ItemsControl ItemsSource="{Binding ModulesOnTruck}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SerialNumber}" FontSize="18" Padding="10" Background="Green" Foreground="White" Margin="0,0,10,0"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="3" Margin="10,10,10,10" >
+                <Border Background="White" BorderBrush="Red" BorderThickness="5" Padding="15"  >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Label HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Not on list " Foreground="Red" FontSize="28" FontWeight="Bold" />                                
+                            </StackPanel>
+                        </Label>
+                        <ItemsControl ItemsSource="{Binding BadSerials}" HorizontalAlignment="Left">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding SerialNumber}" FontSize="18" Padding="10" Background="Red" Foreground="White" Margin="0,0,10,0"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>              
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding LoadStopped, Converter={StaticResource VisibleIfTrue}}">
+                <Button Content="Unload and Start Over" Command="{Binding UnloadCommand}" Style="{StaticResource PrimaryButton}" />
+                <Button Content="Continue Loading" Command="{Binding ContinueCommand}" Style="{StaticResource PrimaryButton}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

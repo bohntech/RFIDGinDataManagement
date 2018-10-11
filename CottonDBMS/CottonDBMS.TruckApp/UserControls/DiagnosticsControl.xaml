@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="CottonDBMS.TruckApp.UserControls.DiagnosticsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CottonDBMS.TruckApp.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Height="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Top" Style="{StaticResource DialogHeaderGrid}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />                    
+                </Grid.ColumnDefinitions>
+                <Label Content="Shaft Log"  Style="{StaticResource DialogHeader}" Height="Auto" />
+                <Button Content="Clear"  Grid.Row="0" Grid.Column="1" Margin="5" Command="{Binding ClearQuadratureCommand}"/>
+                <Button Content="Export"  Grid.Row="0" Grid.Column="2" Margin="5" Command="{Binding ExportQuadratureCommand}"/>
+            </Grid>
+            <DataGrid ItemsSource="{Binding QuadratureEvents}" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" FontSize="12"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Height="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Top" Style="{StaticResource DialogHeaderGrid}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="GPS Log"  Style="{StaticResource DialogHeader}" Height="Auto" />
+                <Button Content="Clear"  Grid.Row="0" Grid.Column="1" Margin="5" Command="{Binding ClearGpsCommand}"/>
+                <Button Content="Export"  Grid.Row="0" Grid.Column="2" Margin="5" Command="{Binding ExportGpsCommand}"/>
+            </Grid>
+            <DataGrid ItemsSource="{Binding GPSEvents}" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" FontSize="12" CanUserAddRows="False" CanUserDeleteRows="False"  />
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Height="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Top" Style="{StaticResource DialogHeaderGrid}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Tag Scans"  Style="{StaticResource DialogHeader}" Height="Auto" />
+                <Button Content="Clear"  Grid.Row="0" Grid.Column="1" Margin="5" Command="{Binding ClearRFIDCommand}"/>
+                <Button Content="Export"  Grid.Row="0" Grid.Column="2" Margin="5" Command="{Binding ExportRFIDCommand}" />
+            </Grid>
+            <DataGrid ItemsSource="{Binding RFIDEvents}" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" FontSize="12" CanUserAddRows="False" CanUserDeleteRows="False" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Height="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Top" Style="{StaticResource DialogHeaderGrid}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Aggregate Events"  Style="{StaticResource DialogHeader}" Height="Auto" />
+                <Button Content="Clear"  Grid.Row="0" Grid.Column="1" Margin="5" Command="{Binding ClearAggregateCommand}" />
+                <Button Content="Export"  Grid.Row="0" Grid.Column="2" Margin="5" Command="{Binding ExportAggregateCommand}" />
+            </Grid>
+            <DataGrid ItemsSource="{Binding AggregateEvents}" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" FontSize="12" CanUserAddRows="False" CanUserDeleteRows="False"  />
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,2 @@
+Client,Farm,Field,ModuleId,SerialNumber,LoadNumber,ImportedLoadNumber,Latitude,Longitude,TruckID,Driver,Status,EventType,DateAdded,Notes
+{Client},{Farm},{Field},{ModuleId},{SerialNumber},{LoadNumber},{ImportedLoadNumber},{Latitude},{Longitude},{TruckID},{Driver},{Status},{EventType},{DateAdded},{Notes}

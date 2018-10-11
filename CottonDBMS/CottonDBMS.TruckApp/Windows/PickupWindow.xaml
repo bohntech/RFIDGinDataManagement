@@ -1,0 +1,145 @@
+﻿<Window x:Class="CottonDBMS.TruckApp.PickupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CottonDBMS.TruckApp"
+        mc:Ignorable="d"
+        Title="PickupWindow" Height="600" Width="1000" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" Loaded="Window_Loaded" Closing="Window_Closing" Activated="Window_Activated" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Background="{StaticResource ResourceKey=WindowHeaderBrush}" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Content="{Binding ListName}" Style="{StaticResource DialogHeader}" Grid.Row="0" Grid.Column="0" ></Label>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,15,0">
+                <Label Content="Position: " FontSize="18" FontWeight="Bold" Foreground="White" Padding="0,0,0,0" Margin="0,0,0,0" />
+                <TextBlock Text="{Binding Path=CurrentLat, StringFormat=F6}" FontSize="18" Foreground="White" />
+                <TextBlock Text=", "  FontSize="18" Foreground="White"/>
+                <TextBlock Text="{Binding Path=CurrentLong, StringFormat=F6}" FontSize="18" Foreground="White" />
+            </StackPanel>
+        </Grid>        
+
+        <Grid  Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3" HorizontalAlignment="Right">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                <Button Content="Map" Style="{StaticResource PrimaryButton}" Command="{Binding ShowMapCommand}" Visibility="{Binding MapVisible, Converter={StaticResource VisibleIfFalse}}" />
+                <Button Content="List" Style="{StaticResource PrimaryButton}" Command="{Binding ShowListCommand}" Visibility="{Binding MapVisible, Converter={StaticResource VisibleIfTrue}}" />
+                <Button Content="Directions" Style="{StaticResource PrimaryButton}" Command="{Binding DirectionsCommand}"  />
+                <Button Content="Close" Style="{StaticResource PrimaryButton}" Command="{Binding CloseCommand}"  />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                <Button Content="Load checked"   Style="{StaticResource PrimaryButton}" Command="{Binding ForceLoadCommand}" Visibility="{Binding HasCheckedModules, Converter={StaticResource VisibleIfTrue}}" />
+                <Button Content="Unload checked"   Style="{StaticResource PrimaryButton}" Command="{Binding ForceUnloadCommand}" Visibility="{Binding HasCheckedModules, Converter={StaticResource VisibleIfTrue}}" />                
+            </StackPanel>
+        </Grid>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">           
+            
+            <Label Content="Client: " FontSize="18" FontWeight="Bold" />
+            <Label Content="{Binding Client}" FontSize="18"/>
+
+            <Label Content="Farm: " FontSize="18" FontWeight="Bold" Margin="15,0,0,0"/>
+            <Label Content="{Binding Farm}" FontSize="18"/>
+
+            <Label Content="Field: " FontSize="18" FontWeight="Bold" Margin="15,0,0,0"/>
+            <Label Content="{Binding Field}" FontSize="18"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
+            <Label Content="Modules remaining:" FontSize="18" FontWeight="Bold" />
+            <Label Content="{Binding ModulesInField}" FontSize="18"/>
+
+            <Label Content="Modules loaded: " FontSize="18" FontWeight="Bold" Margin="15,0,0,0" />
+            <Label Content="{Binding ModulesLoaded}" FontSize="18"/>
+
+            <Label Content="Modules on list:" FontSize="18" FontWeight="Bold" Margin="15,0,0,0"/>
+            <Label Content="{Binding ModulesOnList}" FontSize="18"/>  
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">           
+            <Label Content="Loads remaining:" FontSize="18" FontWeight="Bold" Margin="0,0,0,0"/>
+            <Label Content="{Binding LoadsRemaining}" FontSize="18"/>
+
+            <Label Content="Loads Completed:" FontSize="18" FontWeight="Bold" Margin="15,0,0,0"/>
+            <Label Content="{Binding LoadsCompleted}" FontSize="18"/>
+
+            <Label Content="Destination:" FontSize="18" FontWeight="Bold" Margin="15,0,0,0"/>
+            <Label Content="{Binding DestinationName}" FontSize="18"/>
+        </StackPanel>
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Visibility="{Binding MapVisible, Converter={StaticResource VisibleIfTrue}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Visibility="{Binding HasNetwork, Converter={StaticResource VisibleIfFalse}}" >
+                <TextBlock Margin="10 10 10 10" Foreground="Red">Unable to display map.  No network connection.</TextBlock>
+            </StackPanel>
+            <WebBrowser x:Name="browser" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Stretch" Visibility="{Binding HasNetwork, Converter={StaticResource VisibleIfTrue}}" ></WebBrowser>
+        </Grid>
+        <DataGrid x:Name="dgModules" RowHeaderWidth="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" ColumnHeaderHeight="40" Visibility="{Binding MapVisible, Converter={StaticResource VisibleIfFalse}}" ItemsSource="{Binding ListModules}" AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"  SelectionMode="Single" SelectionUnit="FullRow"  AutoGenerateColumns="False" IsReadOnly="True" FontSize="24" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn MinWidth="40">
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox Click="CheckBox_Click"  Content="" Margin="5 5 5 0" >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Name="chkSelected" IsChecked="{Binding Path=Selected,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 5 5"  >
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Serial#" Binding="{Binding SerialNumber}" MinWidth="250" />
+                <DataGridTextColumn Header="Latitude" Binding="{Binding Latitude}" MinWidth="250"/>
+                <DataGridTextColumn Header="Longitude" Binding="{Binding Longitude}" MinWidth="250"/>
+                <DataGridTemplateColumn Header="On Truck" MinWidth="250" SortMemberPath="Loaded" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Visibility="{Binding Loaded, Converter={StaticResource VisibleIfTrue}}" >
+                                <Path Width="28" Height="28" Stroke="Green" StrokeThickness="4"  Data="M 2,16 C 2,16 8,15 14,25 C 16,15 23,9 28,5" />
+                            </StackPanel>                           
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

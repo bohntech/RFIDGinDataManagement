@@ -1,0 +1,2 @@
+Module ID,Module SN,Lat,Lon,GMT Date,GMT Time,Tag Count,Client,Farm,Field,Variety,Machine PIN,Operator,Gin ID,Producer ID,Local Time,Field Area (Sq m),Season Total,Moisture (%),Diameter (cm),Weight (kg),Drop Lat,Drop Lon,Field Total,Incremental Area (Sq m),Local Date,Comment
+{ModuleId},{SerialNumber},{Latitude},{Longitude},{GMTDate},{GMTTime},,{Client},{Farm},{Field},,,,,{Client},{DateAddedTime},,,,,,,,,,{DateAddedDate},{Notes}
