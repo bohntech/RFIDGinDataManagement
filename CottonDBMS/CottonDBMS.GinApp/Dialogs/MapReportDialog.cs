@@ -48,17 +48,19 @@ namespace CottonDBMS.GinApp.Dialogs
             filter = searchFilter;
         }
 
-       
+
 
         private void btnSaveToPdf_Click(object sender, EventArgs e)
         {
             this.BringToFront();
-            Bitmap b = new Bitmap(mapBrowser.ClientSize.Width, mapBrowser.ClientSize.Height);
-            Graphics g = Graphics.FromImage(b);
-            g.CopyFromScreen(mapBrowser.Parent.PointToScreen(mapBrowser.Location), new Point(0, 0), mapBrowser.ClientSize);
-            //The bitmap is ready. Do whatever you please with it!
-            b.Save(ImageFilename);
-
+            using (Bitmap b = new Bitmap(mapBrowser.ClientSize.Width, mapBrowser.ClientSize.Height))
+            {
+                // Graphics g = Graphics.FromImage(b);
+                Rectangle bounds = new Rectangle(new Point(0, 0), mapBrowser.ClientSize);
+                mapBrowser.DrawToBitmap(b, bounds);
+                //g.CopyFromScreen(mapBrowser.PointToScreen(new Point(50,44)), new Point(0, 0), mapBrowser.ClientSize);            
+                b.Save(ImageFilename);
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

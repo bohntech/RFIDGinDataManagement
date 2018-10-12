@@ -538,7 +538,10 @@ namespace CottonDBMS.GinApp.UserControls
                 else
                 {
                     MapReportDialog reportDialog = new MapReportDialog();
-                    reportDialog.ImageFilename = Guid.NewGuid().ToString() + ".jpg";
+                    string appDataGinDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).TrimEnd('\\') + "\\" + FolderConstants.ROOT_APP_DATA_FOLDER + "\\"
+                    + FolderConstants.GIN_APP_DATA_FOLDER;
+
+                    reportDialog.ImageFilename = appDataGinDir + "\\" + Guid.NewGuid().ToString() + ".jpg";
                     reportDialog.SetFilter(filterBar.Filter);
                     if (reportDialog.ShowDialog() == DialogResult.OK)
                     {

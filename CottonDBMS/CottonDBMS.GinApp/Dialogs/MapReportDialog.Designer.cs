@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSaveToPdf = new System.Windows.Forms.Button();
             this.btnCloseMap = new System.Windows.Forms.Button();
+            this.btnSaveToPdf = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.mapBrowser = new System.Windows.Forms.WebBrowser();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.panel1.SuspendLayout();
@@ -44,30 +44,10 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1100, 44);
             this.panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(435, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Scale and position then map as you would like it to appear in your report.";
-            // 
-            // btnSaveToPdf
-            // 
-            this.btnSaveToPdf.Location = new System.Drawing.Point(876, 7);
-            this.btnSaveToPdf.Name = "btnSaveToPdf";
-            this.btnSaveToPdf.Size = new System.Drawing.Size(105, 30);
-            this.btnSaveToPdf.TabIndex = 1;
-            this.btnSaveToPdf.Text = "Save to PDF";
-            this.btnSaveToPdf.UseVisualStyleBackColor = true;
-            this.btnSaveToPdf.Click += new System.EventHandler(this.btnSaveToPdf_Click);
             // 
             // btnCloseMap
             // 
@@ -80,10 +60,32 @@
             this.btnCloseMap.UseVisualStyleBackColor = true;
             this.btnCloseMap.Click += new System.EventHandler(this.btnCloseMap_Click);
             // 
+            // btnSaveToPdf
+            // 
+            this.btnSaveToPdf.Location = new System.Drawing.Point(876, 7);
+            this.btnSaveToPdf.Name = "btnSaveToPdf";
+            this.btnSaveToPdf.Size = new System.Drawing.Size(105, 30);
+            this.btnSaveToPdf.TabIndex = 1;
+            this.btnSaveToPdf.Text = "Save to PDF";
+            this.btnSaveToPdf.UseVisualStyleBackColor = true;
+            this.btnSaveToPdf.Click += new System.EventHandler(this.btnSaveToPdf_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(549, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Scale and position then map as you would like it to appear in your report.";
+            // 
             // mapBrowser
             // 
             this.mapBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapBrowser.IsWebBrowserContextMenuEnabled = false;
             this.mapBrowser.Location = new System.Drawing.Point(0, 44);
+            this.mapBrowser.Margin = new System.Windows.Forms.Padding(0);
             this.mapBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.mapBrowser.Name = "mapBrowser";
             this.mapBrowser.Size = new System.Drawing.Size(1100, 637);
@@ -101,7 +103,7 @@
             this.Controls.Add(this.mapBrowser);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MapReportDialog";
