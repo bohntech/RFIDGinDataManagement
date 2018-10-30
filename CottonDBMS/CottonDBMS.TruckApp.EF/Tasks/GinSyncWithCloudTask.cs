@@ -80,8 +80,7 @@ namespace CottonDBMS.EF.Tasks
                     token = tokenSource.Token;
 
                     Task.Run(async () =>
-                    {
-                        //return;
+                    {                      
                         System.Threading.Thread.CurrentThread.Priority = ThreadPriority.Lowest;
                         syncRunning = true;
                         while (true && !token.IsCancellationRequested)
@@ -102,15 +101,19 @@ namespace CottonDBMS.EF.Tasks
                                     isProcessing = true;
                                     lastRunTime = DateTime.Now;
 
+                                    Logging.Logger.Log("INFO", "Process released lists.");
                                     await processTruckListReleaseDocuments(token);
 
+                                    Logging.Logger.Log("INFO", "Delete entities.");
                                     await deleteEntities(token);
+                                                                      
 
                                     using (var uow = new UnitOfWork())
                                     {
+                                        Logging.Logger.Log("INFO", "Push settings to cloud.");
                                         await pushSettingsToCloud(uow);
                                         
-                                        //add records from cloud with input source = TRUCK                                             
+                                        //add records from cloud with input source = TRUCK     
                                         await addTruckCreatedEntities<TruckEntity>(uow, uow.TruckRepository, token);
                                         await addTruckCreatedEntities<DriverEntity>(uow, uow.DriverRepository, token);
 

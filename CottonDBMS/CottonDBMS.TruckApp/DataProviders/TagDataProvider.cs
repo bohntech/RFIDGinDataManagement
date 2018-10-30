@@ -285,17 +285,20 @@ namespace CottonDBMS.TruckApp.DataProviders
 
                     if (System.IO.File.Exists(instance.settingsFileName))
                     {
+                        Logging.Logger.Log("INFO", "Loading reader settings from file.");
                         settings = Settings.Load(instance.settingsFileName);
+                        Logging.Logger.Log("INFO", "Apply reader settings from file.");
                         instance.reader.ApplySettings(settings);
                     }
                     else
                     {
+                        Logging.Logger.Log("INFO", "Query reader settings from reader.");
                         settings = instance.reader.QuerySettings();
                     }
                 }
                 catch (OctaneSdkException exc)
                 {
-                    Logging.Logger.Log("ERROR", "Error retrieving settings: " + exc.Message);
+                    Logging.Logger.Log("ERROR", "Octane SDK error retrieving settings: " + exc.Message);
                 }
                 catch (NullReferenceException exc)
                 {
@@ -328,6 +331,7 @@ namespace CottonDBMS.TruckApp.DataProviders
                     }
                     catch (Exception exc2)
                     {
+                        Logging.Logger.Log("INFO", "Error trying to re-initialize settings.");
                         Logging.Logger.Log(exc2);
                     }
                 }
