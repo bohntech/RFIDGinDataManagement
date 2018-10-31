@@ -118,7 +118,7 @@ namespace CottonDBMS.GinApp.Classes
                             }
                         }
 
-                        existingFarm = uow.FarmRepository.FindSingle(f => f.Name == farmName.Trim());
+                        existingFarm = uow.FarmRepository.FindSingle(f => f.Name == farmName.Trim() && f.ClientId == existingClient.Id);
 
                         if (existingFarm == null)
                         {
