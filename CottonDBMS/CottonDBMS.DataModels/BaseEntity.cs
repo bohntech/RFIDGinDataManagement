@@ -43,6 +43,16 @@ namespace CottonDBMS.DataModels
         [JsonProperty(PropertyName = "updated")]
         public DateTime? Updated { get; set; }
 
+        [JsonIgnore]
+        public DateTime LastCreatedOrUpdated
+        {
+            get
+            {
+                if (Updated.HasValue) return Updated.Value;
+                else return Created;
+            }
+        }
+
         public override string ToString()
         {
             return this.Name;

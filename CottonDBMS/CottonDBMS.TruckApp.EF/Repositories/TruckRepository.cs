@@ -156,6 +156,16 @@ namespace CottonDBMS.EF.Repositories
             return !_context.Truck.Any(t => t.Id != id && t.LoadPrefix == prefix);
         }
 
-       
+        public bool CanSaveLicensePlate(string id, string plateNo)
+        {
+            return !_context.Truck.Any(t => t.Id != id && t.LicensePlate == plateNo);
+        }
+
+        public bool CanSaveRFIDTag(string id, string tagNo)
+        {
+            return !_context.Truck.Any(t => t.Id != id && t.RFIDTagId == tagNo);
+        }
+
+
     }
 }

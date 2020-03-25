@@ -174,7 +174,7 @@ namespace CottonDBMS.GinApp.UserControls
 
                     if (undeletableCount > 0)
                     {
-                        if (MessageBox.Show(string.Format("{0} field(s) cannot be deleted because they are linked to one or modules or pickup lists. Would you like to continue?", undeletableCount), "Info", MessageBoxButtons.YesNo) == DialogResult.No)
+                        if (MessageBox.Show(string.Format("{0} field(s) cannot be deleted because they are linked to one or modules, gin loads, or pickup lists. Would you like to continue?", undeletableCount), "Info", MessageBoxButtons.YesNo) == DialogResult.No)
                             return;
                         itemsToDelete.RemoveAll(item => undeletableFieldIds.Contains(item.Id));
                     }

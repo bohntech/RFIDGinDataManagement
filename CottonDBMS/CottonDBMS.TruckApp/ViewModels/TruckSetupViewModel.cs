@@ -58,7 +58,7 @@ namespace CottonDBMS.TruckApp.ViewModels
 
                 if (value != null)
                 {
-                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         dp.SettingsRepository.UpsertSetting(TruckClientSettingKeys.DRIVER_ID, (value != null) ? value.ID : "");
                         dp.SaveChanges();
@@ -193,7 +193,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             if (string.IsNullOrEmpty(ErrorMessage))
             {
                 //no errors so save settings
-                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     dp.SettingsRepository.UpsertSetting(TruckClientSettingKeys.DRIVER_ID, _selectedDriver.ID);
                     dp.SettingsRepository.UpsertSetting(TruckClientSettingKeys.TRUCK_ID, _selectedTruck.ID);
@@ -230,7 +230,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             else
             {
                 //error checking passed so we can save the lock code
-                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     dp.SettingsRepository.UpsertSetting(TruckClientSettingKeys.ADMIN_PASSWORD, Password.Trim());
                     dp.SaveChanges();
@@ -251,7 +251,7 @@ namespace CottonDBMS.TruckApp.ViewModels
         private bool trySaveDbKeysFromInstallDrive()
         {
             bool savedKeys = false;
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 endpoint = dp.SettingsRepository.GetSettingWithDefault(TruckClientSettingKeys.DOCUMENTDB_ENDPOINT, "");
                 key = dp.SettingsRepository.GetSettingWithDefault(TruckClientSettingKeys.DOCUMENT_DB_KEY, "");
@@ -296,7 +296,7 @@ namespace CottonDBMS.TruckApp.ViewModels
         private async Task<bool> tryDownloadTrucksFromCloud()
         {
             bool trucksDownloaded = false;
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 try
                 {
@@ -370,7 +370,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             bool savedSettings = false;
             try
             {
-                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {                    
                     var syncedSettings = await DocumentDBContext.GetAllItemsAsync<SyncedSettings>(p => p.EntityType == EntityType.SETTING_SUMMARY);
                     var settingsToSave = syncedSettings.FirstOrDefault();

@@ -1,0 +1,2 @@
+Client,Farm,Field,"Round Module ID","Gin load","Bridge load number","HID Date/time","RFID module scan date/time","Truck load scan event date/time","Scale bridge scan event date/time","Feeder bridge scan event date/time"
+{Client},{Farm},{Field},{SerialNumber},{GinTagLoadNumber},{BridgeLoadNumber},{HIDDateTime},{RFIDModuleScanDateTime},{TruckLoadDateTime},{ScaleBridgeScanTime},{FeederBridgeScanTime}

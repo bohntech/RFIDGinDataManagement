@@ -55,7 +55,8 @@ namespace CottonDBMS.GinApp.Classes
                 if (!string.IsNullOrWhiteSpace(hostname) && !string.IsNullOrWhiteSpace(password) && !string.IsNullOrWhiteSpace(username) && port != 0)
                 {
                     using (var client = new ImapClient())
-                    {                                                
+                    {
+                        client.Timeout = 1000 * 60 * 6;
                         client.Connect(hostname, port, true);
                         client.CheckCertificateRevocation = true;                                                          
 

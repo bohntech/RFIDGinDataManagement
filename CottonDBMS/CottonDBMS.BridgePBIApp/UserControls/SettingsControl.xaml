@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="CottonDBMS.BridgePBIApp.UserControls.SettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CottonDBMS.Bridges.Shared.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="850" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />                
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource BoldBorder}" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="DATA SETTINGS" Style="{StaticResource FormFieldLabel}" Margin="0,-1,0,0" 
+                           HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                           Padding="15,15,15,15" Background="#FFFE00" Foreground="Black" ></Label>
+                   
+                    <Label Content="AZURE COSMOS ENDPOINT:" Grid.Row="1" Grid.Column="0" Style="{StaticResource FormFieldLabel}"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding DocumentDbEndpoint}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding DocumentDbEndpointErrorMessage}" Visibility="{Binding HasDocumentDbEndpointErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+
+                    <Label Content="AZURE COSMOS KEY:" Grid.Row="2" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="2" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding DocumentDbConnection}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding DocumentDbConnectionErrorMessage}" Visibility="{Binding HasDocumentDbConnectionErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+                    
+                    <Label Content="TARE WEIGHT:" Grid.Row="3" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="3" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding TareWeight}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding TareWeightErrorMessage}" Visibility="{Binding HasTareWeightErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+
+                    <Label Content="SCALE COM PORT:" Grid.Row="4" Grid.Column="0" Style="{StaticResource FormFieldLabel}"  />
+                    <StackPanel Grid.Row="4" Grid.Column="1">
+                        <ComboBox Style="{StaticResource FormComboBox}" ItemsSource="{Binding AvailablePorts}" SelectedValue="{Binding PortName}" />
+                    </StackPanel>
+
+                    <Label Content="STABLE WEIGHT SECONDS:" Grid.Row="5" Grid.Column="0" Style="{StaticResource FormFieldLabel}"  />
+                    <StackPanel Grid.Row="5" Grid.Column="1" >
+                        <Slider Style="{StaticResource ValueSlider}" Minimum="1" Maximum="600" Margin="15,15,15,5" Value="{Binding StableWeightSeconds}" />
+                    </StackPanel>
+
+                    <Label Content="BARCODE COM PORT:" Grid.Row="6" Grid.Column="0" Style="{StaticResource FormFieldLabel}"  />
+                    <StackPanel Grid.Row="6" Grid.Column="1" >
+                        <ComboBox Style="{StaticResource FormComboBox}" ItemsSource="{Binding AvailablePorts}" SelectedValue="{Binding BarcodePortName}" />
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="Port cannot be the same as scale port." Visibility="{Binding HasBarcodePortErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>                    
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Content="SAVE"   Style="{StaticResource LargeButton}" Command="{Binding SaveCommand}"  IsDefault="True" />
+                <Button Grid.Row="0" Grid.Column="2" Content="SYNC" Style="{StaticResource LargeButton}" Command="{Binding SyncCommand}" Visibility="{Binding IsFirstLaunch, Converter={StaticResource VisibleIfFalse}}" />
+                <Button Grid.Row="0" Grid.Column="4" Content="CLEAR DATA" Style="{StaticResource LargeButton}" Command="{Binding ClearCommand}" Visibility="{Binding IsFirstLaunch, Converter={StaticResource VisibleIfFalse}}" />
+                <Button Grid.Row="0" Grid.Column="6" Content="CANCEL" Style="{StaticResource LargeButton}" Command="{Binding CancelCommand}" IsCancel="True" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

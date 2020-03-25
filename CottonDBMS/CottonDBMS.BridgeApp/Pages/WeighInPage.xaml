@@ -1,0 +1,52 @@
+﻿<Page x:Class="CottonDBMS.BridgeApp.Pages.WeighInPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:converters="clr-namespace:CottonDBMS.Bridges.Shared.Converters;assembly=CottonDBMS.Bridges.Shared"
+      xmlns:local="clr-namespace:CottonDBMS.BridgeApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1000" Loaded="Page_Loaded"
+      Title="WeighInPage">
+
+    <Grid Style="{StaticResource LayoutGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" >
+            <Label Content="{Binding WelcomeMessage}"  Style="{StaticResource TitleLabel}" ></Label>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Load Gross Weight:" Style="{StaticResource TitleLabel}" HorizontalAlignment="Left" />
+                <Label Content="{Binding GrossWeight}" Style="{StaticResource TitleLabel}" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="{Binding IsSplitWeight, Converter={StaticResource VisibleIfTrue}}">
+                <Label Content="Split weight 1:" Style="{StaticResource TitleLabel}" HorizontalAlignment="Left" FontSize="38" Padding="0,0,0,0" Margin="0,0,0,5" />
+                <Label Content="{Binding Weight1}" Style="{StaticResource TitleLabel}" HorizontalAlignment="Left" FontSize="38"  Padding="0,0,0,0" Margin="25,0,0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="{Binding IsSplitWeight, Converter={StaticResource VisibleIfTrue}}">
+                <Label Content="Split weight 2:" Style="{StaticResource TitleLabel}" HorizontalAlignment="Left" FontSize="38" Padding="0,0,0,0" Margin="0,0,0,5" />
+                <Label Content="{Binding Weight2}" Style="{StaticResource TitleLabel}" HorizontalAlignment="Left" FontSize="38" Padding="0,0,0,0" Margin="25,0,0,25"/>
+            </StackPanel>
+
+            <Button x:Name="btnCancelSplit" Content="Cancel Split Weight" Width="375" Style="{StaticResource MediumButton}" Command="{Binding CancelSplitWeightCommand}" Visibility="{Binding IsSplitCanceled, Converter={StaticResource VisibleIfFalse}}" />
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,50,0,0">
+                <Label Content="SCAN OR ENTER GIN TICKET LOAD#:" Style="{StaticResource FormFieldLabel}" HorizontalAlignment="Center" />
+                <TextBox x:Name="tbGinTicket" Style="{StaticResource FormTextBox}"  Width="365" Margin="0,0,0,5" Text="{Binding GinTicketLoadNumber, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="False" />
+                <TextBlock Style="{StaticResource ErrorTextBlock}" Margin="0,0,0,10"  Text="Please enter gin ticket number." Visibility="{Binding HasLookupError, Converter={StaticResource VisibleIfTrue}}"></TextBlock>
+                <Button x:Name="btnLookupLoad" Content="Continue" Width="365" Style="{StaticResource MediumButton}" Command="{Binding LookupLoadCommand}" IsDefault="True" Margin="0,5,0,0"/>
+                <Button x:Name="btnCancel" Content="Cancel" Width="365" Style="{StaticResource MediumButton}" Command="{Binding CancelCommand}" IsCancel="True" Margin="0,5,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using CottonDBMS.GinApp.Dialogs;
 using CottonDBMS.GinApp.Classes;
 using CottonDBMS.DataModels;
+using CottonDBMS.GinApp.Helpers;
 using System.IO;
 using PdfSharp;
 using MigraDoc;
@@ -179,6 +180,39 @@ namespace CottonDBMS.GinApp.UserControls
                            .Replace("{Driver}", doc.Driver)
                            .Replace("{Status}", doc.StatusName)
                            .Replace("{Notes}", doc.Notes)
+                           .Replace("{ClassingModuleID}", doc.ClassingModuleId)
+                           .Replace("{GinTagLoadNumber}", doc.GinTagLoadNumber)
+                           .Replace("{BridgeLoadNumber}", doc.BridgeLoadNumber)
+                           .Replace("{FirstBridgeID}", doc.FirstBridgeId)
+                           .Replace("{LastBridgeID}", doc.LastBridgeId)
+                           .Replace("{BridgeID}", doc.LastBridgeId)
+                           .Replace("{HIDModuleWeight}", doc.HIDModuleWeight.NullableToString())
+                           .Replace("{HIDMoisture}", doc.HIDMoisture.NullableToString())
+                           .Replace("{HIDFieldArea}", doc.HIDFieldArea.NullableToString())
+                           .Replace("{HIDIncrementalArea}", doc.HIDIncrementalArea.NullableToString())
+                           .Replace("{HIDDiameter}", doc.HIDDiameter.NullableToString())
+                           .Replace("{HIDSeasonTotal}", doc.HIDSeasonTotal.NullableToString())
+                           
+                           .Replace("{HIDVariety}", doc.HIDVariety)
+                           .Replace("{HIDOperator}", doc.HIDOperator)
+                           .Replace("{HIDProducerID}", doc.HIDProducerID)
+                           .Replace("{HIDDateTime}", doc.HIDTimestampToLocalString)
+
+                           .Replace("{RFIDModuleScanDateTime}", doc.RFIDModuleScanDateTimeToLocalString)
+                           .Replace("{TruckLoadDateTime}", doc.TruckLoadScanDateTimeToLocalString)
+                           .Replace("{ScaleBridgeScanTime}", doc.FirstScaleBridgeScanTimeToLocalString)
+                           .Replace("{FeederBridgeScanTime}", doc.LastFeederScanTimeToLocalString)
+
+                           .Replace("{HIDGinID}", doc.HIDGinID)
+                           .Replace("{HIDMachinePIN}", doc.HIDMachinePIN)
+                           .Replace("{HIDDropLat}", doc.HIDDropLat.ToString())
+                           .Replace("{HIDDropLong}", doc.HIDDropLong.ToString())
+                           .Replace("{HIDWrapLat}", doc.HIDWrapLat.ToString())
+                           .Replace("{HIDWrapLong}", doc.HIDWrapLong.ToString())
+                           .Replace("{HIDLat}", doc.HIDLat.ToString())
+                           .Replace("{HIDLong}", doc.HIDLong.ToString())
+                           .Replace("{HIDFieldTotal}", doc.HIDFieldTotal.NullableToString())
+
                            .Replace("{EventType}", "")
                            .Replace("{GMTDate}", doc.Created.ToString("MM/dd/yyyy"))
                            .Replace("{GMTTime}", doc.Created.ToString("HH:mm:ss"))
@@ -201,6 +235,29 @@ namespace CottonDBMS.GinApp.UserControls
                            .Replace("{Latitude}", doc.Latitude.ToString())
                            .Replace("{Longitude}", doc.Longitude.ToString())
                            .Replace("{TruckID}", doc.TruckID)
+                           .Replace("{BridgeID}", doc.BridgeId)
+                           .Replace("{BridgeLoadNumber}", doc.BridgeLoadNumber.NullableToString())
+                           .Replace("{GinTagLoadNumber}", doc.GinTagLoadNumber)
+                           .Replace("{HIDModuleWeight}", doc.Module.HIDModuleWeight.NullableToString())
+                           .Replace("{HIDMoisture}", doc.Module.HIDMoisture.NullableToString())
+                           .Replace("{HIDFieldArea}", doc.Module.HIDFieldArea.NullableToString())
+                           .Replace("{HIDIncrementalArea}", doc.Module.HIDIncrementalArea.NullableToString())
+                           .Replace("{HIDDiameter}", doc.Module.HIDDiameter.NullableToString())
+                           .Replace("{HIDSeasonTotal}", doc.Module.HIDSeasonTotal.NullableToString())
+                           .Replace("{HIDVariety}", doc.Module.HIDVariety)
+                           .Replace("{HIDOperator}", doc.Module.HIDOperator)
+                           .Replace("{HIDProducerID}", doc.Module.HIDProducerID)
+
+                           .Replace("{HIDGinID}", doc.Module.HIDGinID)
+                           .Replace("{HIDMachinePIN}", doc.Module.HIDMachinePIN)
+                           .Replace("{HIDDropLat}", doc.Module.HIDDropLat.ToString())
+                           .Replace("{HIDDropLong}", doc.Module.HIDDropLong.ToString())
+                           .Replace("{HIDWrapLat}", doc.Module.HIDWrapLat.ToString())
+                           .Replace("{HIDWrapLong}", doc.Module.HIDWrapLong.ToString())
+                           .Replace("{HIDLat}", doc.Module.HIDLat.ToString())
+                           .Replace("{HIDLong}", doc.Module.HIDLong.ToString())
+                           .Replace("{HIDFieldTotal}", doc.Module.HIDFieldTotal.NullableToString())
+
                            .Replace("{Driver}", doc.Driver)
                            .Replace("{Status}", doc.StatusName)
                            .Replace("{Notes}", doc.Module.Notes)
@@ -380,8 +437,8 @@ namespace CottonDBMS.GinApp.UserControls
                     using (StreamWriter sr = new StreamWriter(outputFilename, false))
                     {
                         var outputDocs = getRecentModuleDocsAsync();
-                        string[] headers = { "Client:3cm", "Farm:2.8cm", "Field:3cm", "Serial:2.2cm", "Load:2.55cm", "Latitude:3.15cm", "Longitude:3.15cm", "TruckID:2.0cm", "Driver:1.75cm", "Status:1.4cm", "Timestamp:2.0cm" };
-                        string[] columns = { "{Client}", "{Farm}", "{Field}", "{SerialNumber}", "{LoadNumber}", "{Latitude}", "{Longitude}", "{TruckID}", "{Driver}", "{Status}", "{DateAdded}" };
+                        string[] headers = { "Client:3cm", "Farm:2.8cm", "Field:3cm", "Serial:2.2cm", "Load:1.30cm", "Gin Tkt Load:1.50cm", "Latitude:3.15cm", "Longitude:3.15cm", "TruckID:1.5cm", "Driver:1.75cm", "Status:1.4cm", "Timestamp:2.0cm" };
+                        string[] columns = { "{Client}", "{Farm}", "{Field}", "{SerialNumber}", "{LoadNumber}", "{GinTagLoadNumber}", "{Latitude}", "{Longitude}", "{TruckID}", "{Driver}", "{Status}", "{DateAdded}" };
                                               
                         setupPdf(mDoc, headers, ref table, tbReportTitle.Text);
                         total = outputDocs.Count();
@@ -405,8 +462,8 @@ namespace CottonDBMS.GinApp.UserControls
                     using (StreamWriter sr = new StreamWriter(outputFilename, false))
                     {
                         var historyDocs = getAllLocationRecordsAsync();                        
-                        string[] headers = { "Client:2.5cm", "Farm:2.0cm", "Field:3cm", "Serial:2.2cm", "Load:2.55cm", "Latitude:3.15cm", "Longitude:3.15cm", "TruckID:2.0cm", "Driver:1.75cm", "Status:1.2cm", "Event:1.75cm", "Timestamp:2.0cm" };
-                        string[] columns = { "{Client}", "{Farm}", "{Field}", "{SerialNumber}", "{LoadNumber}", "{Latitude}", "{Longitude}", "{TruckID}", "{Driver}", "{Status}", "{EventType}", "{DateAdded}" };
+                        string[] headers = { "Client:2.5cm", "Farm:2.0cm", "Field:2.5cm", "Serial:2.2cm", "Load:1.30cm", "Gin ticket load:1.50cm", "Latitude:3.15cm", "Longitude:3.15cm", "TruckID:1.5cm", "Driver:1.75cm", "Status:1.2cm", "Event:1.75cm", "Timestamp:2.0cm" };
+                        string[] columns = { "{Client}", "{Farm}", "{Field}", "{SerialNumber}", "{LoadNumber}", "{GinTagLoadNumber}", "{Latitude}", "{Longitude}", "{TruckID}", "{Driver}", "{Status}", "{EventType}", "{DateAdded}" };
 
                         setupPdf(mDoc, headers, ref table, tbReportTitle.Text);
                         total = historyDocs.Count();

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.lblClient = new System.Windows.Forms.Label();
             this.lblFarm = new System.Windows.Forms.Label();
@@ -44,6 +46,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.TruckID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Driver = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BridgeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BridgeLoadNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GinTagLoadNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Latitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -182,6 +187,9 @@
             this.historyDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TruckID,
             this.Driver,
+            this.BridgeId,
+            this.BridgeLoadNumber,
+            this.GinTagLoadNumber,
             this.Event,
             this.Status,
             this.Latitude,
@@ -192,8 +200,8 @@
             this.historyDataGrid.Name = "historyDataGrid";
             this.historyDataGrid.ReadOnly = true;
             this.historyDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.historyDataGrid.Size = new System.Drawing.Size(827, 398);
-            this.historyDataGrid.TabIndex = 12;
+            this.historyDataGrid.Size = new System.Drawing.Size(959, 398);
+            this.historyDataGrid.TabIndex = 12;            
             // 
             // btnClose
             // 
@@ -220,6 +228,34 @@
             this.Driver.Name = "Driver";
             this.Driver.ReadOnly = true;
             this.Driver.Width = 69;
+            // 
+            // BridgeId
+            // 
+            this.BridgeId.DataPropertyName = "BridgeId";
+            this.BridgeId.HeaderText = "Bridge ID";
+            this.BridgeId.Name = "BridgeId";
+            this.BridgeId.ReadOnly = true;
+            this.BridgeId.Width = 89;
+            // 
+            // BridgeLoadNumber
+            // 
+            this.BridgeLoadNumber.DataPropertyName = "BridgeLoadNumber";
+            dataGridViewCellStyle3.NullValue = null;
+            this.BridgeLoadNumber.DefaultCellStyle = dataGridViewCellStyle3;
+            this.BridgeLoadNumber.HeaderText = "Bridge Load#";
+            this.BridgeLoadNumber.Name = "BridgeLoadNumber";
+            this.BridgeLoadNumber.ReadOnly = true;
+            this.BridgeLoadNumber.Width = 114;
+            // 
+            // GinTagLoadNumber
+            // 
+            this.GinTagLoadNumber.DataPropertyName = "GinTagLoadNumber";
+            dataGridViewCellStyle4.NullValue = " ";
+            this.GinTagLoadNumber.DefaultCellStyle = dataGridViewCellStyle4;
+            this.GinTagLoadNumber.HeaderText = "Gin Tkt Load#";
+            this.GinTagLoadNumber.Name = "GinTagLoadNumber";
+            this.GinTagLoadNumber.ReadOnly = true;
+            this.GinTagLoadNumber.Width = 116;
             // 
             // Event
             // 
@@ -265,7 +301,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 567);
+            this.ClientSize = new System.Drawing.Size(1013, 567);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.historyDataGrid);
             this.Controls.Add(this.lblLocationValue);
@@ -316,6 +352,9 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridViewTextBoxColumn TruckID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Driver;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BridgeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BridgeLoadNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GinTagLoadNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn Event;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Latitude;

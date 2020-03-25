@@ -10,5 +10,5 @@ using Newtonsoft.Json.Converters;
 namespace CottonDBMS.DataModels
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum ModuleEventType { LOADED = 1, UNLOADED = 2, MANUAL_EDIT = 3, IMPORTED_FROM_FILE = 4 }
+    public enum ModuleEventType { LOADED = 1, UNLOADED = 2, MANUAL_EDIT = 3, IMPORTED_FROM_FILE = 4, BRIDGE_SCAN = 5, IMPORTED_FROM_RFID_MODULESCAN = 6, IMPORTED_FROM_HID = 7 }
 }

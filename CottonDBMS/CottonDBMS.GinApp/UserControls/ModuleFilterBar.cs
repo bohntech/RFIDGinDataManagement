@@ -196,6 +196,7 @@ namespace CottonDBMS.GinApp.UserControls
                 filter.Field = tbField.Text.Trim();
                 filter.SerialNumber = tbSerialNo.Text.Trim();
                 filter.LoadNumber = tbLoad.Text.Trim();
+                filter.GinTicketLoadNumber = tbGinTktLoadNumber.Text.Trim();
                 filter.TruckID = tbTruck.Text.Trim();
                 filter.Driver = tbDriver.Text.Trim();
                 filter.RecentOnly = (cboRecordsToShow.SelectedIndex == 0);

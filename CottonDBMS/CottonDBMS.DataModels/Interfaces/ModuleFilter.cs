@@ -15,6 +15,7 @@ namespace CottonDBMS.Interfaces
         public string Field { get; set; }
         public string SerialNumber { get; set; }
         public string LoadNumber { get; set; }
+        public string GinTicketLoadNumber { get; set; }
         public string TruckID { get; set; }
         public string Driver { get; set; }
         public ModuleStatus? Status { get; set; }

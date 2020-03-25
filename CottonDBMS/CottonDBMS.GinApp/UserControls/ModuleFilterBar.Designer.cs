@@ -82,6 +82,9 @@
             this.cboSortDirection3 = new System.Windows.Forms.ComboBox();
             this.lblDummy = new System.Windows.Forms.Label();
             this.layoutTimer = new System.Windows.Forms.Timer(this.components);
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbGinTktLoadNumber = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
@@ -101,6 +104,7 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.panelSortBy3.SuspendLayout();
             this.flowLayoutPanel9.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnApply
@@ -258,6 +262,7 @@
             "In field",
             "Picked up",
             "At gin",
+            "On feeder",
             "Ginned"});
             this.cboStatus.Location = new System.Drawing.Point(3, 20);
             this.cboStatus.Name = "cboStatus";
@@ -316,7 +321,7 @@
             this.flowLayoutPanel7.Controls.Add(this.label29);
             this.flowLayoutPanel7.Controls.Add(this.tbLoad);
             this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(761, 0);
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(880, 0);
             this.flowLayoutPanel7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
             this.flowLayoutPanel7.Size = new System.Drawing.Size(116, 46);
@@ -362,7 +367,7 @@
             this.flowLayoutPanel8.Controls.Add(this.label30);
             this.flowLayoutPanel8.Controls.Add(this.tbTruck);
             this.flowLayoutPanel8.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel8.Location = new System.Drawing.Point(880, 0);
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(999, 0);
             this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
             this.flowLayoutPanel8.Size = new System.Drawing.Size(203, 46);
@@ -374,7 +379,7 @@
             this.flowLayoutPanel10.Controls.Add(this.label32);
             this.flowLayoutPanel10.Controls.Add(this.tbDriver);
             this.flowLayoutPanel10.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel10.Location = new System.Drawing.Point(1086, 0);
+            this.flowLayoutPanel10.Location = new System.Drawing.Point(1205, 0);
             this.flowLayoutPanel10.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel10.Name = "flowLayoutPanel10";
             this.flowLayoutPanel10.Size = new System.Drawing.Size(203, 46);
@@ -386,7 +391,7 @@
             this.flowLayoutPanel11.Controls.Add(this.label33);
             this.flowLayoutPanel11.Controls.Add(this.cboStatus);
             this.flowLayoutPanel11.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel11.Location = new System.Drawing.Point(1292, 0);
+            this.flowLayoutPanel11.Location = new System.Drawing.Point(1411, 0);
             this.flowLayoutPanel11.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel11.Name = "flowLayoutPanel11";
             this.flowLayoutPanel11.Size = new System.Drawing.Size(132, 47);
@@ -398,7 +403,7 @@
             this.flowLayoutPanel12.Controls.Add(this.label34);
             this.flowLayoutPanel12.Controls.Add(this.dpStartDate);
             this.flowLayoutPanel12.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel12.Location = new System.Drawing.Point(1427, 0);
+            this.flowLayoutPanel12.Location = new System.Drawing.Point(1546, 0);
             this.flowLayoutPanel12.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel12.Name = "flowLayoutPanel12";
             this.flowLayoutPanel12.Size = new System.Drawing.Size(126, 46);
@@ -410,7 +415,7 @@
             this.flowLayoutPanel13.Controls.Add(this.label35);
             this.flowLayoutPanel13.Controls.Add(this.dpEndDate);
             this.flowLayoutPanel13.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel13.Location = new System.Drawing.Point(1556, 0);
+            this.flowLayoutPanel13.Location = new System.Drawing.Point(1675, 0);
             this.flowLayoutPanel13.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel13.Name = "flowLayoutPanel13";
             this.flowLayoutPanel13.Size = new System.Drawing.Size(133, 46);
@@ -419,7 +424,7 @@
             // panelApply
             // 
             this.panelApply.Controls.Add(this.btnApply);
-            this.panelApply.Location = new System.Drawing.Point(3, 50);
+            this.panelApply.Location = new System.Drawing.Point(270, 50);
             this.panelApply.Name = "panelApply";
             this.panelApply.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.panelApply.Size = new System.Drawing.Size(102, 44);
@@ -434,6 +439,7 @@
             this.outerFlowLayout.Controls.Add(this.flowLayoutPanel4);
             this.outerFlowLayout.Controls.Add(this.flowLayoutPanel5);
             this.outerFlowLayout.Controls.Add(this.flowLayoutPanel6);
+            this.outerFlowLayout.Controls.Add(this.flowLayoutPanel1);
             this.outerFlowLayout.Controls.Add(this.flowLayoutPanel7);
             this.outerFlowLayout.Controls.Add(this.flowLayoutPanel8);
             this.outerFlowLayout.Controls.Add(this.flowLayoutPanel10);
@@ -460,7 +466,7 @@
             this.panelRecordsToShow.Controls.Add(this.label1);
             this.panelRecordsToShow.Controls.Add(this.cboRecordsToShow);
             this.panelRecordsToShow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelRecordsToShow.Location = new System.Drawing.Point(1692, 0);
+            this.panelRecordsToShow.Location = new System.Drawing.Point(1811, 0);
             this.panelRecordsToShow.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.panelRecordsToShow.Name = "panelRecordsToShow";
             this.panelRecordsToShow.Size = new System.Drawing.Size(231, 47);
@@ -495,7 +501,7 @@
             this.panelSort1.Controls.Add(this.label63);
             this.panelSort1.Controls.Add(this.flowLayoutPanel48);
             this.panelSort1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelSort1.Location = new System.Drawing.Point(1926, 0);
+            this.panelSort1.Location = new System.Drawing.Point(2045, 0);
             this.panelSort1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.panelSort1.Name = "panelSort1";
             this.panelSort1.Size = new System.Drawing.Size(264, 47);
@@ -534,10 +540,14 @@
             "Serial No",
             "Load #",
             "Imported Load #",
+            "Gin ticket load #",
+            "Bridge load #",
             "Truck ID",
             "Driver",
             "Status",
-            "Timestamp"});
+            "Created",
+            "Updated"
+            });
             this.cboSortBy1.Location = new System.Drawing.Point(3, 3);
             this.cboSortBy1.Name = "cboSortBy1";
             this.cboSortBy1.Size = new System.Drawing.Size(126, 24);
@@ -561,7 +571,7 @@
             this.panelSortBy2.Controls.Add(this.label2);
             this.panelSortBy2.Controls.Add(this.flowLayoutPanel2);
             this.panelSortBy2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelSortBy2.Location = new System.Drawing.Point(2193, 0);
+            this.panelSortBy2.Location = new System.Drawing.Point(2312, 0);
             this.panelSortBy2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.panelSortBy2.Name = "panelSortBy2";
             this.panelSortBy2.Size = new System.Drawing.Size(264, 47);
@@ -600,10 +610,13 @@
             "Serial No",
             "Load #",
             "Imported Load #",
+            "Gin ticket load #",
+            "Bridge load #",
             "Truck ID",
             "Driver",
             "Status",
-            "Timestamp"});
+            "Created",
+            "Updated"});
             this.cboSortBy2.Location = new System.Drawing.Point(3, 3);
             this.cboSortBy2.Name = "cboSortBy2";
             this.cboSortBy2.Size = new System.Drawing.Size(126, 24);
@@ -627,7 +640,7 @@
             this.panelSortBy3.Controls.Add(this.label3);
             this.panelSortBy3.Controls.Add(this.flowLayoutPanel9);
             this.panelSortBy3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelSortBy3.Location = new System.Drawing.Point(2460, 0);
+            this.panelSortBy3.Location = new System.Drawing.Point(0, 47);
             this.panelSortBy3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.panelSortBy3.Name = "panelSortBy3";
             this.panelSortBy3.Size = new System.Drawing.Size(264, 47);
@@ -665,10 +678,14 @@
             "Field",
             "Serial No",
             "Load #",
+            "Imported Load #",
+            "Gin ticket load #",
+            "Bridge load #",
             "Truck ID",
             "Driver",
             "Status",
-            "Timestamp"});
+            "Created",
+            "Updated"});
             this.cboSortBy3.Location = new System.Drawing.Point(3, 3);
             this.cboSortBy3.Name = "cboSortBy3";
             this.cboSortBy3.Size = new System.Drawing.Size(126, 24);
@@ -689,7 +706,7 @@
             // lblDummy
             // 
             this.outerFlowLayout.SetFlowBreak(this.lblDummy, true);
-            this.lblDummy.Location = new System.Drawing.Point(111, 47);
+            this.lblDummy.Location = new System.Drawing.Point(378, 47);
             this.lblDummy.Name = "lblDummy";
             this.lblDummy.Size = new System.Drawing.Size(0, 0);
             this.lblDummy.TabIndex = 16;
@@ -700,6 +717,34 @@
             this.layoutTimer.Enabled = true;
             this.layoutTimer.Interval = 500;
             this.layoutTimer.Tick += new System.EventHandler(this.layoutTimer_Tick);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.Controls.Add(this.label4);
+            this.flowLayoutPanel1.Controls.Add(this.tbGinTktLoadNumber);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(761, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(116, 46);
+            this.flowLayoutPanel1.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Gin Tkt Load #";
+            // 
+            // tbGinTktLoadNumber
+            // 
+            this.tbGinTktLoadNumber.Location = new System.Drawing.Point(3, 20);
+            this.tbGinTktLoadNumber.Name = "tbGinTktLoadNumber";
+            this.tbGinTktLoadNumber.Size = new System.Drawing.Size(110, 23);
+            this.tbGinTktLoadNumber.TabIndex = 1;
             // 
             // ModuleFilterBar
             // 
@@ -745,6 +790,8 @@
             this.panelSortBy3.ResumeLayout(false);
             this.panelSortBy3.PerformLayout();
             this.flowLayoutPanel9.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -805,5 +852,8 @@
         private System.Windows.Forms.ComboBox cboSortDirection3;
         private System.Windows.Forms.Timer layoutTimer;
         private System.Windows.Forms.Label lblDummy;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbGinTktLoadNumber;
     }
 }

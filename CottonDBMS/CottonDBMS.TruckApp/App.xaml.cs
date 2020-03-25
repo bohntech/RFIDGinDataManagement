@@ -148,7 +148,7 @@ namespace CottonDBMS.TruckApp
                 SimpleIoc.Default.Register<TruckSetupViewModel>();
 
                 SimpleIoc.Default.Register<IWindowService, WindowService>();
-                SimpleIoc.Default.Register<IUnitOfWork, UnitOfWork>();
+                SimpleIoc.Default.Register<IUnitOfWorkFactory, UnitOfWorkFactory>();
             }
             catch (Exception exc)
             {

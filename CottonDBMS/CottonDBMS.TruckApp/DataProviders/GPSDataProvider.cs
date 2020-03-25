@@ -127,7 +127,7 @@ namespace CottonDBMS.TruckApp.DataProviders
 
         private static string GetSavedPortName()
         {
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var setting = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.GPS_COM_PORT);
 
@@ -144,7 +144,7 @@ namespace CottonDBMS.TruckApp.DataProviders
 
         private static void SaveDefaultPort(string portname)
         {
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var setting = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.GPS_COM_PORT);
 

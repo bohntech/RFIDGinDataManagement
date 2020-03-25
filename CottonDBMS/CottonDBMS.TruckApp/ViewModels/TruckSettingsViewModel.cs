@@ -21,8 +21,7 @@ using System.Timers;
 namespace CottonDBMS.TruckApp.ViewModels
 {
     public class TruckSettingsViewModel : ViewModelBase
-    {
-        private IUnitOfWork _unitOfWork = null;
+    {        
         private Timer timer = null;
 
         private string _errorMessage;
@@ -100,7 +99,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                     ErrorMessage = "";
                     ShowErrorMessage = false;                    
                     
-                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         try
                         {
@@ -188,7 +187,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             {
                 try
                 {
-                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         var repo = dp.SettingsRepository;
                         System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
@@ -228,7 +227,7 @@ namespace CottonDBMS.TruckApp.ViewModels
         {
             AvailableTrucks = new ObservableCollection<ComboBoxItemViewModel>();
 
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var setting = dp.SettingsRepository.FindSingle(s => s.Key == TruckClientSettingKeys.GPS_OFFSET_FEET);
 

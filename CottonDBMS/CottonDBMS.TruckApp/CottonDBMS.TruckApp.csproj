@@ -157,6 +157,7 @@
     <Compile Include="Messages\ReaderExceptionMessage.cs" />
     <Compile Include="Messages\ShutdownMessage.cs" />
     <Compile Include="Messages\TriggerPasswordModalMessage.cs" />
+    <Compile Include="UnitOfWorkFactory.cs" />
     <Compile Include="ViewModels\LoadingAtGin.cs" />
     <Compile Include="ViewModels\TruckSetupViewModel.cs" />
     <Compile Include="ViewModels\UnloadCorrectionViewModel.cs" />

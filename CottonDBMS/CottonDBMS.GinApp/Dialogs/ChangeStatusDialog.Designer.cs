@@ -172,6 +172,7 @@
             "In field",
             "Picked up",
             "At gin",
+            "On feeder",
             "Ginned"});
             this.tbStatus.Location = new System.Drawing.Point(119, 66);
             this.tbStatus.Name = "tbStatus";

@@ -196,6 +196,27 @@ namespace CottonDBMS.Cloud {
             return items.Count() > 0;
         }
 
+        public static async Task<List<string>> GetMissingIds<T>(List<string> idsToTest) where T : BaseEntity
+        {
+            var query = client.CreateDocumentQuery<T>(
+               UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId),
+               new FeedOptions { MaxItemCount = -1 })
+               .Where(t => idsToTest.Contains(t.Id))
+               .Select(t => t.Id)
+               .AsDocumentQuery();
+
+            List<string> items = new List<string>();
+
+            if (query.HasMoreResults)
+                items.AddRange(await query.ExecuteNextAsync<string>());
+
+            List<string> missingIds = new List<string>();
+
+            missingIds.AddRange(idsToTest.Where(i => !items.Contains(i)).ToList());
+
+            return missingIds;
+        }
+
         public static async Task<Document> CreateItemAsync<T>(T item)
         {
             return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item, new RequestOptions { ConsistencyLevel = ConsistencyLevel.Eventual });

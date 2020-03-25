@@ -1,0 +1,204 @@
+﻿<UserControl x:Class="CottonDBMS.Bridges.Shared.UserControls.SettingsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CottonDBMS.Bridges.Shared.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource BoldBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="DATA SETTINGS" Style="{StaticResource FormFieldLabel}" Margin="0,-1,0,0" 
+                           HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                           Padding="2,2,2,2" Background="#FFFE00" Foreground="Black" ></Label>
+
+                    <Label Content="BRIDGE ID:" Grid.Row="1" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding BridgeID}" />
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding BridgeIDErrorMessage}" Visibility="{Binding HasBridgeIDErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+
+                    <Label Content="SCREEN TITLE:" Grid.Row="2" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="2" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding ScreenTitle}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding ScreenTitleErrorMessage}" Visibility="{Binding HasScreenTitleErrorMessage, Converter={StaticResource VisibleIfTrue}}"/>
+                    </StackPanel>
+
+                    <Label Content="AZURE COSMOS ENDPOINT:" Grid.Row="3" Grid.Column="0" Style="{StaticResource FormFieldLabel}"/>
+                    <StackPanel Grid.Row="3" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding DocumentDbEndpoint}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding DocumentDbEndpointErrorMessage}" Visibility="{Binding HasDocumentDbEndpointErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+
+                    <Label Content="AZURE COSMOS KEY:" Grid.Row="4" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="4" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding DocumentDbConnection}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding DocumentDbConnectionErrorMessage}" Visibility="{Binding HasDocumentDbConnectionErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+
+                    <Label Content="LATITUDE:" Grid.Row="5" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="5" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding Latitude}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding LatitudeErrorMessage}" Visibility="{Binding HasLatitudeErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+
+                    <Label Content="LONGITUDE:" Grid.Row="6" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="6" Grid.Column="1">
+                        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding Longitude}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding LongitudeErrorMessage}" Visibility="{Binding HasLongitudeErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+
+                    <Label Content="TARGET STATUS:" Grid.Row="7" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="7" Grid.Column="1">
+                        <ComboBox Style="{StaticResource FormComboBox}" ItemsSource="{Binding AvailableStatuses}" SelectedValue="{Binding TargetStatus}" >
+
+                        </ComboBox>
+                    </StackPanel>
+
+                    <Label Content="SCALE COM PORT:" Grid.Row="8" Grid.Column="0" Style="{StaticResource FormFieldLabel}" Visibility="{Binding AllowPortSelection, Converter={StaticResource VisibleIfTrue}}" />
+                    <StackPanel Grid.Row="8" Grid.Column="1" Visibility="{Binding AllowPortSelection, Converter={StaticResource VisibleIfTrue}}">
+                        <ComboBox Style="{StaticResource FormComboBox}" ItemsSource="{Binding AvailablePorts}" SelectedValue="{Binding PortName}" />
+                    </StackPanel>
+
+                    <Label Content="STABLE WEIGHT SECONDS:" Grid.Row="9" Grid.Column="0" Style="{StaticResource FormFieldLabel}" Visibility="{Binding AllowPortSelection, Converter={StaticResource VisibleIfTrue}}" />
+                    <StackPanel Grid.Row="9" Grid.Column="1" Visibility="{Binding AllowPortSelection, Converter={StaticResource VisibleIfTrue}}" Margin="0,-10,0,0">
+                        <Slider Style="{StaticResource ValueSlider}" Minimum="1" Maximum="600" Margin="15,15,15,5" Value="{Binding StableWeightSeconds}" />
+                    </StackPanel>
+
+                    <Label Content="BARCODE COM PORT:" Grid.Row="10" Grid.Column="0" Style="{StaticResource FormFieldLabel}" Visibility="{Binding AllowPortBarCodeSelection, Converter={StaticResource VisibleIfTrue}}" />
+                    <StackPanel Grid.Row="10" Grid.Column="1" Visibility="{Binding AllowPortBarCodeSelection, Converter={StaticResource VisibleIfTrue}}">
+                        <ComboBox Style="{StaticResource FormComboBox}" ItemsSource="{Binding AvailablePorts}" SelectedValue="{Binding BarcodePortName}" />
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="Port cannot be the same as scale port." Visibility="{Binding HasBarcodePortErrorMessage, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+
+                    <Label Content="SYNC INTERVAL:" Grid.Row="11" Grid.Column="0" Style="{StaticResource FormFieldLabel}" />
+                    <StackPanel Grid.Row="11" Grid.Column="1" Margin="0,-10,0,0">
+                        <Slider Style="{StaticResource ValueSlider}" Minimum="1" Maximum="5 " Margin="15,15,15,5" Value="{Binding DataSyncInterval}" />
+                    </StackPanel>
+
+                    <Label Content="WEIGH IN TIMEOUT SECONDS:" Grid.Row="12" Grid.Column="0" Style="{StaticResource FormFieldLabel}" Visibility="{Binding AllowWeighInPageTimeOutSelection, Converter={StaticResource VisibleIfTrue}}" />
+                    <StackPanel Grid.Row="12" Grid.Column="1"  Visibility="{Binding AllowWeighInPageTimeOutSelection, Converter={StaticResource VisibleIfTrue}}" Margin="0,-10,0,0">
+                        <Slider Style="{StaticResource ValueSlider}" Minimum="10" Maximum="60 " Margin="15,15,15,5" Value="{Binding WeighInTimeout}" />
+                    </StackPanel>
+
+                    <Label Content="LOAD AUTO-SAVE TIMEOUT MINUTES:" Grid.Row="13" Grid.Column="0" Style="{StaticResource FormFieldLabel}" Visibility="{Binding AllowWeighInPageTimeOutSelection, Converter={StaticResource VisibleIfTrue}}" />
+                    <StackPanel Grid.Row="13" Grid.Column="1"  Visibility="{Binding AllowWeighInPageTimeOutSelection, Converter={StaticResource VisibleIfTrue}}" Margin="0,-10,0,0">
+                        <Slider Style="{StaticResource ValueSlider}" Minimum="2" Maximum="60" Margin="15,15,15,5" Value="{Binding WeightAutoSaveTimeout}" />
+                    </StackPanel>
+
+                    <Label Content="UNATTENDED MODE:" Grid.Row="14" Grid.Column="0" Style="{StaticResource FormFieldLabel}" Margin="0,0,0,0" Visibility="{Binding AllowWeighInPageTimeOutSelection, Converter={StaticResource VisibleIfTrue}}"/>
+                    <StackPanel Grid.Row="14" Grid.Column="1">
+                        <CheckBox  IsChecked="{Binding UnattendedMode}" Margin="15,13,0,0" Visibility="{Binding AllowWeighInPageTimeOutSelection, Converter={StaticResource VisibleIfTrue}}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource BoldBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="READER SETTINGS" Style="{StaticResource FormFieldLabel}" Margin="0,-1,0,0"
+                           HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                           Padding="2,2,2,2" Background="#FFFE00" Foreground="Black" ></Label>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0,10,10" >
+                        <Label Content="READER HOST" Style="{StaticResource FormFieldLabel}" HorizontalAlignment="Left" Margin="0,0,0,5"/>
+                        <StackPanel>
+                            <TextBox Style="{StaticResource FormTextBox}" Text="{Binding ReaderHostname}" Margin="0,0,0,5"/>
+                            <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding ReaderHostnameErrorMessage}" Margin="0,0,0,5" Visibility="{Binding HasReaderHostnameErrorMessage, Converter={StaticResource VisibleIfTrue}}"/>
+                        </StackPanel>
+                        
+                        <Label Style="{StaticResource SliderLabel}" Content="ANTENNA 1 XMIT POWER"/>
+                        <Slider  Style="{StaticResource ValueSlider}"  Minimum="10" Maximum="32" Width="350"  Value="{Binding Antenna1TransmitPower, Mode=TwoWay}" />
+
+                        <Label Style="{StaticResource SliderLabel}" Content="ANTENNA 1 RECEIVE POWER" />
+                        <Slider  Style="{StaticResource ValueSlider}"  Minimum="-80" Maximum="-30" Width="350"  Value="{Binding Antenna1ReceivePower, Mode=TwoWay}" />
+
+                        <Label Style="{StaticResource SliderLabel}" Content="ANTENNA 2 XMIT POWER" />
+                        <Slider  Style="{StaticResource ValueSlider}"  Minimum="10" Maximum="32" Width="350"  Value="{Binding Antenna2TransmitPower, Mode=TwoWay}" />
+
+                        <Label Style="{StaticResource SliderLabel}" Content="ANTENNA 2 RECEIVE POWER" />
+                        <Slider  Style="{StaticResource ValueSlider}"  Minimum="-80" Maximum="-30" Width="350"  Value="{Binding Antenna2ReceivePower, Mode=TwoWay}" />
+
+                        <Label Style="{StaticResource SliderLabel}" Content="ANTENNA 3 XMIT POWER"/>
+                        <Slider  Style="{StaticResource ValueSlider}"  Minimum="10" Maximum="32" Width="350"  Value="{Binding Antenna3TransmitPower, Mode=TwoWay}" />
+
+                        <Label Style="{StaticResource SliderLabel}" Content="ANTENNA 3 RECEIVE POWER" />
+                        <Slider  Style="{StaticResource ValueSlider}"  Minimum="-80" Maximum="-30" Width="350"  Value="{Binding Antenna3ReceivePower, Mode=TwoWay}" />
+
+                        <Label Style="{StaticResource SliderLabel}" Content="ANTENNA 4 XMIT POWER" />
+                        <Slider  Style="{StaticResource ValueSlider}"  Minimum="10" Maximum="32" Width="350"  Value="{Binding Antenna4TransmitPower, Mode=TwoWay}" />
+
+                        <Label Style="{StaticResource SliderLabel}" Content="ANTENNA 4 RECEIVE POWER" />
+                        <Slider  Style="{StaticResource ValueSlider}"  Minimum="-80" Maximum="-30" Width="350"  Value="{Binding Antenna4ReceivePower, Mode=TwoWay}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Content="SAVE"   Style="{StaticResource SmallButton}" Command="{Binding SaveCommand}"  IsDefault="True" />
+                <Button Grid.Row="0" Grid.Column="2" Content="SYNC" Style="{StaticResource SmallButton}" Command="{Binding SyncCommand}" Visibility="{Binding IsFirstLaunch, Converter={StaticResource VisibleIfFalse}}" />
+                <Button Grid.Row="0" Grid.Column="4" Content="CLEAR DATA" Style="{StaticResource SmallButton}" Command="{Binding ClearCommand}" Visibility="{Binding IsFirstLaunch, Converter={StaticResource VisibleIfFalse}}" />
+                <Button Grid.Row="0" Grid.Column="6" Content="CANCEL" Style="{StaticResource SmallButton}" Command="{Binding CancelCommand}" IsCancel="True" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

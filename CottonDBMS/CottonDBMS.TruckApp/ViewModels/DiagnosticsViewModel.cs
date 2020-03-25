@@ -189,7 +189,7 @@ namespace CottonDBMS.TruckApp.ViewModels
         private void ProcessQuadratureStateChange(QuadratureStateChangeMessage eventData)
         {
             int delay = 1;
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var readDelay = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.RFID_READ_DELAY);
 

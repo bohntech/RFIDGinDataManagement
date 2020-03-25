@@ -49,6 +49,9 @@ namespace CottonDBMS.DataModels
                     case ModuleStatus.AT_GIN:
                         status = "At Gin";
                         break;
+                    case ModuleStatus.ON_FEEDER:
+                        status = "On Feeder";
+                        break;
                     case ModuleStatus.GINNED:
                         status = "Ginned";
                         break;
@@ -78,8 +81,17 @@ namespace CottonDBMS.DataModels
                     case ModuleEventType.UNLOADED:
                         name = "Unloaded";
                         break;
+                    case ModuleEventType.BRIDGE_SCAN:
+                        name = "Update from bridge";
+                        break;
                     case ModuleEventType.IMPORTED_FROM_FILE:
                         name = "Imported from file";
+                        break;
+                    case ModuleEventType.IMPORTED_FROM_RFID_MODULESCAN:
+                        name = "Imported from RFID Module scan";
+                        break;
+                    case ModuleEventType.IMPORTED_FROM_HID:
+                        name = "Imported from HID";
                         break;
                     default:
                         name = "Manual entry";
@@ -88,6 +100,8 @@ namespace CottonDBMS.DataModels
                 return name;
             }
         }
+
+
                 
         [JsonIgnore()]
         public string LocalCreatedTimestamp
@@ -98,6 +112,18 @@ namespace CottonDBMS.DataModels
                 return local.ToShortDateString() + " " + local.ToLongTimeString(); ;
             }
         }
+
+        /*2019 Model Updates */
+        [JsonProperty(PropertyName = "bridgeId")]
+        public string BridgeId { get; set; }
+
+        [JsonProperty(PropertyName = "bridgeLoadNumber")]
+        public int? BridgeLoadNumber { get; set; }
+
+        [JsonProperty(PropertyName = "ginTagLoadNumber")]
+        public string GinTagLoadNumber { get; set; }
+
+        /**********************************/
 
         public ModuleHistoryEntity() : base()
         {

@@ -61,7 +61,7 @@ namespace CottonDBMS.TruckApp
 
         private async Task checkForSettings()
         {
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var endpoint = dp.SettingsRepository.GetSettingWithDefault(TruckClientSettingKeys.DOCUMENTDB_ENDPOINT, "");
                 var key = dp.SettingsRepository.GetSettingWithDefault(TruckClientSettingKeys.DOCUMENT_DB_KEY, "");                              
@@ -95,7 +95,7 @@ namespace CottonDBMS.TruckApp
             this.Visibility = Visibility.Visible;
 
             //check for gps offsett setting
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var repo = dp.SettingsRepository;
                 var offsetSetting = repo.FindSingle(s => s.Key == TruckClientSettingKeys.GPS_OFFSET_FEET);

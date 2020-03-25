@@ -279,7 +279,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             }
             else
             {
-                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     var repo = dp.SettingsRepository;
                     var setting = repo.FindSingle(k => k.Key == CottonDBMS.DataModels.TruckClientSettingKeys.ADMIN_PASSWORD);
@@ -321,7 +321,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             else
             {
 
-                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     var repo = dp.SettingsRepository;
                     var setting = repo.FindSingle(k => k.Key == CottonDBMS.DataModels.TruckClientSettingKeys.ADMIN_PASSWORD);
@@ -362,7 +362,7 @@ namespace CottonDBMS.TruckApp.ViewModels
 
                 if (value != null)
                 {
-                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         dp.SettingsRepository.UpsertSetting(TruckClientSettingKeys.DRIVER_ID, (value != null) ? value.ID : "");
                         dp.SaveChanges();
@@ -376,7 +376,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             Task.Run(() => {
                 try
                 {
-                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         var drivers = dp.DriverRepository.GetAll().OrderBy(t => t.Name);
                         System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
@@ -429,7 +429,7 @@ namespace CottonDBMS.TruckApp.ViewModels
 
             
                       
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var setting = dp.SettingsRepository.FindSingle(k => k.Key == TruckClientSettingKeys.ADMIN_PASSWORD);
 

@@ -31,8 +31,16 @@ namespace CottonDBMS.EF
         private IDocumentsToProcessRepository _processRepo = null;
         private IEntityRepository<SyncedSettings> _syncedSettingsRepo = null;
         private IEntityRepository<TruckListsDownloaded> _truckListsDownloadedRepo = null;
+        private IEntityRepository<TruckRegistrationEntity> _truckRegistrationsRepo = null;
+        private ILoadScanRepository _loadScanRepo = null;
+        private IFeederScanRepository _feederScanRepository = null;
+        private IEntityRepository<ModuleOwnershipEntity> _moduleOwnershipRepo = null;
         private IAggregateEventRepository _aggregateEventRepo = null;
-                
+        private IGinLoadRepository _ginLoadRepo = null;
+        private IBaleRepository _balesRepo = null;
+        private IBaleScanRepository _baleScanRepo = null;
+
+
         public ISettingsRepository SettingsRepository
         {
             get
@@ -134,6 +142,46 @@ namespace CottonDBMS.EF
             }
         }
 
+        public IEntityRepository<TruckRegistrationEntity> TruckRegistrationsRepository
+        {
+            get
+            {
+                if (_truckRegistrationsRepo == null)
+                    _truckRegistrationsRepo = (IEntityRepository<TruckRegistrationEntity>)new EntityRepository<TruckRegistrationEntity>(context);
+                return _truckRegistrationsRepo;
+            }
+        }
+
+        public ILoadScanRepository LoadScanRepository
+        {
+            get
+            {
+                if (_loadScanRepo == null)
+                    _loadScanRepo = (ILoadScanRepository)new LoadScanRepository(context);
+                return _loadScanRepo;
+            }
+        }
+
+        public IFeederScanRepository FeederScanRepository
+        {
+            get
+            {
+                if (_feederScanRepository == null)
+                    _feederScanRepository = (IFeederScanRepository)new FeederScanRepository(context);
+                return _feederScanRepository;
+            }
+        }
+
+        public IEntityRepository<ModuleOwnershipEntity> ModuleOwnershipRepository
+        {
+            get
+            {
+                if (_moduleOwnershipRepo == null)
+                    _moduleOwnershipRepo = (IEntityRepository<ModuleOwnershipEntity>)new EntityRepository<ModuleOwnershipEntity>(context);
+                return _moduleOwnershipRepo;
+            }
+        }
+
         public IAggregateEventRepository AggregateEventRepository
         {
             get
@@ -141,6 +189,36 @@ namespace CottonDBMS.EF
                 if (_aggregateEventRepo == null)
                     _aggregateEventRepo = (IAggregateEventRepository)new AggregateEventRepository(context);
                 return _aggregateEventRepo;
+            }
+        }
+
+        public IGinLoadRepository GinLoadRepository
+        {
+            get
+            {
+                if (_ginLoadRepo == null)
+                    _ginLoadRepo = (IGinLoadRepository)new GinLoadRepository(context);
+                return _ginLoadRepo;
+            }
+        }
+
+        public IBaleRepository BalesRepository
+        {
+            get
+            {
+                if (_balesRepo == null)
+                    _balesRepo = (IBaleRepository)new BaleRepository(context);
+                return _balesRepo;
+            }
+        }
+
+        public IBaleScanRepository BaleScanRepository
+        {
+            get
+            {
+                if (_baleScanRepo == null)
+                    _baleScanRepo = (IBaleScanRepository)new BaleScanRepository(context);
+                return _baleScanRepo;
             }
         }
 
@@ -183,6 +261,19 @@ namespace CottonDBMS.EF
         public void SaveChanges()
         {
             context.SaveChanges();
+        }
+
+        public DataTable GetDataTable(string query)
+        {
+            using (SqlConnection conn = new SqlConnection(context.Database.Connection.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                conn.Close();
+                return dt;
+            }
         }
 
         public string DBFileName

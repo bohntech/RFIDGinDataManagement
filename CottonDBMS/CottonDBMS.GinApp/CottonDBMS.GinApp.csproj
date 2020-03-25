@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BusyMessage.cs" />
+    <Compile Include="Classes\ClassingFileImport.cs" />
     <Compile Include="Classes\FileParser.cs" />
     <Compile Include="Classes\LocalFileImportTask.cs" />
     <Compile Include="Classes\MailImportTask.cs" />
@@ -149,6 +150,12 @@
     </Compile>
     <Compile Include="Dialogs\AddEditDriver.Designer.cs">
       <DependentUpon>AddEditDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddEditGinLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddEditGinLoad.Designer.cs">
+      <DependentUpon>AddEditGinLoad.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\AddEditModule.cs">
       <SubType>Form</SubType>
@@ -185,6 +192,12 @@
     </Compile>
     <Compile Include="Dialogs\AssignLoadDialog.Designer.cs">
       <DependentUpon>AssignLoadDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AssignPBIsToNewModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AssignPBIsToNewModule.Designer.cs">
+      <DependentUpon>AssignPBIsToNewModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\BusyDialog.cs">
       <SubType>Form</SubType>
@@ -228,8 +241,15 @@
     <Compile Include="Dialogs\QRCodeDialog.Designer.cs">
       <DependentUpon>QRCodeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SelectRemovableDriveDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectRemovableDriveDialog.Designer.cs">
+      <DependentUpon>SelectRemovableDriveDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\BindingHelper.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\FilenameHelper.cs" />
     <Compile Include="Helpers\NetworkHelper.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
@@ -242,6 +262,18 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWorkFactory.cs" />
+    <Compile Include="UserControls\BaleFilterBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BaleFilterBar.Designer.cs">
+      <DependentUpon>BaleFilterBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BalesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BalesPage.Designer.cs">
+      <DependentUpon>BalesPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ClientSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -265,6 +297,12 @@
     </Compile>
     <Compile Include="UserControls\FarmSelector.Designer.cs">
       <DependentUpon>FarmSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GinLoadsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GinLoadsPage.Designer.cs">
+      <DependentUpon>GinLoadsPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FarmsPage.cs">
       <SubType>UserControl</SubType>
@@ -290,6 +328,12 @@
     <Compile Include="UserControls\HomePage.Designer.cs">
       <DependentUpon>HomePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\GinLoadFilterBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GinLoadFilterBar.Designer.cs">
+      <DependentUpon>GinLoadFilterBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ModuleFilterBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -301,6 +345,12 @@
     </Compile>
     <Compile Include="UserControls\ModulesPage.Designer.cs">
       <DependentUpon>ModulesPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PBIMappingPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PBIMappingPage.Designer.cs">
+      <DependentUpon>PBIMappingPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PickupListFilterBar.cs">
       <SubType>UserControl</SubType>
@@ -335,6 +385,12 @@
     <Resource Include="Images\GinAppIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="BridgeFeederInstall\setup.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BridgeInstall\setup.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="LICENSE.txt" />
     <Content Include="Html\ReportMap.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -354,6 +410,9 @@
     <EmbeddedResource Include="Dialogs\AddEditDriver.resx">
       <DependentUpon>AddEditDriver.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddEditGinLoad.resx">
+      <DependentUpon>AddEditGinLoad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AddEditModule.resx">
       <DependentUpon>AddEditModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -371,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssignLoadDialog.resx">
       <DependentUpon>AssignLoadDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AssignPBIsToNewModule.resx">
+      <DependentUpon>AssignPBIsToNewModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\BusyDialog.resx">
       <DependentUpon>BusyDialog.cs</DependentUpon>
@@ -393,6 +455,9 @@
     <EmbeddedResource Include="Dialogs\QRCodeDialog.resx">
       <DependentUpon>QRCodeDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectRemovableDriveDialog.resx">
+      <DependentUpon>SelectRemovableDriveDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -405,6 +470,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\BaleFilterBar.resx">
+      <DependentUpon>BaleFilterBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BalesPage.resx">
+      <DependentUpon>BalesPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ClientSelector.resx">
       <DependentUpon>ClientSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -416,6 +487,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FarmSelector.resx">
       <DependentUpon>FarmSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GinLoadsPage.resx">
+      <DependentUpon>GinLoadsPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FarmsPage.resx">
       <DependentUpon>FarmsPage.cs</DependentUpon>
@@ -429,11 +503,17 @@
     <EmbeddedResource Include="UserControls\HomePage.resx">
       <DependentUpon>HomePage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GinLoadFilterBar.resx">
+      <DependentUpon>GinLoadFilterBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ModuleFilterBar.resx">
       <DependentUpon>ModuleFilterBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ModulesPage.resx">
       <DependentUpon>ModulesPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PBIMappingPage.resx">
+      <DependentUpon>PBIMappingPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PickupListFilterBar.resx">
       <DependentUpon>PickupListFilterBar.cs</DependentUpon>
@@ -457,6 +537,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LICENSE.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BridgeInstall\CottonDBMS.BridgeApp.Install.msi">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BridgeFeederInstall\CottonDBMS.BridgeFeederApp.Install.msi">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExportTemplates\Module Events.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

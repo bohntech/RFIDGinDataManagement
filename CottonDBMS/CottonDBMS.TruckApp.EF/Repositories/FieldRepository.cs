@@ -39,8 +39,10 @@ namespace CottonDBMS.EF.Repositories
             var idsToDelete = fieldsToDelete.Select(f => f.Id).ToArray();
             var fieldsWithModules = _context.Fields.Include("Modules").Where(f => f.Modules.Any(m => idsToDelete.Contains(m.FieldId))).Select(f => f.Id).ToList();
             var fieldsLinkedToList = _context.PickupLists.Where(p => idsToDelete.Contains(p.FieldId)).Select(t => t.FieldId).ToList();
+            var fieldsLinkedToGinLoad = _context.GinLoads.Where(p => idsToDelete.Contains(p.FieldId)).Select(t => t.FieldId).ToList();
 
             fieldsWithModules.AddRange(fieldsLinkedToList);
+            fieldsWithModules.AddRange(fieldsLinkedToGinLoad);
             return fieldsWithModules.Distinct().ToList();
         }
 
@@ -93,10 +95,7 @@ namespace CottonDBMS.EF.Repositories
             {
                 return existingField;
             }
-
-        }
-
-        
+        }        
 
     }
 }

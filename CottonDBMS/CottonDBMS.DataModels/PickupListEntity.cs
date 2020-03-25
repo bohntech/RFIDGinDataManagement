@@ -271,7 +271,6 @@ namespace CottonDBMS.DataModels
             AssignedModules = new List<ModuleEntity>();
             AssignedTrucks = new List<TruckEntity>();
             DownloadedToTrucks = new List<TruckEntity>();
-
             SearchSetModulesRemaining = 0;
             SearchSetTotalModules = 0;
         }

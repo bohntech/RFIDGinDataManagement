@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="CottonDBMS.BridgeApp.UserControls.IdleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CottonDBMS.BridgeApp.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded" >
+    <Grid Style="{StaticResource LayoutGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" >
+            <Label Content="{Binding WelcomeMessage}"  Style="{StaticResource TitleLabel}" ></Label>
+          
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,50,0,0    ">
+                <Label Content="FIND GIN TICKET LOAD#:" Style="{StaticResource FormFieldLabel}" HorizontalAlignment="Center" />
+                <TextBox x:Name="tbGinTicket" Style="{StaticResource FormTextBox}"  Width="365" Margin="0,0,0,0" Text="{Binding GinTicketLoadNumber, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="False" />
+                <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding InputErrorMessage}" Visibility="{Binding ShowInputError, Converter={StaticResource VisibleIfTrue}}" Margin="0,0,0,0" Padding="0,0,0,0"/>                
+                <Button x:Name="btnLookupLoad" Content="Continue" Width="365" Style="{StaticResource MediumButton}" IsDefault="True" Command="{Binding LookupLoadCommand}" Margin="0,10,0,0"/>
+                <Button x:Name="btnCopyLoad" Content="Copy Load" Width="365" Style="{StaticResource MediumButton}" IsDefault="False" Command="{Binding CopyLoadCommand}" Margin="0,10,0,0"/>
+                <Button x:Name="btnManual" Content="New Load" Width="365" Style="{StaticResource MediumButton}" IsDefault="False" Command="{Binding CreateLoadCommand}" Margin="0,10,0,0"/>
+                <Button x:Name="btnList" Content="View All Loads" Width="365" Style="{StaticResource MediumButton}" IsDefault="False" Command="{Binding ViewLoadListCommand}" Margin="0,10,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

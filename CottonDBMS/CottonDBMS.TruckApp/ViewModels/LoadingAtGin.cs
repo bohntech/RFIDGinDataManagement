@@ -79,7 +79,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 lng = coords.NonNullLongitude;
             }
 
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 if (uow.SettingsRepository.CoordsAtFeeder(lat, lng))
                 {

@@ -78,13 +78,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaleEntity.cs" />
+    <Compile Include="BaleScanEntity.cs" />
     <Compile Include="DocumentToDelete.cs" />
     <Compile Include="EncryptionHelper.cs" />
     <Compile Include="EntitySavedMessage.cs" />
     <Compile Include="Enums\PickupListDestination.cs" />
+    <Compile Include="FeederScanEntity.cs" />
     <Compile Include="GPSCoords.cs" />
     <Compile Include="Helpers\FolderConstants.cs" />
     <Compile Include="Helpers\NetworkHelper.cs" />
+    <Compile Include="Interfaces\BalesFilter.cs" />
+    <Compile Include="Interfaces\GinLoadsFilter.cs" />
+    <Compile Include="Interfaces\LocalStorage\IBaleRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IBaleScanRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IFeederScanRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\ILoadScanRepository.cs" />
     <Compile Include="Interfaces\LocalStorage\IAggregateEventRepository.cs" />
     <Compile Include="Interfaces\LocalStorage\IClientRepository.cs" />
     <Compile Include="Interfaces\LocalStorage\IDocumentsToProcessRepository.cs" />
@@ -93,6 +102,7 @@
     <Compile Include="Interfaces\LocalStorage\IFarmRepository.cs" />
     <Compile Include="Interfaces\LocalStorage\IFieldRepository.cs" />
     <Compile Include="Interfaces\LocalStorage\IGenericRepository.cs" />
+    <Compile Include="Interfaces\LocalStorage\IGinLoadRepository.cs" />
     <Compile Include="Interfaces\LocalStorage\IModuleRepository.cs" />
     <Compile Include="Interfaces\LocalStorage\IPickupListRepository.cs" />
     <Compile Include="Interfaces\LocalStorage\ISettingsRepository.cs" />
@@ -102,6 +112,8 @@
     <Compile Include="FieldEntity.cs" />
     <Compile Include="Interfaces\ModuleFilter.cs" />
     <Compile Include="Interfaces\PickupListFilter.cs" />
+    <Compile Include="LoadEntity.cs" />
+    <Compile Include="LoadScanEntity.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="ClientEntity.cs" />
@@ -113,6 +125,7 @@
     <Compile Include="MobileConnectionInfo.cs" />
     <Compile Include="ModuleEntity.cs" />
     <Compile Include="ModuleHistoryEntity.cs" />
+    <Compile Include="ModuleOwnerShipEntity.cs" />
     <Compile Include="ModulePoint.cs" />
     <Compile Include="ModuleSummary.cs" />
     <Compile Include="PagedResult.cs" />
@@ -124,6 +137,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TruckListsDownloaded.cs" />
     <Compile Include="TruckPickupListRelease.cs" />
+    <Compile Include="TruckRegistrationEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

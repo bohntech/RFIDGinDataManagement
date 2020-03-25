@@ -16,7 +16,7 @@ namespace CottonDBMS.EF.Repositories
 {
     public class ModuleRepository : EntityRepository<ModuleEntity>, IModuleRepository
     {
-        private IOrderedQueryable<ModuleEntity> GetFilteredQuery(ModuleFilter filter)
+        private IOrderedQueryable<ModuleEntity> GetFilteredQuery(ModuleFilter filter, bool includeModuleHistory)
         {
             string farmName = filter.Farm.Trim();
             string clientName = filter.Client.Trim();
@@ -38,7 +38,12 @@ namespace CottonDBMS.EF.Repositories
             ModuleStatus status = ModuleStatus.IN_FIELD;
             if (hasStatus) status = filter.Status.Value;
 
-            var filteredQuery = _context.Modules.Include("Field.Farm.Client").AsQueryable();
+            var includeQuery = _context.Modules.Include("Field.Farm.Client").Include("GinLoad");
+
+            if (includeModuleHistory)
+                includeQuery = includeQuery.Include("ModuleHistory");
+
+            var filteredQuery = includeQuery.AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.SerialNumber))
                 filteredQuery = filteredQuery.Where(c => c.Name == filter.SerialNumber);
@@ -61,6 +66,9 @@ namespace CottonDBMS.EF.Repositories
             if (!string.IsNullOrEmpty(filter.LoadNumber))
                 filteredQuery = filteredQuery.Where(c => c.LoadNumber == filter.LoadNumber);
 
+            if (!string.IsNullOrEmpty(filter.GinTicketLoadNumber))
+                filteredQuery = filteredQuery.Where(c => c.GinTagLoadNumber == filter.GinTicketLoadNumber);
+
             if (!string.IsNullOrEmpty(filter.TruckID))
                 filteredQuery = filteredQuery.Where(c => c.TruckID == filter.TruckID);
 
@@ -80,10 +88,14 @@ namespace CottonDBMS.EF.Repositories
                 else if (filter.SortCol1.ToLower() == "serial no") orderable = filteredQuery.OrderBy(m => m.Name);
                 else if (filter.SortCol1.ToLower() == "load #") orderable = filteredQuery.OrderBy(m => m.LoadNumber);
                 else if (filter.SortCol1.ToLower() == "imported load #") orderable = filteredQuery.OrderBy(m => m.ImportedLoadNumber);
+                else if (filter.SortCol1.ToLower() == "gin ticket load #") orderable = filteredQuery.OrderBy(m => m.GinTagLoadNumber);
+                else if (filter.SortCol1.ToLower() == "bridge load #") orderable = filteredQuery.OrderBy(m => m.GinLoad.ScaleBridgeLoadNumber);
                 else if (filter.SortCol1.ToLower() == "truck id") orderable = filteredQuery.OrderBy(m => m.TruckID);
                 else if (filter.SortCol1.ToLower() == "driver") orderable = filteredQuery.OrderBy(m => m.Driver);
                 else if (filter.SortCol1.ToLower() == "status") orderable = filteredQuery.OrderBy(m => m.ModuleStatus);
                 else if (filter.SortCol1.ToLower() == "timestamp") orderable = filteredQuery.OrderBy(m => m.Created);
+                else if (filter.SortCol1.ToLower() == "created") orderable = filteredQuery.OrderBy(m => m.Created);
+                else if (filter.SortCol1.ToLower() == "updated") orderable = filteredQuery.OrderBy(m => m.Updated);
             }
             else
             {
@@ -93,10 +105,14 @@ namespace CottonDBMS.EF.Repositories
                 else if (filter.SortCol1.ToLower() == "serial no") orderable = filteredQuery.OrderByDescending(m => m.Name);
                 else if (filter.SortCol1.ToLower() == "load #") orderable = filteredQuery.OrderByDescending(m => m.LoadNumber);
                 else if (filter.SortCol1.ToLower() == "imported load #") orderable = filteredQuery.OrderByDescending(m => m.ImportedLoadNumber);
+                else if (filter.SortCol1.ToLower() == "gin ticket load #") orderable = filteredQuery.OrderByDescending(m => m.GinTagLoadNumber);
+                else if (filter.SortCol1.ToLower() == "bridge load #") orderable = filteredQuery.OrderByDescending(m => m.GinLoad.ScaleBridgeLoadNumber);
                 else if (filter.SortCol1.ToLower() == "truck id") orderable = filteredQuery.OrderByDescending(m => m.TruckID);
                 else if (filter.SortCol1.ToLower() == "driver") orderable = filteredQuery.OrderByDescending(m => m.Driver);
                 else if (filter.SortCol1.ToLower() == "status") orderable = filteredQuery.OrderByDescending(m => m.ModuleStatus);
                 else if (filter.SortCol1.ToLower() == "timestamp") orderable = filteredQuery.OrderByDescending(m => m.Created);
+                else if (filter.SortCol1.ToLower() == "created") orderable = filteredQuery.OrderByDescending(m => m.Created);
+                else if (filter.SortCol1.ToLower() == "updated") orderable = filteredQuery.OrderByDescending(m => m.Updated);
             }
 
             return orderable;
@@ -124,7 +140,7 @@ namespace CottonDBMS.EF.Repositories
             ModuleStatus status = ModuleStatus.IN_FIELD;
             if (hasStatus) status = filter.Status.Value;
             
-            var filteredQuery = _context.ModuleHistory.Include("Module.Field.Farm.Client").AsQueryable();
+            var filteredQuery = _context.ModuleHistory.Include("Module.Field.Farm.Client").Include("Module.GinLoad").AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.SerialNumber))
                 filteredQuery = filteredQuery.Where(c => c.Module.Name == filter.SerialNumber);
@@ -147,6 +163,9 @@ namespace CottonDBMS.EF.Repositories
             if (!string.IsNullOrEmpty(filter.LoadNumber))
                 filteredQuery = filteredQuery.Where(c => c.Module.LoadNumber == filter.LoadNumber);
 
+            if (!string.IsNullOrEmpty(filter.GinTicketLoadNumber))
+                filteredQuery = filteredQuery.Where(c => c.Module.GinTagLoadNumber == filter.GinTicketLoadNumber);
+
             if (!string.IsNullOrEmpty(filter.TruckID))
                 filteredQuery = filteredQuery.Where(c => c.TruckID == filter.TruckID);
 
@@ -165,10 +184,14 @@ namespace CottonDBMS.EF.Repositories
                 else if (filter.SortCol1.ToLower() == "field") orderable = filteredQuery.OrderBy(m => m.Module.Field.Name);
                 else if (filter.SortCol1.ToLower() == "serial no") orderable = filteredQuery.OrderBy(m => m.Module.Name);
                 else if (filter.SortCol1.ToLower() == "load #") orderable = filteredQuery.OrderBy(m => m.Module.LoadNumber);
+                else if (filter.SortCol1.ToLower() == "gin ticket load #") orderable = filteredQuery.OrderBy(m => m.Module.GinTagLoadNumber);
+                else if (filter.SortCol1.ToLower() == "bridge load #") orderable = filteredQuery.OrderBy(m => m.Module.BridgeLoadNumber);
                 else if (filter.SortCol1.ToLower() == "truck id") orderable = filteredQuery.OrderBy(m => m.TruckID);
                 else if (filter.SortCol1.ToLower() == "driver") orderable = filteredQuery.OrderBy(m => m.Driver);
                 else if (filter.SortCol1.ToLower() == "status") orderable = filteredQuery.OrderBy(m => m.ModuleStatus);
                 else if (filter.SortCol1.ToLower() == "timestamp") orderable = filteredQuery.OrderBy(m => m.Created);
+                else if (filter.SortCol1.ToLower() == "created") orderable = filteredQuery.OrderBy(m => m.Created);
+                else if (filter.SortCol1.ToLower() == "updated") orderable = filteredQuery.OrderBy(m => m.Updated);
             }
             else
             {
@@ -177,10 +200,14 @@ namespace CottonDBMS.EF.Repositories
                 else if (filter.SortCol1.ToLower() == "field") orderable = filteredQuery.OrderByDescending(m => m.Module.Field.Name);
                 else if (filter.SortCol1.ToLower() == "serial no") orderable = filteredQuery.OrderByDescending(m => m.Module.Name);
                 else if (filter.SortCol1.ToLower() == "load #") orderable = filteredQuery.OrderByDescending(m => m.Module.LoadNumber);
+                else if (filter.SortCol1.ToLower() == "gin ticket load #") orderable = filteredQuery.OrderByDescending(m => m.Module.GinTagLoadNumber);
+                else if (filter.SortCol1.ToLower() == "bridge load #") orderable = filteredQuery.OrderByDescending(m => m.Module.BridgeLoadNumber);
                 else if (filter.SortCol1.ToLower() == "truck id") orderable = filteredQuery.OrderByDescending(m => m.TruckID);
                 else if (filter.SortCol1.ToLower() == "driver") orderable = filteredQuery.OrderByDescending(m => m.Driver);
                 else if (filter.SortCol1.ToLower() == "status") orderable = filteredQuery.OrderByDescending(m => m.ModuleStatus);
                 else if (filter.SortCol1.ToLower() == "timestamp") orderable = filteredQuery.OrderByDescending(m => m.Created);
+                else if (filter.SortCol1.ToLower() == "created") orderable = filteredQuery.OrderByDescending(m => m.Created);
+                else if (filter.SortCol1.ToLower() == "updated") orderable = filteredQuery.OrderByDescending(m => m.Updated);
             }
 
             if (filter.Sort2Ascending)
@@ -190,10 +217,14 @@ namespace CottonDBMS.EF.Repositories
                 else if (filter.SortCol2.ToLower() == "field") orderable = orderable.ThenBy(m => m.Module.Field.Name);
                 else if (filter.SortCol2.ToLower() == "serial no") orderable = orderable.ThenBy(m => m.Module.Name);
                 else if (filter.SortCol2.ToLower() == "load #") orderable = orderable.ThenBy(m => m.Module.LoadNumber);
+                else if (filter.SortCol2.ToLower() == "gin ticket load #") orderable.ThenBy(m => m.Module.GinTagLoadNumber);
+                else if (filter.SortCol2.ToLower() == "bridge load #") orderable.ThenBy(m => m.Module.GinLoad.ScaleBridgeLoadNumber);
                 else if (filter.SortCol2.ToLower() == "truck id") orderable = orderable.ThenBy(m => m.TruckID);
                 else if (filter.SortCol2.ToLower() == "driver") orderable = orderable.ThenBy(m => m.Driver);
                 else if (filter.SortCol2.ToLower() == "status") orderable = orderable.ThenBy(m => m.ModuleStatus);
                 else if (filter.SortCol2.ToLower() == "timestamp") orderable = orderable.ThenBy(m => m.Created);
+                else if (filter.SortCol2.ToLower() == "created") orderable = orderable.ThenBy(m => m.Created);
+                else if (filter.SortCol2.ToLower() == "updated") orderable = orderable.ThenBy(m => m.Updated);
             }
             else
             {
@@ -202,10 +233,14 @@ namespace CottonDBMS.EF.Repositories
                 else if (filter.SortCol2.ToLower() == "field") orderable = orderable.ThenByDescending(m => m.Module.Field.Name);
                 else if (filter.SortCol2.ToLower() == "serial no") orderable = orderable.ThenByDescending(m => m.Module.Name);
                 else if (filter.SortCol2.ToLower() == "load #") orderable = orderable.ThenByDescending(m => m.Module.LoadNumber);
+                else if (filter.SortCol2.ToLower() == "gin ticket load #") orderable.ThenByDescending(m => m.Module.GinTagLoadNumber);
+                else if (filter.SortCol2.ToLower() == "bridge load #") orderable.ThenByDescending(m => m.Module.GinLoad.ScaleBridgeLoadNumber);
                 else if (filter.SortCol2.ToLower() == "truck id") orderable = orderable.ThenByDescending(m => m.TruckID);
                 else if (filter.SortCol2.ToLower() == "driver") orderable = orderable.ThenByDescending(m => m.Driver);
                 else if (filter.SortCol2.ToLower() == "status") orderable = orderable.ThenByDescending(m => m.ModuleStatus);
                 else if (filter.SortCol2.ToLower() == "timestamp") orderable = orderable.ThenByDescending(m => m.Created);
+                else if (filter.SortCol2.ToLower() == "created") orderable = orderable.ThenByDescending(m => m.Created);
+                else if (filter.SortCol2.ToLower() == "updated") orderable = orderable.ThenByDescending(m => m.Updated);
             }
 
             if (filter.Sort3Ascending)
@@ -215,10 +250,14 @@ namespace CottonDBMS.EF.Repositories
                 else if (filter.SortCol3.ToLower() == "field") orderable = orderable.ThenBy(m => m.Module.Field.Name);
                 else if (filter.SortCol3.ToLower() == "serial no") orderable = orderable.ThenBy(m => m.Module.Name);
                 else if (filter.SortCol3.ToLower() == "load #") orderable = orderable.ThenBy(m => m.Module.LoadNumber);
+                else if (filter.SortCol3.ToLower() == "gin ticket load #") orderable.ThenBy(m => m.Module.GinTagLoadNumber);
+                else if (filter.SortCol3.ToLower() == "bridge load #") orderable.ThenBy(m => m.Module.GinLoad.ScaleBridgeLoadNumber);
                 else if (filter.SortCol3.ToLower() == "truck id") orderable = orderable.ThenBy(m => m.TruckID);
                 else if (filter.SortCol3.ToLower() == "driver") orderable = orderable.ThenBy(m => m.Driver);
                 else if (filter.SortCol3.ToLower() == "status") orderable = orderable.ThenBy(m => m.ModuleStatus);
                 else if (filter.SortCol3.ToLower() == "timestamp") orderable = orderable.ThenBy(m => m.Created);
+                else if (filter.SortCol3.ToLower() == "created") orderable = orderable.ThenBy(m => m.Created);
+                else if (filter.SortCol3.ToLower() == "updated") orderable = orderable.ThenBy(m => m.Updated);                
             }
             else
             {
@@ -227,10 +266,14 @@ namespace CottonDBMS.EF.Repositories
                 else if (filter.SortCol3.ToLower() == "field") orderable = orderable.ThenByDescending(m => m.Module.Field.Name);
                 else if (filter.SortCol3.ToLower() == "serial no") orderable = orderable.ThenByDescending(m => m.Module.Name);
                 else if (filter.SortCol3.ToLower() == "load #") orderable = orderable.ThenByDescending(m => m.Module.LoadNumber);
+                else if (filter.SortCol3.ToLower() == "gin ticket load #") orderable.ThenByDescending(m => m.Module.GinTagLoadNumber);
+                else if (filter.SortCol3.ToLower() == "bridge load #") orderable.ThenByDescending(m => m.Module.GinLoad.ScaleBridgeLoadNumber);
                 else if (filter.SortCol3.ToLower() == "truck id") orderable = orderable.ThenByDescending(m => m.TruckID);
                 else if (filter.SortCol3.ToLower() == "driver") orderable = orderable.ThenByDescending(m => m.Driver);
                 else if (filter.SortCol3.ToLower() == "status") orderable = orderable.ThenByDescending(m => m.ModuleStatus);
                 else if (filter.SortCol3.ToLower() == "timestamp") orderable = orderable.ThenByDescending(m => m.Created);
+                else if (filter.SortCol3.ToLower() == "created") orderable = orderable.ThenByDescending(m => m.Created);
+                else if (filter.SortCol3.ToLower() == "updated") orderable = orderable.ThenByDescending(m => m.Updated);
             }
 
             return orderable;
@@ -244,20 +287,28 @@ namespace CottonDBMS.EF.Repositories
         public void ClearGinModuleData()
         {
             //delete            
+            _context.Database.ExecuteSqlCommand("DELETE FROM BaleEntities");
+            _context.Database.ExecuteSqlCommand("DELETE FROM BaleScanEntities");
             _context.Database.ExecuteSqlCommand("DELETE FROM ModuleHistoryEntities");
             _context.Database.ExecuteSqlCommand("DELETE FROM ModuleEntities");
             _context.Database.ExecuteSqlCommand("DELETE FROM PickupListAssignedTrucks");
             _context.Database.ExecuteSqlCommand("DELETE FROM PickupListDownloadedToTrucks");
             _context.Database.ExecuteSqlCommand("DELETE FROM PickupListEntities");
             _context.Database.ExecuteSqlCommand("DELETE FROM AggregateEvents");
+
+            _context.Database.ExecuteSqlCommand("DELETE FROM LoadScanEntities");
+            _context.Database.ExecuteSqlCommand("DELETE FROM FeederScanEntities");
+            _context.Database.ExecuteSqlCommand("DELETE FROM ModuleOwnerShipEntities");
+            _context.Database.ExecuteSqlCommand("DELETE FROM TruckRegistrationEntities");                        
+            _context.Database.ExecuteSqlCommand("DELETE FROM GinLoadEntities");
         }
 
         public PagedResult<ModuleEntity> GetModules(ModuleFilter filter, int pageSize, int pageNo)
         {
             try
             {
-                var filteredQuery = GetFilteredQuery(filter);
-                var countQuery = GetFilteredQuery(filter);
+                var filteredQuery = GetFilteredQuery(filter, false);
+                var countQuery = GetFilteredQuery(filter, false);
 
                 var cResult = new PagedResult<ModuleEntity>();
 
@@ -283,7 +334,7 @@ namespace CottonDBMS.EF.Repositories
         {
             try
             {
-                var orderable = GetFilteredQuery(filter);
+                var orderable = GetFilteredQuery(filter, true);
                 if (filter.Sort2Ascending)
                 {
                     if (filter.SortCol2.ToLower() == "client") orderable = orderable.ThenBy(m => m.Field.Farm.Client.Name);
@@ -295,6 +346,8 @@ namespace CottonDBMS.EF.Repositories
                     else if (filter.SortCol2.ToLower() == "driver") orderable = orderable.ThenBy(m => m.Driver);
                     else if (filter.SortCol2.ToLower() == "status") orderable = orderable.ThenBy(m => m.ModuleStatus);
                     else if (filter.SortCol2.ToLower() == "timestamp") orderable = orderable.ThenBy(m => m.Created);
+                    else if (filter.SortCol2.ToLower() == "created") orderable = orderable.ThenBy(m => m.Created);
+                    else if (filter.SortCol2.ToLower() == "updated") orderable = orderable.ThenBy(m => m.Updated);
                 }
                 else
                 {
@@ -307,6 +360,8 @@ namespace CottonDBMS.EF.Repositories
                     else if (filter.SortCol2.ToLower() == "driver") orderable = orderable.ThenByDescending(m => m.Driver);
                     else if (filter.SortCol2.ToLower() == "status") orderable = orderable.ThenByDescending(m => m.ModuleStatus);
                     else if (filter.SortCol2.ToLower() == "timestamp") orderable = orderable.ThenByDescending(m => m.Created);
+                    else if (filter.SortCol2.ToLower() == "created") orderable = orderable.ThenByDescending(m => m.Created);
+                    else if (filter.SortCol2.ToLower() == "updated") orderable = orderable.ThenByDescending(m => m.Updated);
                 }
 
                 if (filter.Sort3Ascending)
@@ -320,6 +375,8 @@ namespace CottonDBMS.EF.Repositories
                     else if (filter.SortCol3.ToLower() == "driver") orderable = orderable.ThenBy(m => m.Driver);
                     else if (filter.SortCol3.ToLower() == "status") orderable = orderable.ThenBy(m => m.ModuleStatus);
                     else if (filter.SortCol3.ToLower() == "timestamp") orderable = orderable.ThenBy(m => m.Created);
+                    else if (filter.SortCol3.ToLower() == "created") orderable = orderable.ThenBy(m => m.Created);
+                    else if (filter.SortCol3.ToLower() == "updated") orderable = orderable.ThenBy(m => m.Updated);
                 }
                 else
                 {
@@ -332,6 +389,8 @@ namespace CottonDBMS.EF.Repositories
                     else if (filter.SortCol3.ToLower() == "driver") orderable = orderable.ThenByDescending(m => m.Driver);
                     else if (filter.SortCol3.ToLower() == "status") orderable = orderable.ThenByDescending(m => m.ModuleStatus);
                     else if (filter.SortCol3.ToLower() == "timestamp") orderable = orderable.ThenByDescending(m => m.Created);
+                    else if (filter.SortCol3.ToLower() == "created") orderable = orderable.ThenByDescending(m => m.Created);
+                    else if (filter.SortCol3.ToLower() == "updated") orderable = orderable.ThenByDescending(m => m.Updated);
                 }
 
                 return orderable.ToList();
@@ -352,7 +411,7 @@ namespace CottonDBMS.EF.Repositories
         {
             try
             {
-                var filteredQuery = GetFilteredQuery(filter);              
+                var filteredQuery = GetFilteredQuery(filter, false);              
                 return filteredQuery.Select(m => new ModulePoint { Id = m.Id, SerialNumber = m.Name, Latitude = m.Latitude, Longitude = m.Longitude, ModuleEvent = ModuleEventType.IMPORTED_FROM_FILE, ModuleStatus = m.ModuleStatus }).ToList();              
             }
             catch (Exception exc)
@@ -440,6 +499,8 @@ namespace CottonDBMS.EF.Repositories
         {
             var item = _context.Set<ModuleEntity>().FirstOrDefault(t => t.Id == entity.Id);  
             _context.Entry(item).State = EntityState.Deleted;
+
+            _context.Set<DocumentToProcess>().Add(new DocumentToProcess { Id = "OWNERSHIP-" + entity.Id, EntityType = entity.EntityType, Name = entity.Name, SelfLink = entity.SelfLink, SyncedToCloud = false });
         }
        
 
@@ -447,5 +508,50 @@ namespace CottonDBMS.EF.Repositories
         {
             return _context.Modules.Select(m => m.Name).ToList();
         }
+
+        public List<ModuleEntity> GetModulesScannedAtFeederInRange(DateTime start, DateTime end)
+        {
+            var serialNumbers = _context.ModuleHistory.Include("Module")
+                .Where(h => h.ModuleStatus == ModuleStatus.ON_FEEDER
+                && h.ModuleEventType == ModuleEventType.BRIDGE_SCAN
+                && h.Created >= start && h.Created <= end).Select(h => h.Module.Name).ToList();
+
+            return _context.Modules.Include("GinLoad.Modules").Include("Field.Farm.Client")
+                .Include("ModuleHistory").Where(m => serialNumbers.Contains(m.Name)).ToList().OrderBy(m => m.LastFeederScanTime).ToList();
+        }
+
+        public string NextModuleClassingId()
+        {
+            //get count of unique assigned load numbers
+            var lastModule = _context.Modules.Where(m => !string.IsNullOrEmpty(m.ClassingModuleId)).OrderByDescending(m => m.Created).FirstOrDefault();
+            int id = 1;
+            if (lastModule != null)
+            {
+                id = int.Parse(lastModule.ClassingModuleId);
+            }
+
+            if (id > 99999)
+                id = 1;
+
+            return id.ToString().PadLeft(5, '0');
+        }
+
+        public void BulkDeleteAndClearLinkedLoadsAndBales(List<ModuleEntity> entities)
+        {
+            foreach (var e in entities)
+            {
+                var affectedBales = _context.Set<BaleEntity>().Where(bale => bale.ModuleId == e.Id).ToList();
+
+                foreach (var b in affectedBales)
+                {
+                    //b.GinLoadId = null;
+                    //b.GinTicketLoadNumber = null;
+                    b.ModuleId = null;
+                    b.ModuleSerialNumber = null;
+                    _context.Entry(b).State = EntityState.Modified;
+                }                
+                this.Delete(e);                
+            }
+        }    
     }
 }

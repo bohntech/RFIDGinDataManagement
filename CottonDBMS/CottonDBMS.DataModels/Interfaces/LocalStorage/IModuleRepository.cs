@@ -23,5 +23,8 @@ namespace CottonDBMS.Interfaces
         IEnumerable<ModulePoint> GetModulePointHistory(ModuleFilter filter);
         void ClearGinModuleData();
         bool ModuleIDExists(string id, string moduleID);
+        string NextModuleClassingId();
+        List<ModuleEntity> GetModulesScannedAtFeederInRange(DateTime start, DateTime end);
+        void BulkDeleteAndClearLinkedLoadsAndBales(List<ModuleEntity> entities);
     }
 }

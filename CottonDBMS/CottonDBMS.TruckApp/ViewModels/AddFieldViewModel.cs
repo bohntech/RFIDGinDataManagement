@@ -172,7 +172,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             string farmId = "";
             
 
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString())) {
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork()) {
 
                 if (String.IsNullOrWhiteSpace(ListName))
                 {
@@ -273,7 +273,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                     Farms.Add(new FarmComboBoxItemViewModel { ID = "-1", DisplayText = "-- Select One --" });
                     Farms.Add(new FarmComboBoxItemViewModel { ID = "", DisplayText = "-- Add New --" });
 
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         foreach(var farm in uow.FarmRepository.FindMatching(x => x.ClientId == value.ID && x.Id != GUIDS.UNASSIGNED_FARM_ID).OrderBy(x => x.Name))
                         {
@@ -321,7 +321,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                     Fields.Add(new FieldComboBoxItemViewModel { ID = "-1", DisplayText = "-- Select One --" });
                     Fields.Add(new FieldComboBoxItemViewModel { ID = "", DisplayText = "-- Add New --" });
 
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         foreach (var field in uow.FieldRepository.FindMatching(x => x.FarmId == value.ID && x.Id != GUIDS.UNASSIGNED_FIELD_ID, new string[] {"Farm.Client"}).OrderBy(x => x.Name))
                         {
@@ -372,7 +372,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             {
                 try
                 {
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         //get this truck                         
                         var syncedSetting = uow.SyncedSettingsRepo.GetAll().FirstOrDefault();
@@ -473,7 +473,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             Fields.Add(new FieldComboBoxItemViewModel { ID = "-1", ClientID = "", DisplayText = "-- Select One --" });
             Fields.Add(new FieldComboBoxItemViewModel { ID = "", ClientID = "", DisplayText = "-- Add New --" });
 
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 foreach(var p in uow.ClientRepository.GetAll().OrderBy(x => x.Name))
                 {

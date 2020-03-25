@@ -70,7 +70,7 @@ namespace CottonDBMS.TruckApp
             documentCompleted = false;
             browser.LoadCompleted += Browser_LoadCompleted;
 
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var syncedSettings = uow.SyncedSettingsRepo.GetAll().FirstOrDefault();
 

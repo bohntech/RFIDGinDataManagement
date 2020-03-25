@@ -71,6 +71,22 @@ namespace CottonDBMS.GinApp.Classes
             else return null;
         }
 
+        public decimal? GetDecimalColumnValueNullabe(int index)
+        {
+            decimal temp;
+
+            if (decimal.TryParse(GetColumnValue(index), out temp)) return temp;
+            else return null;
+        }
+
+        public DateTime? GetDateColumnValueNullabe(int index)
+        {
+            DateTime temp;
+
+            if (DateTime.TryParse(GetColumnValue(index), out temp)) return temp;
+            else return null;
+        }
+
         public string LineText
         {
             get

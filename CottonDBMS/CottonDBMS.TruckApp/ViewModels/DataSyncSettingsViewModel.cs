@@ -110,7 +110,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 string endpoint = "";
                 bool shutDown = false;
                 
-                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     var documentDbSetting = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.DOCUMENT_DB_KEY);                    
                     var endpointSetting = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.DOCUMENTDB_ENDPOINT);
@@ -142,7 +142,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                     ErrorMessage = "";
                     ShowErrorMessage = false;
                     Messenger.Default.Send<BusyMessage>(new Messages.BusyMessage { IsBusy = true, Message = "Saving..." });
-                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         var documentDbEndpointSetting = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.DOCUMENTDB_ENDPOINT);
                         var documentDbKeySetting = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.DOCUMENT_DB_KEY);
@@ -295,7 +295,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                         }
 
                         Messenger.Default.Send<BusyMessage>(new Messages.BusyMessage { IsBusy = true, Message = "Clearing data..." });
-                        using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                        using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                         {
                             dp.TruckRepository.ClearTruckData();
                             dp.TruckRepository.ClearClientFarmFieldData();
@@ -358,7 +358,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                         }
 
                         Messenger.Default.Send<BusyMessage>(new Messages.BusyMessage { IsBusy = true, Message = "Clearing data..." });
-                        using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                        using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                         {
                             dp.TruckRepository.ClearTruckData();
                             AggregateDataProvider.Reset();
@@ -403,7 +403,7 @@ namespace CottonDBMS.TruckApp.ViewModels
         {
             await Task.Run(() =>
             {
-                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     var documentDbEndpointSetting = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.DOCUMENTDB_ENDPOINT);
                     var documentDbSetting = dp.SettingsRepository.FindSingle(x => x.Key == TruckClientSettingKeys.DOCUMENT_DB_KEY);

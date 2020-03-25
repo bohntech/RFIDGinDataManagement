@@ -42,7 +42,7 @@ namespace CottonDBMS.TruckApp.DataProviders
             instance._aggregateEvents = new List<AggregateEvent>();
 
             //load aggregate events
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 //only load events since last completed load
                 instance._aggregateEvents.AddRange(uow.AggregateEventRepository.GetEventsSinceLastLoad());
@@ -148,7 +148,7 @@ namespace CottonDBMS.TruckApp.DataProviders
                 Logging.Logger.Log("AGG", "Processing quadrature state change.");
                 lock (instance.locker)
                 {
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         //if quadrature is turning then start the reader
                         if (eventData.DirectionOfRotation == DirectionOfRotation.RotatingClockwise || eventData.DirectionOfRotation == DirectionOfRotation.RotatingCounterClockwise)
@@ -348,7 +348,7 @@ namespace CottonDBMS.TruckApp.DataProviders
                 bool atGinYard = uow.SettingsRepository.EventOnGinYard(agEvent);
                 if (!isLoadEvent && atFeeder)
                 {
-                    thisModule.ModuleStatus = ModuleStatus.GINNED;
+                    thisModule.ModuleStatus = ModuleStatus.ON_FEEDER;
                 }
                 else if (!isLoadEvent && atGinYard)
                 {
@@ -432,7 +432,7 @@ namespace CottonDBMS.TruckApp.DataProviders
         /// <param name="SerialNumber"></param>
         public static void ForceUnload(string SerialNumber)
         {
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var truck = uow.SettingsRepository.GetCurrentTruck();
                 var driver = uow.SettingsRepository.GetCurrentDriver();
@@ -482,7 +482,7 @@ namespace CottonDBMS.TruckApp.DataProviders
         {
             if (!SerialNumbersOnTruckNotThreadSafe.Any(x => x == SerialNumber))
             {
-                using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     var truck = uow.SettingsRepository.GetCurrentTruck();
                     var driver = uow.SettingsRepository.GetCurrentDriver();

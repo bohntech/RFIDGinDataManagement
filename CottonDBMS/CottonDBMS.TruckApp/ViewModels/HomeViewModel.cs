@@ -77,7 +77,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 if (value == null) lastProducerID = "";
                 else //if (value.ID != lastProducerID)
                 {
-                    using (var _unitOfWork = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var _unitOfWork = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         //do producer changed
                         lastProducerID = value.ID;
@@ -118,7 +118,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 }
                 else //if (value != null && value.ID != lastFarmID)
                 {
-                    using (var _unitOfWork = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var _unitOfWork = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         //do farm changed
                         lastFarmID = value.ID;
@@ -236,7 +236,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             {
                 try
                 {
-                    using (var _unitOfWork = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var _unitOfWork = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         bool deleteConfirmed = false;
 
@@ -377,7 +377,7 @@ namespace CottonDBMS.TruckApp.ViewModels
 
         private void refresh()
         {
-            using (var _unitOfWork = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var _unitOfWork = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 Producers.Clear();
                 Farms.Clear();
@@ -476,7 +476,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             }));
         }
 
-        public HomeViewModel(IWindowService windowService, IUnitOfWork unitOfWork)
+        public HomeViewModel(IWindowService windowService)
         {
             _windowService = windowService;
 
@@ -530,7 +530,7 @@ namespace CottonDBMS.TruckApp.ViewModels
         {
             Task.Run(() =>
             {
-                using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     DateTime gpsStart = DateTime.Now.ToUniversalTime().AddSeconds(-4);
                     DateTime gpsEnd = DateTime.Now.ToUniversalTime();
@@ -618,7 +618,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 if (!_windowService.IsWindowOpen(WindowType.WaitingForUnloadWindow))
                 {
 
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         Logging.Logger.Log("DEBUG", "Processing unload message from home view model.");
                         DateTime gpsStart = DateTime.Now.ToUniversalTime().AddSeconds(-3);

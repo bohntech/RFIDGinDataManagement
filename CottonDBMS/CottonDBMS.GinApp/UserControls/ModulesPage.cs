@@ -190,11 +190,11 @@ namespace CottonDBMS.GinApp.UserControls
                             itemsToDelete.RemoveAll(doc => moduleIdsOnPickupList.Contains(doc.Id));
                         }
 
-                        if (itemsToDelete.Count() > 0 && MessageBox.Show("Are you sure you want to delete the " + itemsToDelete.Count.ToString() + " selected module(s)?", "Delete?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        if (itemsToDelete.Count() > 0 && MessageBox.Show("Modules will be unlinked from associated gin loads and bales.  Are you sure you want to delete the " + itemsToDelete.Count.ToString() + " selected module(s)? ", "Delete?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
                             BusyMessage.Show("Deleting...", this.FindForm());
 
-                            uow.ModuleRepository.BulkDelete(itemsToDelete);
+                            uow.ModuleRepository.BulkDeleteAndClearLinkedLoadsAndBales(itemsToDelete);
                             uow.SaveChanges();
                             BusyMessage.Close();
                             refresh();

@@ -106,7 +106,7 @@ namespace CottonDBMS.TruckApp.ViewModels
 
             ActiveListID = listId;
 
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var list = uow.PickupListRepository.GetById(listId, "Field.Farm.Client");
                 Client = list.Field.Farm.Client.Name; ;

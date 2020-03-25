@@ -10,7 +10,12 @@ using Newtonsoft.Json.Converters;
 namespace CottonDBMS.DataModels
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum EntityType { PICKUPLIST = 1, CLIENT = 2, MODULE_COUNT_SUMMARY = 3, FARM = 4, FIELD = 5, TRUCK = 6, DRIVER = 7, MODULE = 8, MODULE_HISTORY = 9, SETTING_SUMMARY = 10, TRUCK_LISTS_DOWNLOADED=11,  AGGREGATE_EVENT=12, WRITE_TEST=13, TRUCK_PICKUP_LIST_RELEASE=14 };
+    public enum EntityType
+    {
+        PICKUPLIST = 1, CLIENT = 2, MODULE_COUNT_SUMMARY = 3, FARM = 4, FIELD = 5, TRUCK = 6, DRIVER = 7, MODULE = 8, MODULE_HISTORY = 9,
+        SETTING_SUMMARY = 10, TRUCK_LISTS_DOWNLOADED = 11, AGGREGATE_EVENT = 12, WRITE_TEST = 13, TRUCK_PICKUP_LIST_RELEASE = 14,
+        GIN_LOAD = 15, BALE = 16, GINNED_LIST = 17,  MODULE_OWNERSHIP = 18,  TRUCK_REGISTRATION=19, LOAD_SCAN = 20, FEEDER_SCAN = 21, BALE_SCAN = 22
+    };
 
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ProcessingAction { DELETE = 1 };

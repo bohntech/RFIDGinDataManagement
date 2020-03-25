@@ -65,12 +65,12 @@ namespace CottonDBMS.GinApp.UserControls
                         loadsInField = uow.ModuleRepository.GetLoadCountByStatus(ModuleStatus.IN_FIELD, modulesPerLoad);
                         loadsPickedUp = uow.ModuleRepository.GetLoadCountByStatus(ModuleStatus.PICKED_UP, modulesPerLoad);
                         loadsAtGin = uow.ModuleRepository.GetLoadCountByStatus(ModuleStatus.AT_GIN, modulesPerLoad);
-                        loadsGinned = uow.ModuleRepository.GetLoadCountByStatus(ModuleStatus.GINNED, modulesPerLoad);
+                        loadsGinned = uow.ModuleRepository.GetLoadCountByStatus(ModuleStatus.ON_FEEDER, modulesPerLoad);
                         totalLoads = loadsInField + loadsPickedUp + loadsAtGin + loadsGinned;
                         totalModules = uow.ModuleRepository.GetTotalModuleCount();
                         modulesInField = uow.ModuleRepository.GetModuleCountByStatus(ModuleStatus.IN_FIELD);
                         modulesOnYard = uow.ModuleRepository.GetModuleCountByStatus(ModuleStatus.AT_GIN);
-                        modulesGinned = uow.ModuleRepository.GetModuleCountByStatus(ModuleStatus.GINNED);
+                        modulesGinned = uow.ModuleRepository.GetModuleCountByStatus(ModuleStatus.ON_FEEDER);
                     }
 
                     this.Invoke((MethodInvoker)delegate

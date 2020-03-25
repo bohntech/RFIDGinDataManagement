@@ -30,7 +30,14 @@ namespace CottonDBMS.EF
         public DbSet<SyncedSettings> SyncedSettings { get; set; }
         public DbSet<AggregateEvent> AggregateEvents { get; set; }
         public DbSet<TruckListsDownloaded> TruckListsDownloaded { get; set; }
-        
+        public DbSet<BaleEntity> Bales { get; set; }
+        public DbSet<GinLoadEntity> GinLoads { get; set; }
+        public DbSet<TruckRegistrationEntity> TruckRegistrations { get; set; }
+        public DbSet<LoadScanEntity> LoadScans { get; set; }
+        public DbSet<BaleScanEntity> BaleScans { get; set; }
+        public DbSet<ModuleOwnershipEntity> ModuleOwnerships { get; set; }
+        public DbSet<FeederScanEntity> FeederScans { get; set; }
+
         public AppDBContext() : base()
         {   
             InitializeDatabase();                        
@@ -115,7 +122,6 @@ namespace CottonDBMS.EF
             modelBuilder.Entity<ModuleHistoryEntity>().Property(p => p.Updated)
               .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute()));
 
-
             modelBuilder.Entity<TruckEntity>()
                 .HasKey<string>(s => s.Id)
                 .Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
@@ -171,7 +177,71 @@ namespace CottonDBMS.EF
                    cs.ToTable("PickupListDownloadedToTrucks");
                });
 
-           
+            modelBuilder.Entity<GinLoadEntity>()
+               .HasKey<string>(s => s.Id)
+               .Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Entity<GinLoadEntity>().Property(t => t.ScaleBridgeLoadNumber)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_ScaleBridgeLoadNumber"))); //TODO REMOVE UNIQUE CONSTRAINT ??
+
+            modelBuilder.Entity<GinLoadEntity>().Property(t => t.GinTagLoadNumber).HasMaxLength(50)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_GinTagLoadNumber") { IsUnique = true }));
+
+            modelBuilder.Entity<ModuleEntity>()
+            .HasOptional<GinLoadEntity>(s => s.GinLoad)
+            .WithMany(g => g.Modules)
+            .HasForeignKey<string>(s => s.GinLoadId).WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BaleEntity>()
+              .HasKey<string>(s => s.Id)
+              .Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Entity<BaleEntity>().Property(t => t.PbiNumber).HasMaxLength(50)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_PBINumber") { IsUnique = true }));
+
+            modelBuilder.Entity<BaleEntity>().Property(t => t.Name).HasMaxLength(50)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Name") { IsUnique = true }));
+
+            modelBuilder.Entity<BaleEntity>().Property(p => p.Updated)
+              .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute()));
+
+            modelBuilder.Entity<BaleEntity>().Property(p => p.Created)
+              .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute()));
+
+            modelBuilder.Entity<BaleEntity>().Property(p => p.ScanNumber)
+              .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute()));
+
+            modelBuilder.Entity<BaleEntity>().Property(p => p.GinTicketLoadNumber).HasMaxLength(50)
+              .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute()));
+
+            modelBuilder.Entity<BaleEntity>().Property(p => p.ModuleSerialNumber).HasMaxLength(50)
+              .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute()));
+
+            modelBuilder.Entity<BaleEntity>()
+                .HasOptional<ModuleEntity>(s => s.Module)
+                .WithMany(g => g.Bales)
+                .HasForeignKey<string>(s => s.ModuleId);
+
+            modelBuilder.Entity<BaleEntity>()
+            .HasOptional<GinLoadEntity>(s => s.GinLoad)
+            .WithMany(g => g.Bales)
+            .HasForeignKey<string>(s => s.GinLoadId);
+
+            modelBuilder.Entity<TruckRegistrationEntity>()
+               .HasKey<string>(s => s.Id)
+               .Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Entity<LoadScanEntity>()
+              .HasKey<string>(s => s.Id)
+              .Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Entity<ModuleOwnershipEntity>()
+             .HasKey<string>(s => s.Id)
+             .Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Entity<FeederScanEntity>()
+             .HasKey<string>(s => s.Id)
+             .Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             base.OnModelCreating(modelBuilder);
         }

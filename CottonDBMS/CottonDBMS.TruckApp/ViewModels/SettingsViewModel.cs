@@ -214,7 +214,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                     }
 
                     bool portChanged = false;
-                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         var repo = dp.SettingsRepository;
                         var setting = repo.FindSingle(x => x.Key == TruckClientSettingKeys.RFID_READ_DELAY);
@@ -311,7 +311,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 AvailablePorts.Add(p);
             }
 
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 var repo = dp.SettingsRepository;
 

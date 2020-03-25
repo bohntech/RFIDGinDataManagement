@@ -1,0 +1,15 @@
+﻿<Page x:Class="CottonDBMS.BridgeApp.Pages.ExitScalePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CottonDBMS.BridgeApp.Pages"
+       xmlns:controls="clr-namespace:CottonDBMS.BridgeApp.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TrailerWeightPage">
+
+    <Grid>
+        <controls:ExitScaleView x:Name="exitScaleView" DataContext="{Binding .}" Visibility="{Binding IsScreenLocked, Converter={StaticResource VisibleIfFalse}}" />
+    </Grid>
+</Page>

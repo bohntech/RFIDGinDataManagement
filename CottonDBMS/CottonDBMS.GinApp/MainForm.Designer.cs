@@ -31,32 +31,40 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.appTabs = new System.Windows.Forms.TabControl();
             this.tabHome = new System.Windows.Forms.TabPage();
+            this.homePage1 = new CottonDBMS.GinApp.UserControls.HomePage();
             this.tabPickupLists = new System.Windows.Forms.TabPage();
+            this.pickupListsPage1 = new CottonDBMS.GinApp.UserControls.PickupListsPage();
+            this.tabGinLoads = new System.Windows.Forms.TabPage();
+            this.ginLoadsPage1 = new CottonDBMS.GinApp.UserControls.GinLoadsPage();
             this.tabModules = new System.Windows.Forms.TabPage();
+            this.modulesPage1 = new CottonDBMS.GinApp.UserControls.ModulesPage();
+            this.tabBales = new System.Windows.Forms.TabPage();
+            this.balesPage = new CottonDBMS.GinApp.UserControls.BalesPage();
             this.tabClients = new System.Windows.Forms.TabPage();
+            this.clientsPage = new CottonDBMS.GinApp.UserControls.ClientsPage();
             this.tabFarms = new System.Windows.Forms.TabPage();
+            this.farmsPage = new CottonDBMS.GinApp.UserControls.FarmsPage();
             this.tabFields = new System.Windows.Forms.TabPage();
+            this.fieldsPage = new CottonDBMS.GinApp.UserControls.FieldsPage();
             this.tabDrivers = new System.Windows.Forms.TabPage();
+            this.driversPage = new CottonDBMS.GinApp.UserControls.DriversPage();
             this.tabTrucks = new System.Windows.Forms.TabPage();
+            this.trucksPage = new CottonDBMS.GinApp.UserControls.TrucksPage();
             this.tabReports = new System.Windows.Forms.TabPage();
+            this.reportPage1 = new CottonDBMS.GinApp.UserControls.ReportPage();
             this.flowLayoutPanel33 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.settingsPage = new CottonDBMS.GinApp.UserControls.SettingsPage();
             this.tabAbout = new System.Windows.Forms.TabPage();
             this.tbLicense = new System.Windows.Forms.TextBox();
-            this.homePage1 = new CottonDBMS.GinApp.UserControls.HomePage();
-            this.pickupListsPage1 = new CottonDBMS.GinApp.UserControls.PickupListsPage();
-            this.modulesPage1 = new CottonDBMS.GinApp.UserControls.ModulesPage();
-            this.clientsPage = new CottonDBMS.GinApp.UserControls.ClientsPage();
-            this.farmsPage = new CottonDBMS.GinApp.UserControls.FarmsPage();
-            this.fieldsPage = new CottonDBMS.GinApp.UserControls.FieldsPage();
-            this.driversPage = new CottonDBMS.GinApp.UserControls.DriversPage();
-            this.trucksPage = new CottonDBMS.GinApp.UserControls.TrucksPage();
-            this.reportPage1 = new CottonDBMS.GinApp.UserControls.ReportPage();
-            this.settingsPage = new CottonDBMS.GinApp.UserControls.SettingsPage();
+            this.tabPBIMapping = new System.Windows.Forms.TabPage();
+            this.pbiMappingPage1 = new CottonDBMS.GinApp.UserControls.PBIMappingPage();
             this.appTabs.SuspendLayout();
             this.tabHome.SuspendLayout();
             this.tabPickupLists.SuspendLayout();
+            this.tabGinLoads.SuspendLayout();
             this.tabModules.SuspendLayout();
+            this.tabBales.SuspendLayout();
             this.tabClients.SuspendLayout();
             this.tabFarms.SuspendLayout();
             this.tabFields.SuspendLayout();
@@ -65,13 +73,17 @@
             this.tabReports.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.tabAbout.SuspendLayout();
+            this.tabPBIMapping.SuspendLayout();
             this.SuspendLayout();
             // 
             // appTabs
             // 
             this.appTabs.Controls.Add(this.tabHome);
             this.appTabs.Controls.Add(this.tabPickupLists);
+            this.appTabs.Controls.Add(this.tabGinLoads);
             this.appTabs.Controls.Add(this.tabModules);
+            this.appTabs.Controls.Add(this.tabBales);
+            this.appTabs.Controls.Add(this.tabPBIMapping);
             this.appTabs.Controls.Add(this.tabClients);
             this.appTabs.Controls.Add(this.tabFarms);
             this.appTabs.Controls.Add(this.tabFields);
@@ -103,6 +115,15 @@
             this.tabHome.Text = "Home";
             this.tabHome.UseVisualStyleBackColor = true;
             // 
+            // homePage1
+            // 
+            this.homePage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.homePage1.Location = new System.Drawing.Point(3, 3);
+            this.homePage1.Margin = new System.Windows.Forms.Padding(4);
+            this.homePage1.Name = "homePage1";
+            this.homePage1.Size = new System.Drawing.Size(1078, 741);
+            this.homePage1.TabIndex = 0;
+            // 
             // tabPickupLists
             // 
             this.tabPickupLists.Controls.Add(this.pickupListsPage1);
@@ -112,6 +133,35 @@
             this.tabPickupLists.TabIndex = 3;
             this.tabPickupLists.Text = "Pickup Lists";
             this.tabPickupLists.UseVisualStyleBackColor = true;
+            // 
+            // pickupListsPage1
+            // 
+            this.pickupListsPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pickupListsPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickupListsPage1.Location = new System.Drawing.Point(0, 0);
+            this.pickupListsPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.pickupListsPage1.Name = "pickupListsPage1";
+            this.pickupListsPage1.Size = new System.Drawing.Size(1084, 747);
+            this.pickupListsPage1.TabIndex = 0;
+            // 
+            // tabGinLoads
+            // 
+            this.tabGinLoads.Controls.Add(this.ginLoadsPage1);
+            this.tabGinLoads.Location = new System.Drawing.Point(4, 44);
+            this.tabGinLoads.Name = "tabGinLoads";
+            this.tabGinLoads.Size = new System.Drawing.Size(1084, 747);
+            this.tabGinLoads.TabIndex = 13;
+            this.tabGinLoads.Text = "Gin Loads";
+            this.tabGinLoads.UseVisualStyleBackColor = true;
+            // 
+            // ginLoadsPage1
+            // 
+            this.ginLoadsPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ginLoadsPage1.Location = new System.Drawing.Point(0, 0);
+            this.ginLoadsPage1.Margin = new System.Windows.Forms.Padding(0);
+            this.ginLoadsPage1.Name = "ginLoadsPage1";
+            this.ginLoadsPage1.Size = new System.Drawing.Size(1084, 747);
+            this.ginLoadsPage1.TabIndex = 0;
             // 
             // tabModules
             // 
@@ -124,6 +174,34 @@
             this.tabModules.Text = "Modules";
             this.tabModules.UseVisualStyleBackColor = true;
             // 
+            // modulesPage1
+            // 
+            this.modulesPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modulesPage1.Location = new System.Drawing.Point(5, 5);
+            this.modulesPage1.Margin = new System.Windows.Forms.Padding(0);
+            this.modulesPage1.Name = "modulesPage1";
+            this.modulesPage1.Size = new System.Drawing.Size(1074, 737);
+            this.modulesPage1.TabIndex = 0;
+            // 
+            // tabBales
+            // 
+            this.tabBales.Controls.Add(this.balesPage);
+            this.tabBales.Location = new System.Drawing.Point(4, 44);
+            this.tabBales.Name = "tabBales";
+            this.tabBales.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBales.Size = new System.Drawing.Size(1084, 747);
+            this.tabBales.TabIndex = 14;
+            this.tabBales.Text = "Bales";
+            this.tabBales.UseVisualStyleBackColor = true;
+            // 
+            // balesPage
+            // 
+            this.balesPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.balesPage.Location = new System.Drawing.Point(3, 3);
+            this.balesPage.Name = "balesPage";
+            this.balesPage.Size = new System.Drawing.Size(1078, 741);
+            this.balesPage.TabIndex = 0;
+            // 
             // tabClients
             // 
             this.tabClients.Controls.Add(this.clientsPage);
@@ -133,6 +211,15 @@
             this.tabClients.TabIndex = 10;
             this.tabClients.Text = "Clients";
             this.tabClients.UseVisualStyleBackColor = true;
+            // 
+            // clientsPage
+            // 
+            this.clientsPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clientsPage.Location = new System.Drawing.Point(0, 0);
+            this.clientsPage.Margin = new System.Windows.Forms.Padding(4);
+            this.clientsPage.Name = "clientsPage";
+            this.clientsPage.Size = new System.Drawing.Size(1084, 747);
+            this.clientsPage.TabIndex = 0;
             // 
             // tabFarms
             // 
@@ -144,6 +231,15 @@
             this.tabFarms.Text = "Farms";
             this.tabFarms.UseVisualStyleBackColor = true;
             // 
+            // farmsPage
+            // 
+            this.farmsPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.farmsPage.Location = new System.Drawing.Point(0, 0);
+            this.farmsPage.Margin = new System.Windows.Forms.Padding(4);
+            this.farmsPage.Name = "farmsPage";
+            this.farmsPage.Size = new System.Drawing.Size(1084, 747);
+            this.farmsPage.TabIndex = 0;
+            // 
             // tabFields
             // 
             this.tabFields.Controls.Add(this.fieldsPage);
@@ -153,6 +249,15 @@
             this.tabFields.TabIndex = 12;
             this.tabFields.Text = "Fields";
             this.tabFields.UseVisualStyleBackColor = true;
+            // 
+            // fieldsPage
+            // 
+            this.fieldsPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fieldsPage.Location = new System.Drawing.Point(0, 0);
+            this.fieldsPage.Margin = new System.Windows.Forms.Padding(4);
+            this.fieldsPage.Name = "fieldsPage";
+            this.fieldsPage.Size = new System.Drawing.Size(1084, 747);
+            this.fieldsPage.TabIndex = 0;
             // 
             // tabDrivers
             // 
@@ -164,6 +269,15 @@
             this.tabDrivers.Text = "Drivers";
             this.tabDrivers.UseVisualStyleBackColor = true;
             // 
+            // driversPage
+            // 
+            this.driversPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.driversPage.Location = new System.Drawing.Point(0, 0);
+            this.driversPage.Margin = new System.Windows.Forms.Padding(4);
+            this.driversPage.Name = "driversPage";
+            this.driversPage.Size = new System.Drawing.Size(1084, 747);
+            this.driversPage.TabIndex = 0;
+            // 
             // tabTrucks
             // 
             this.tabTrucks.Controls.Add(this.trucksPage);
@@ -173,6 +287,15 @@
             this.tabTrucks.TabIndex = 8;
             this.tabTrucks.Text = "Trucks";
             this.tabTrucks.UseVisualStyleBackColor = true;
+            // 
+            // trucksPage
+            // 
+            this.trucksPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trucksPage.Location = new System.Drawing.Point(0, 0);
+            this.trucksPage.Margin = new System.Windows.Forms.Padding(4);
+            this.trucksPage.Name = "trucksPage";
+            this.trucksPage.Size = new System.Drawing.Size(1084, 747);
+            this.trucksPage.TabIndex = 0;
             // 
             // tabReports
             // 
@@ -184,6 +307,17 @@
             this.tabReports.TabIndex = 5;
             this.tabReports.Text = "Reports";
             this.tabReports.UseVisualStyleBackColor = true;
+            // 
+            // reportPage1
+            // 
+            this.reportPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportPage1.Location = new System.Drawing.Point(0, 0);
+            this.reportPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.reportPage1.Name = "reportPage1";
+            this.reportPage1.Padding = new System.Windows.Forms.Padding(10);
+            this.reportPage1.Size = new System.Drawing.Size(1084, 747);
+            this.reportPage1.TabIndex = 11;
             // 
             // flowLayoutPanel33
             // 
@@ -208,6 +342,15 @@
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
+            // settingsPage
+            // 
+            this.settingsPage.AutoSize = true;
+            this.settingsPage.Location = new System.Drawing.Point(4, 5);
+            this.settingsPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 30);
+            this.settingsPage.Name = "settingsPage";
+            this.settingsPage.Size = new System.Drawing.Size(1027, 1180);
+            this.settingsPage.TabIndex = 0;
+            // 
             // tabAbout
             // 
             this.tabAbout.Controls.Add(this.tbLicense);
@@ -230,98 +373,25 @@
             this.tbLicense.Size = new System.Drawing.Size(1078, 741);
             this.tbLicense.TabIndex = 0;
             // 
-            // homePage1
+            // tabPBIMapping
             // 
-            this.homePage1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.homePage1.Location = new System.Drawing.Point(3, 3);
-            this.homePage1.Margin = new System.Windows.Forms.Padding(4);
-            this.homePage1.Name = "homePage1";
-            this.homePage1.Size = new System.Drawing.Size(1078, 741);
-            this.homePage1.TabIndex = 0;
+            this.tabPBIMapping.Controls.Add(this.pbiMappingPage1);
+            this.tabPBIMapping.Location = new System.Drawing.Point(4, 44);
+            this.tabPBIMapping.Name = "tabPBIMapping";
+            this.tabPBIMapping.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPBIMapping.Size = new System.Drawing.Size(1084, 747);
+            this.tabPBIMapping.TabIndex = 15;
+            this.tabPBIMapping.Text = "PBI to Module Mapping";
+            this.tabPBIMapping.UseVisualStyleBackColor = true;
             // 
-            // pickupListsPage1
+            // pbiMappingPage1
             // 
-            this.pickupListsPage1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pickupListsPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickupListsPage1.Location = new System.Drawing.Point(0, 0);
-            this.pickupListsPage1.Margin = new System.Windows.Forms.Padding(4);
-            this.pickupListsPage1.Name = "pickupListsPage1";
-            this.pickupListsPage1.Size = new System.Drawing.Size(1084, 747);
-            this.pickupListsPage1.TabIndex = 0;
-            // 
-            // modulesPage1
-            // 
-            this.modulesPage1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.modulesPage1.Location = new System.Drawing.Point(5, 5);
-            this.modulesPage1.Margin = new System.Windows.Forms.Padding(0);
-            this.modulesPage1.Name = "modulesPage1";
-            this.modulesPage1.Size = new System.Drawing.Size(1074, 737);
-            this.modulesPage1.TabIndex = 0;
-            // 
-            // clientsPage
-            // 
-            this.clientsPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clientsPage.Location = new System.Drawing.Point(0, 0);
-            this.clientsPage.Margin = new System.Windows.Forms.Padding(4);
-            this.clientsPage.Name = "clientsPage";
-            this.clientsPage.Size = new System.Drawing.Size(1084, 747);
-            this.clientsPage.TabIndex = 0;
-            // 
-            // farmsPage
-            // 
-            this.farmsPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.farmsPage.Location = new System.Drawing.Point(0, 0);
-            this.farmsPage.Margin = new System.Windows.Forms.Padding(4);
-            this.farmsPage.Name = "farmsPage";
-            this.farmsPage.Size = new System.Drawing.Size(1084, 747);
-            this.farmsPage.TabIndex = 0;
-            // 
-            // fieldsPage
-            // 
-            this.fieldsPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fieldsPage.Location = new System.Drawing.Point(0, 0);
-            this.fieldsPage.Margin = new System.Windows.Forms.Padding(4);
-            this.fieldsPage.Name = "fieldsPage";
-            this.fieldsPage.Size = new System.Drawing.Size(1084, 747);
-            this.fieldsPage.TabIndex = 0;
-            // 
-            // driversPage
-            // 
-            this.driversPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.driversPage.Location = new System.Drawing.Point(0, 0);
-            this.driversPage.Margin = new System.Windows.Forms.Padding(4);
-            this.driversPage.Name = "driversPage";
-            this.driversPage.Size = new System.Drawing.Size(1084, 747);
-            this.driversPage.TabIndex = 0;
-            // 
-            // trucksPage
-            // 
-            this.trucksPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trucksPage.Location = new System.Drawing.Point(0, 0);
-            this.trucksPage.Margin = new System.Windows.Forms.Padding(4);
-            this.trucksPage.Name = "trucksPage";
-            this.trucksPage.Size = new System.Drawing.Size(1084, 747);
-            this.trucksPage.TabIndex = 0;
-            // 
-            // reportPage1
-            // 
-            this.reportPage1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reportPage1.Location = new System.Drawing.Point(0, 0);
-            this.reportPage1.Margin = new System.Windows.Forms.Padding(4);
-            this.reportPage1.Name = "reportPage1";
-            this.reportPage1.Padding = new System.Windows.Forms.Padding(10);
-            this.reportPage1.Size = new System.Drawing.Size(1084, 747);
-            this.reportPage1.TabIndex = 11;
-            // 
-            // settingsPage
-            // 
-            this.settingsPage.AutoSize = true;
-            this.settingsPage.Location = new System.Drawing.Point(4, 5);
-            this.settingsPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 30);
-            this.settingsPage.Name = "settingsPage";
-            this.settingsPage.Size = new System.Drawing.Size(1027, 1180);
-            this.settingsPage.TabIndex = 0;
+            this.pbiMappingPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbiMappingPage1.Location = new System.Drawing.Point(3, 3);
+            this.pbiMappingPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbiMappingPage1.Name = "pbiMappingPage1";
+            this.pbiMappingPage1.Size = new System.Drawing.Size(1078, 741);
+            this.pbiMappingPage1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -339,7 +409,9 @@
             this.appTabs.ResumeLayout(false);
             this.tabHome.ResumeLayout(false);
             this.tabPickupLists.ResumeLayout(false);
+            this.tabGinLoads.ResumeLayout(false);
             this.tabModules.ResumeLayout(false);
+            this.tabBales.ResumeLayout(false);
             this.tabClients.ResumeLayout(false);
             this.tabFarms.ResumeLayout(false);
             this.tabFields.ResumeLayout(false);
@@ -351,6 +423,7 @@
             this.tabSettings.PerformLayout();
             this.tabAbout.ResumeLayout(false);
             this.tabAbout.PerformLayout();
+            this.tabPBIMapping.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -383,6 +456,12 @@
         private UserControls.FarmsPage farmsPage;
         private UserControls.FieldsPage fieldsPage;
         private UserControls.HomePage homePage1;
+        private System.Windows.Forms.TabPage tabGinLoads;
+        private UserControls.GinLoadsPage ginLoadsPage1;
+        private System.Windows.Forms.TabPage tabBales;
+        private UserControls.BalesPage balesPage;
+        private System.Windows.Forms.TabPage tabPBIMapping;
+        private UserControls.PBIMappingPage pbiMappingPage1;
     }
 }
 

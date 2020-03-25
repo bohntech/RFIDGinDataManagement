@@ -63,9 +63,18 @@ namespace CottonDBMS.EF.Repositories
         {
             var item = _context.Set<TObject>().FirstOrDefault(t => t.Id == entity.Id);            
             _context.Entry(item).State = EntityState.Deleted;
-            //only add if id doesn't already exist
-            if (!_context.DocumentsToProcess.Any(i => i.Id == entity.Id))
+            
+            
+            //only add if id doesn't already exist and it's not a Bale or GinLoad (Bales and GinLoads are not synced to cloud)
+            if (entity.EntityType != EntityType.BALE && entity.EntityType != EntityType.GIN_LOAD && !_context.DocumentsToProcess.Any(i => i.Id == entity.Id) )
+            {
                 _context.Set<DocumentToProcess>().Add(new DocumentToProcess { Id = entity.Id, EntityType = entity.EntityType, Name = entity.Name, SelfLink = entity.SelfLink, SyncedToCloud = false });
+
+                if (entity.EntityType == EntityType.MODULE) //for modules also ensure ownership record is deleted
+                {
+                    _context.Set<DocumentToProcess>().Add(new DocumentToProcess { Id = "OWNERSHIP-" + entity.Id, EntityType = entity.EntityType, Name = entity.Name, SelfLink = entity.SelfLink, SyncedToCloud = false });
+                }
+            }
 
         }
 
@@ -159,6 +168,19 @@ namespace CottonDBMS.EF.Repositories
             }
         }
 
+        public virtual void SaveUseObjectDates(TObject entity)
+        {
+            if (string.IsNullOrWhiteSpace(entity.Id))
+            {
+                entity.Id = Guid.NewGuid().ToString();                
+                this.Add(entity);
+            }
+            else
+            {                
+                this.Update(entity);
+            }
+        }
+
         //will save the entity and use preferred ID to 
         public virtual void CreateWithID(TObject entity, string preferredID)
         {
@@ -177,6 +199,16 @@ namespace CottonDBMS.EF.Repositories
             entity.Id = newID.ToString();
             entity.Created = DateTime.UtcNow;
             this.Add(entity);
+        }
+
+        public IEnumerable<string> GetAllIds()
+        {
+            return _context.Set<TObject>().Select(t => t.Id).ToList();
+        }
+
+        public IEnumerable<string> GetIdsForChanged(DateTime updatedAfter)
+        {
+            return _context.Set<TObject>().Where(t => t.Created > updatedAfter || (t.Updated.HasValue && t.Updated.Value > updatedAfter)).Select(t => t.Id).ToList();
         }
     }
 }

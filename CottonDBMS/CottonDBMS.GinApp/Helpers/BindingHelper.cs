@@ -19,6 +19,7 @@ namespace CottonDBMS.GinApp.Helpers
             cbo.Items.Add(new BaseEntity { Id = Convert.ToInt32(ModuleStatus.IN_FIELD).ToString(), Name = "In field" });
             cbo.Items.Add(new BaseEntity { Id = Convert.ToInt32(ModuleStatus.PICKED_UP).ToString(), Name = "Picked up" });
             cbo.Items.Add(new BaseEntity { Id = Convert.ToInt32(ModuleStatus.AT_GIN).ToString(), Name = "At Gin" });
+            cbo.Items.Add(new BaseEntity { Id = Convert.ToInt32(ModuleStatus.ON_FEEDER).ToString(), Name = "On feeder" });
             cbo.Items.Add(new BaseEntity { Id = Convert.ToInt32(ModuleStatus.GINNED).ToString(), Name = "Ginned" });
 
 

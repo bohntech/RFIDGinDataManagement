@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="CottonDBMS.BridgeApp.UserControls.LoadView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CottonDBMS.BridgeApp.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1200">
+    <Grid Style="{StaticResource LayoutGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />            
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>                                       
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="1"  Margin="10,0,0,0" Padding="0,0,0,0" Style="{StaticResource BoldBorder}">
+                <StackPanel Margin="0,0,0,0" >
+                    <Label Grid.Row="1" Grid.Column="0" Content="{Binding ModuleHeader}" Style="{StaticResource FormFieldLabel}" Margin="0,-1,0,0" Width="310" 
+                           HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                           Padding="15,15,15,15" Background="#FFFE00" Foreground="Black" ></Label>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <TextBox  Style="{StaticResource FormTextBox}" x:Name="tbSerialNumber"  Width="220"  Margin="10,10,10,10" Text="{Binding SerialNumberToAdd}"  PreviewKeyDown="TextBox_PreviewKeyDown" />
+                            <TextBlock Style="{StaticResource ErrorTextBlock}"  Text="{Binding AddSerialErrorMessage}" Visibility="{Binding HasAddSerialError, Converter={StaticResource VisibleIfTrue}}"></TextBlock>
+                        </StackPanel>
+                        <Button Content="Add" Style="{StaticResource RemoveButtonStyle}" Margin="0,5,0,5" Padding="10,0,10,0" Command="{Binding AddSerialNumberCommand}" Height="52" VerticalContentAlignment="Top" VerticalAlignment="Top"/>
+                    </StackPanel>
+                    <StackPanel >
+                        <ListView Margin="10" Name="lvModules" ItemsSource="{Binding Modules}" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Height="650" Background="Transparent">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="X" Style="{StaticResource RemoveButtonStyle}"
+                                                Command="{Binding ElementName=lvModules,Path=DataContext.RemoveModuleCommand}" CommandParameter="{Binding SerialNumber}"
+                                                />
+                                        <Label Content="{Binding SerialNumber}" Style="{StaticResource ModuleLabelStyle}"  />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate> 
+                        </ListView>           
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="1" Margin="0,0,0,0" Padding="10,10,10,10" Style="{StaticResource BoldBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="BRIDGE LOAD#:" Style="{StaticResource FormFieldLabel}" Margin="0,15,0,0"></Label>
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding BridgeLoadNumber}" Style="{StaticResource FormFieldValueLabel}" Margin="0,15,0,0"></Label>
+
+
+                <Label Grid.Row="1" Grid.Column="0" Content="GIN TICKET LOAD#:" Style="{StaticResource FormFieldLabel}" ></Label>
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBox Style="{StaticResource FormTextBox}"  Width="510" Text="{Binding GinTicketLoadNumber}"/>
+                    <TextBlock Style="{StaticResource ErrorTextBlock}"  Text="{Binding GinTicketLoadNumberErrorMessage}" Visibility="{Binding HasGinTicketLoadNumberError, Converter={StaticResource VisibleIfTrue}}"></TextBlock>
+                </StackPanel>
+
+               
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="GROSS LOAD WEIGHT:" Style="{StaticResource FormFieldLabel}" ></Label>
+                    <Label Grid.Row="2" Grid.Column="1" Content="{Binding GrossWeight}" Style="{StaticResource FormFieldValueLabel}" Margin="0,15,0,0"></Label>
+
+                    <Label Grid.Row="3" Grid.Column="0" Content="NET LOAD WEIGHT:" Style="{StaticResource FormFieldLabel}" Margin="0,15,0,0"></Label>
+                    <Label Grid.Row="3" Grid.Column="1" Content="{Binding NetWeight}" Style="{StaticResource FormFieldValueLabel}" Margin="0,15,0,0"></Label>
+
+                    <Label Grid.Row="4" Grid.Column="0" Content="TRUCK ID:" Style="{StaticResource FormFieldLabel}" Margin="0,15,0,0"></Label>
+                    <StackPanel Grid.Row="4" Grid.Column="1">
+                        <ComboBox Style="{StaticResource FormComboBox}" ItemsSource="{Binding AvailableTrucks}" SelectedValue="{Binding TruckID}" Grid.Row="4" Grid.Column="1" Margin="10,15,0,10"  />
+                        <TextBlock Style="{StaticResource ErrorTextBlock}"  Text="{Binding TruckIDErrorMessage}" Visibility="{Binding HasTruckIDError, Converter={StaticResource VisibleIfTrue}}" ></TextBlock>
+                    </StackPanel>
+
+                    <Label Grid.Row="5" Grid.Column="0" Content="YARD ROW#:" Style="{StaticResource FormFieldLabel}" ></Label>
+                    <StackPanel Grid.Row="5" Grid.Column="1">
+                    <TextBox  Style="{StaticResource FormTextBox}"  Width="510" Text="{Binding YardLocation}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}"  Text="{Binding YardLocationErrorMessage}" Visibility="{Binding HasYardLocationError, Converter={StaticResource VisibleIfTrue}}" ></TextBlock>
+                    </StackPanel>
+
+                    <Label Grid.Row="6" Grid.Column="0" Content="SPLIT WEIGHT 1:" Style="{StaticResource FormFieldLabel}" ></Label>
+                    <StackPanel Grid.Row="6" Grid.Column="1">
+                        <TextBox  Style="{StaticResource FormTextBox}" Width="510" Text="{Binding SplitWeight1}" />
+                        <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding SplitWeight1ErrorMessage}" Visibility="{Binding HasSplitWeight1Error, Converter={StaticResource VisibleIfTrue}}"></TextBlock>
+                    </StackPanel>
+
+                    <Label Grid.Row="7" Grid.Column="0" Content="SPLIT WEIGHT 2:" Style="{StaticResource FormFieldLabel}" ></Label>
+                    <StackPanel Grid.Row="7" Grid.Column="1">
+                        <TextBox  Style="{StaticResource FormTextBox}" Width="510" Text="{Binding SplitWeight2}"/>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}"  Text="{Binding SplitWeight2ErrorMessage}" Visibility="{Binding HasSplitWeight2Error, Converter={StaticResource VisibleIfTrue}}"></TextBlock>
+                    </StackPanel>
+                    
+                     <Label Grid.Row="8" Grid.Column="0" Content="" Style="{StaticResource FormFieldLabel}" ></Label>
+                    <StackPanel Grid.Row="8" Grid.Column="1">
+                        <StackPanel  Orientation="Horizontal" >
+                            <RadioButton Content="Attendant" IsChecked="{Binding AttendantChecked}" >
+                            </RadioButton>
+                            <RadioButton Content="Driver" Margin="140,0,0,0" IsChecked="{Binding DriverChecked}">
+                            </RadioButton>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource ErrorTextBlock}"  Text="Attendant/driver selection required" Margin="35,10,0,0" Visibility="{Binding HasAttendantDriverError, Converter={StaticResource VisibleIfTrue}}" ></TextBlock>
+                    </StackPanel>
+
+                    <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"  Margin="0,15,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <Label Grid.Row="6" Grid.Column="0" Content="PICKED BY:" Style="{StaticResource AboveFieldLabel}" ></Label>
+                        <StackPanel>
+                                <TextBox  Style="{StaticResource FormTextBoxBelowLabel}" Text="{Binding PickedBy}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                       
+
+                        <StackPanel Grid.Row="0" Grid.Column="1">
+                        <Label Content="VARIETY:" Style="{StaticResource AboveFieldLabel}" ></Label>
+                        <StackPanel>
+                                <TextBox  Style="{StaticResource FormTextBoxBelowLabel}" Text="{Binding Variety}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="2">
+                        <Label Content="TRAILER/MODULE#:" Style="{StaticResource AboveFieldLabel}"  ></Label>
+                        <StackPanel>
+                            <TextBox  Style="{StaticResource FormTextBoxBelowLabel}" Text="{Binding TrailerNumber}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                            <Label Grid.Row="6" Grid.Column="0" Content="CLIENT:" Style="{StaticResource AboveFieldLabel}" ></Label>
+                            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Client}" Style="{StaticResource FormTextBoxBelowLabel}"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                            <Label Grid.Row="6" Grid.Column="0" Content="FARM:" Style="{StaticResource AboveFieldLabel}" ></Label>
+                            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Farm}" Style="{StaticResource FormTextBoxBelowLabel}"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2">
+                            <Label Grid.Row="6" Grid.Column="0" Content="FIELD:" Style="{StaticResource AboveFieldLabel}" ></Label>
+                            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Field}" Style="{StaticResource FormTextBoxBelowLabel}"></TextBox>
+                    </StackPanel>
+
+                </Grid>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Row="0" Grid.Column="0" x:Name="btnSubmitLoad" Content="CONTINUE" Style="{StaticResource LargeButton}" Command="{Binding SaveCommand}" IsDefault="True"/>
+                <Button Grid.Row="0" Grid.Column="2" x:Name="btnCancel" Content="CANCEL" Style="{StaticResource LargeButton}"  Command="{Binding CancelCommand}" IsCancel="True"/>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</UserControl>

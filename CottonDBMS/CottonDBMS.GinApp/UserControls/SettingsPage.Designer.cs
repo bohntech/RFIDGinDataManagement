@@ -111,6 +111,8 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnClearModuleData = new System.Windows.Forms.Button();
             this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.btnCreateScaleBridgeInstaller = new System.Windows.Forms.Button();
+            this.btnFeederBridgeInstaller = new System.Windows.Forms.Button();
             this.gbCosmos.SuspendLayout();
             this.gbCosmosReadOnlyKeys.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -1077,6 +1079,8 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.btnFeederBridgeInstaller);
+            this.panel8.Controls.Add(this.btnCreateScaleBridgeInstaller);
             this.panel8.Controls.Add(this.btnClearModuleData);
             this.panel8.Controls.Add(this.btnSaveSettings);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1109,6 +1113,30 @@
             this.btnSaveSettings.Text = "Save";
             this.btnSaveSettings.UseVisualStyleBackColor = true;
             this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            // 
+            // btnCreateScaleBridgeInstaller
+            // 
+            this.btnCreateScaleBridgeInstaller.AutoSize = true;
+            this.btnCreateScaleBridgeInstaller.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateScaleBridgeInstaller.Location = new System.Drawing.Point(276, 3);
+            this.btnCreateScaleBridgeInstaller.Name = "btnCreateScaleBridgeInstaller";
+            this.btnCreateScaleBridgeInstaller.Size = new System.Drawing.Size(188, 36);
+            this.btnCreateScaleBridgeInstaller.TabIndex = 16;
+            this.btnCreateScaleBridgeInstaller.Text = "Create Scale Bridge Installer";
+            this.btnCreateScaleBridgeInstaller.UseVisualStyleBackColor = true;
+            this.btnCreateScaleBridgeInstaller.Click += new System.EventHandler(this.btnCreateScaleBridgeInstaller_Click);
+            // 
+            // btnFeederBridgeInstaller
+            // 
+            this.btnFeederBridgeInstaller.AutoSize = true;
+            this.btnFeederBridgeInstaller.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeederBridgeInstaller.Location = new System.Drawing.Point(470, 3);
+            this.btnFeederBridgeInstaller.Name = "btnFeederBridgeInstaller";
+            this.btnFeederBridgeInstaller.Size = new System.Drawing.Size(197, 36);
+            this.btnFeederBridgeInstaller.TabIndex = 17;
+            this.btnFeederBridgeInstaller.Text = "Create Feeder Bridge Installer";
+            this.btnFeederBridgeInstaller.UseVisualStyleBackColor = true;
+            this.btnFeederBridgeInstaller.Click += new System.EventHandler(this.btnFeederBridgeInstaller_Click);
             // 
             // SettingsPage
             // 
@@ -1261,5 +1289,7 @@
         private System.Windows.Forms.Button btnShowQRCode;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox tbGinName;
+        private System.Windows.Forms.Button btnFeederBridgeInstaller;
+        private System.Windows.Forms.Button btnCreateScaleBridgeInstaller;
     }
 }

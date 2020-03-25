@@ -84,6 +84,54 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
+    <Compile Include="Migrations\201907022103270_UpdateDecimalColumnsOnLoadScan.cs" />
+    <Compile Include="Migrations\201907022103270_UpdateDecimalColumnsOnLoadScan.Designer.cs">
+      <DependentUpon>201907022103270_UpdateDecimalColumnsOnLoadScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907101932119_AddFeederScan.cs" />
+    <Compile Include="Migrations\201907101932119_AddFeederScan.Designer.cs">
+      <DependentUpon>201907101932119_AddFeederScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907192125329_AddMoreHIDColumns.cs" />
+    <Compile Include="Migrations\201907192125329_AddMoreHIDColumns.Designer.cs">
+      <DependentUpon>201907192125329_AddMoreHIDColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907231517118_addHIDTimestamp.cs" />
+    <Compile Include="Migrations\201907231517118_addHIDTimestamp.Designer.cs">
+      <DependentUpon>201907231517118_addHIDTimestamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907231917598_UpdateBalesAndAddBaleScan.cs" />
+    <Compile Include="Migrations\201907231917598_UpdateBalesAndAddBaleScan.Designer.cs">
+      <DependentUpon>201907231917598_UpdateBalesAndAddBaleScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907232035363_AddBaleScanEntity.cs" />
+    <Compile Include="Migrations\201907232035363_AddBaleScanEntity.Designer.cs">
+      <DependentUpon>201907232035363_AddBaleScanEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907241440114_ChangePBIToString.cs" />
+    <Compile Include="Migrations\201907241440114_ChangePBIToString.Designer.cs">
+      <DependentUpon>201907241440114_ChangePBIToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907241820353_AddTareWeight.cs" />
+    <Compile Include="Migrations\201907241820353_AddTareWeight.Designer.cs">
+      <DependentUpon>201907241820353_AddTareWeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908161655165_AddOutOfSequenceFlagForPBILogger.cs" />
+    <Compile Include="Migrations\201908161655165_AddOutOfSequenceFlagForPBILogger.Designer.cs">
+      <DependentUpon>201908161655165_AddOutOfSequenceFlagForPBILogger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908201453496_AddPBIRoutineColumns.cs" />
+    <Compile Include="Migrations\201908201453496_AddPBIRoutineColumns.Designer.cs">
+      <DependentUpon>201908201453496_AddPBIRoutineColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908291836104_AddThresholdPercentage.cs" />
+    <Compile Include="Migrations\201908291836104_AddThresholdPercentage.Designer.cs">
+      <DependentUpon>201908291836104_AddThresholdPercentage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\BaleRepository.cs" />
+    <Compile Include="Repositories\BaleScanRepository.cs" />
+    <Compile Include="Repositories\FeederScanRepository.cs" />
+    <Compile Include="Repositories\LoadScanRepository.cs" />
     <Compile Include="Migrations\201805142200438_InitialCreate.cs" />
     <Compile Include="Migrations\201805142200438_InitialCreate.Designer.cs">
       <DependentUpon>201805142200438_InitialCreate.cs</DependentUpon>
@@ -100,6 +148,46 @@
     <Compile Include="Migrations\201805161529582_AddOriginalModuleCount.Designer.cs">
       <DependentUpon>201805161529582_AddOriginalModuleCount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906112053544_AddBalesAndLoadsTablesPlusAddHIDModuleColumns.cs" />
+    <Compile Include="Migrations\201906112053544_AddBalesAndLoadsTablesPlusAddHIDModuleColumns.Designer.cs">
+      <DependentUpon>201906112053544_AddBalesAndLoadsTablesPlusAddHIDModuleColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906112114473_FixCustomHaulerColumnName.cs" />
+    <Compile Include="Migrations\201906112114473_FixCustomHaulerColumnName.Designer.cs">
+      <DependentUpon>201906112114473_FixCustomHaulerColumnName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906122049352_UpdateGinLoadToDropClientandFarmColumn.cs" />
+    <Compile Include="Migrations\201906122049352_UpdateGinLoadToDropClientandFarmColumn.Designer.cs">
+      <DependentUpon>201906122049352_UpdateGinLoadToDropClientandFarmColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906132022473_RemoveLoadIdFromModuleEntity.cs" />
+    <Compile Include="Migrations\201906132022473_RemoveLoadIdFromModuleEntity.Designer.cs">
+      <DependentUpon>201906132022473_RemoveLoadIdFromModuleEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906132037482_ModifyModuleHistoryColumnsTypesToAllowNulls.cs" />
+    <Compile Include="Migrations\201906132037482_ModifyModuleHistoryColumnsTypesToAllowNulls.Designer.cs">
+      <DependentUpon>201906132037482_ModifyModuleHistoryColumnsTypesToAllowNulls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906141426495_AddHIDFieldsToModuleOperatorAndProducerID.cs" />
+    <Compile Include="Migrations\201906141426495_AddHIDFieldsToModuleOperatorAndProducerID.Designer.cs">
+      <DependentUpon>201906141426495_AddHIDFieldsToModuleOperatorAndProducerID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906212010380_AddLoadScanColumns.cs" />
+    <Compile Include="Migrations\201906212010380_AddLoadScanColumns.Designer.cs">
+      <DependentUpon>201906212010380_AddLoadScanColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906251604573_AddIsSemiColumn.cs" />
+    <Compile Include="Migrations\201906251604573_AddIsSemiColumn.Designer.cs">
+      <DependentUpon>201906251604573_AddIsSemiColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906252135596_AddSplitWeightColumns.cs" />
+    <Compile Include="Migrations\201906252135596_AddSplitWeightColumns.Designer.cs">
+      <DependentUpon>201906252135596_AddSplitWeightColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906271812229_AddModuleOwnershipFields.cs" />
+    <Compile Include="Migrations\201906271812229_AddModuleOwnershipFields.Designer.cs">
+      <DependentUpon>201906271812229_AddModuleOwnershipFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\AggregateEventRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\DocumentsToProcessRepository.cs" />
@@ -107,6 +195,7 @@
     <Compile Include="Repositories\EntityRepository.cs" />
     <Compile Include="Repositories\FieldRepository.cs" />
     <Compile Include="Repositories\FarmRepository.cs" />
+    <Compile Include="Repositories\GinLoadsRepository.cs" />
     <Compile Include="Repositories\ModuleRepository.cs" />
     <Compile Include="Repositories\PickupListRepository.cs" />
     <Compile Include="Repositories\SyncedSettingsRepository.cs" />
@@ -151,6 +240,69 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805161529582_AddOriginalModuleCount.resx">
       <DependentUpon>201805161529582_AddOriginalModuleCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906112053544_AddBalesAndLoadsTablesPlusAddHIDModuleColumns.resx">
+      <DependentUpon>201906112053544_AddBalesAndLoadsTablesPlusAddHIDModuleColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906112114473_FixCustomHaulerColumnName.resx">
+      <DependentUpon>201906112114473_FixCustomHaulerColumnName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906122049352_UpdateGinLoadToDropClientandFarmColumn.resx">
+      <DependentUpon>201906122049352_UpdateGinLoadToDropClientandFarmColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906132022473_RemoveLoadIdFromModuleEntity.resx">
+      <DependentUpon>201906132022473_RemoveLoadIdFromModuleEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906132037482_ModifyModuleHistoryColumnsTypesToAllowNulls.resx">
+      <DependentUpon>201906132037482_ModifyModuleHistoryColumnsTypesToAllowNulls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906141426495_AddHIDFieldsToModuleOperatorAndProducerID.resx">
+      <DependentUpon>201906141426495_AddHIDFieldsToModuleOperatorAndProducerID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906212010380_AddLoadScanColumns.resx">
+      <DependentUpon>201906212010380_AddLoadScanColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906251604573_AddIsSemiColumn.resx">
+      <DependentUpon>201906251604573_AddIsSemiColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906252135596_AddSplitWeightColumns.resx">
+      <DependentUpon>201906252135596_AddSplitWeightColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906271812229_AddModuleOwnershipFields.resx">
+      <DependentUpon>201906271812229_AddModuleOwnershipFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907022103270_UpdateDecimalColumnsOnLoadScan.resx">
+      <DependentUpon>201907022103270_UpdateDecimalColumnsOnLoadScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907101932119_AddFeederScan.resx">
+      <DependentUpon>201907101932119_AddFeederScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907192125329_AddMoreHIDColumns.resx">
+      <DependentUpon>201907192125329_AddMoreHIDColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231517118_addHIDTimestamp.resx">
+      <DependentUpon>201907231517118_addHIDTimestamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231917598_UpdateBalesAndAddBaleScan.resx">
+      <DependentUpon>201907231917598_UpdateBalesAndAddBaleScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907232035363_AddBaleScanEntity.resx">
+      <DependentUpon>201907232035363_AddBaleScanEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907241440114_ChangePBIToString.resx">
+      <DependentUpon>201907241440114_ChangePBIToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907241820353_AddTareWeight.resx">
+      <DependentUpon>201907241820353_AddTareWeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908161655165_AddOutOfSequenceFlagForPBILogger.resx">
+      <DependentUpon>201908161655165_AddOutOfSequenceFlagForPBILogger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908201453496_AddPBIRoutineColumns.resx">
+      <DependentUpon>201908201453496_AddPBIRoutineColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908291836104_AddThresholdPercentage.resx">
+      <DependentUpon>201908291836104_AddThresholdPercentage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

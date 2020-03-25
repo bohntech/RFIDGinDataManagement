@@ -10,6 +10,7 @@ using CottonDBMS.GinApp.Dialogs;
 using CottonDBMS.Interfaces;
 using CottonDBMS.Cloud;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace CottonDBMS.GinApp.UserControls
 {
@@ -312,20 +313,22 @@ namespace CottonDBMS.GinApp.UserControls
             }
         }
 
-        private void btnClearAllData_Click(object sender, EventArgs e)
+        /*private void btnClearAllData_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to clear all data?  This will delete all data in the system.  Data stored on truck computers should be cleared on each truck.", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to clear all data?  This will delete all data in the system.  Data stored on truck and bridge computers should be cleared on each computer.", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 using (var uow = UnitOfWorkFactory.CreateUnitOfWork())
                 {
                     uow.TruckRepository.ClearTruckData();
+                    uow.LoadScanRepository.ClearBridgeScanData();
+                    uow.FeederScanRepository.ClearBridgeScanData();
                 }
             }
-        }
+        }*/
 
         private async void btnClearModuleData_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete ALL pickup list, modules, and all module location history?", "Warning!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete ALL pickup lists, modules, gin loads, bales, and all module location history?", "Warning!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
@@ -351,6 +354,9 @@ namespace CottonDBMS.GinApp.UserControls
                         uow.TruckRepository.MarkAllDirty();
                         uow.DriverRepository.MarkAllDirty();
 
+                        //reset last sync time to ensure module ownership table is rebuilt
+                        uow.SettingsRepository.UpsertSetting(GinAppSettingKeys.LAST_SYNC_TIME, DateTime.UtcNow.AddYears(-1).ToString());
+                        
                         uow.SaveChanges();
 
                         BusyMessage.UpdateMessage("Restarting background sync");
@@ -377,6 +383,55 @@ namespace CottonDBMS.GinApp.UserControls
             var result = dialog.ShowDialog();            
         }
 
-       
+        private void createBridgeInstallPackage(string appDir)
+        {
+            System.IO.DriveInfo[] allDrives = DriveInfo.GetDrives();
+
+            if (allDrives.Count(d => d.DriveType == DriveType.Removable) == 0)
+            {
+                MessageBox.Show("No removable drives detected.  Please insert a removable USB drive, and then try again.");
+            }
+            else
+            {
+                var dialog = new SelectRemovableDriveDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    //write contents of TruckInstallFolder to drive
+                    var installPackageDir = AppDomain.CurrentDomain.BaseDirectory + "\\" + appDir;
+                    string targetDir = (dialog.RootDirectory).TrimEnd("\\".ToCharArray());
+
+                    var soureDI = new DirectoryInfo(installPackageDir);
+                    foreach (var f in soureDI.EnumerateFiles())
+                    {
+                        File.Copy(f.FullName, targetDir + "\\" + f, true);
+                    }
+
+                    //write settings file
+                    using (IUnitOfWork uow = UnitOfWorkFactory.CreateUnitOfWork())
+                    {
+                        var settingsRepo = uow.SettingsRepository;
+                        string endpoint = settingsRepo.FindSingle(t => t.Key == GinAppSettingKeys.AZURE_DOCUMENTDB_ENDPOINT).Value;
+                        string key = settingsRepo.FindSingle(t => t.Key == GinAppSettingKeys.AZURE_DOCUMENTDB_KEY).Value;
+                        var parms = new BridgeInstallParams();
+                        parms.EndPoint = endpoint;
+                        parms.Key = key;
+                        var dataString = CottonDBMS.Helpers.EncryptionHelper.Encrypt(Newtonsoft.Json.JsonConvert.SerializeObject(parms));
+                        File.WriteAllText(targetDir + "\\settings.txt", dataString);
+                    }
+                    MessageBox.Show("Installer files have been successfully created.  To begin installation boot the bridge system, plug in the removable drive, and run the 'setup.exe' file that has been saved on the removable drive.");
+
+                }
+            }
+        }
+
+        private void btnCreateScaleBridgeInstaller_Click(object sender, EventArgs e)
+        {
+            createBridgeInstallPackage("BridgeInstall");
+        }
+
+        private void btnFeederBridgeInstaller_Click(object sender, EventArgs e)
+        {
+            createBridgeInstallPackage("BridgeFeederInstall");
+        }
     }
 }

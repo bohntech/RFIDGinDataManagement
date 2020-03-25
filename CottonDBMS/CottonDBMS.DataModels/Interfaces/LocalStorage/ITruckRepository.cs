@@ -18,5 +18,8 @@ namespace CottonDBMS.Interfaces
         void ClearTruckData();
         void ClearClientFarmFieldData();
         void ClearLoadNumber(string serialNumber);
+
+        bool CanSaveLicensePlate(string id, string plateNo);
+        bool CanSaveRFIDTag(string id, string tagNo);
     }
 }

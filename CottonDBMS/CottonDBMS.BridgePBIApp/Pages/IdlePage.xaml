@@ -1,0 +1,26 @@
+﻿<Page x:Class="CottonDBMS.BridgePBIApp.Pages.IdlePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:converters="clr-namespace:CottonDBMS.Bridges.Shared.Converters"
+      xmlns:local="clr-namespace:CottonDBMS.BridgePBIApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="IdlePage">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView Margin="10" Name="lvScans" ItemsSource="{Binding PBIScans}" FontFamily="Courier New" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Background="White" FontSize="18">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel  Orientation="Horizontal">
+                        <TextBlock Text="{Binding LocalTimestamp}" Width="250"  />
+                        <TextBlock Text="{Binding Barcode}" Width="250"  />                                                
+                        <TextBlock Text="{Binding Weight}" Width="250" />
+                        <TextBlock Text="OUT OF SEQUENCE" Width="250" Visibility="{Binding OutOfSequence, Converter={StaticResource VisibleIfTrue}}" />                      
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

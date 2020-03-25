@@ -18,5 +18,8 @@ namespace CottonDBMS.Interfaces
         void MarkAllDirty();
         void QuickUpdate(TObject entity, bool detachIfAttached);
         void CreateWithID(TObject entity, string preferredID);
+        IEnumerable<string> GetAllIds();
+        IEnumerable<string> GetIdsForChanged(DateTime updatedAfter);
+        void SaveUseObjectDates(TObject entity);
     }
 }

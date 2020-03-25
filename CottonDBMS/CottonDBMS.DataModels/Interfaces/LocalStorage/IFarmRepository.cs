@@ -14,5 +14,7 @@ namespace CottonDBMS.Interfaces
         IEnumerable<string> GetFarmIdsLinkedToFields();
         FarmEntity EnsureFarmCreated(ClientEntity existingClient, string farmName, InputSource source);
         IEnumerable<FarmEntity> GetAllMatchingFarms(string clientName, string farmName);
+        bool CanSaveFarmUniqueToClient(string clientId, string farmId, string Name, bool validateAllIds);
+        FarmEntity EnsureFarmCreatedUniqueToClient(ClientEntity existingClient, string farmName, InputSource source);
     }
 }

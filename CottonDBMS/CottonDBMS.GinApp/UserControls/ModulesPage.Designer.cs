@@ -46,6 +46,9 @@
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoadNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImportedLoadNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GinTagLoadNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BridgeLoadNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastBridgeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TruckID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Driver = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Latitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -180,6 +183,9 @@
             this.SerialNumber,
             this.LoadNumber,
             this.ImportedLoadNumber,
+            this.GinTagLoadNumber,
+            this.BridgeLoadNumber,
+            this.LastBridgeId,
             this.TruckID,
             this.Driver,
             this.Latitude,
@@ -264,6 +270,32 @@
             this.ImportedLoadNumber.Name = "ImportedLoadNumber";
             this.ImportedLoadNumber.ReadOnly = true;
             this.ImportedLoadNumber.Width = 150;
+            // 
+            // GinTagLoadNumber
+            // 
+            this.GinTagLoadNumber.DataPropertyName = "GinTagLoadNumber";
+            this.GinTagLoadNumber.HeaderText = "Gin Tkt Load #";
+            this.GinTagLoadNumber.MinimumWidth = 150;
+            this.GinTagLoadNumber.Name = "GinTagLoadNumber";
+            this.GinTagLoadNumber.ReadOnly = true;
+            this.GinTagLoadNumber.Width = 175;
+            // 
+            // BridgeLoadNumber
+            // 
+            this.BridgeLoadNumber.DataPropertyName = "BridgeLoadNumber";
+            this.BridgeLoadNumber.HeaderText = "Bridge Load#";
+            this.BridgeLoadNumber.MinimumWidth = 100;
+            this.BridgeLoadNumber.Name = "BridgeLoadNumber";
+            this.BridgeLoadNumber.Width = 125;
+            // 
+            // LastBridgeId
+            // 
+            this.LastBridgeId.DataPropertyName = "LastBridgeId";
+            this.LastBridgeId.HeaderText = "Bridge Id";
+            this.LastBridgeId.MinimumWidth = 75;
+            this.LastBridgeId.Name = "LastBridgeId";
+            this.LastBridgeId.ReadOnly = true;
+            this.LastBridgeId.Width = 125;
             // 
             // TruckID
             // 
@@ -366,6 +398,7 @@
         private System.Windows.Forms.Panel pnlGrid;
         private System.Windows.Forms.DataGridView modulesGridView;
         private System.Windows.Forms.Button btnGenLoad;
+        private System.Windows.Forms.Button btnChangeStatus;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
@@ -374,6 +407,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoadNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportedLoadNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GinTagLoadNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BridgeLoadNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastBridgeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn TruckID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Driver;
         private System.Windows.Forms.DataGridViewTextBoxColumn Latitude;
@@ -381,6 +417,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocalCreatedTimestamp;
         private System.Windows.Forms.DataGridViewTextBoxColumn Updated;
-        private System.Windows.Forms.Button btnChangeStatus;
     }
 }

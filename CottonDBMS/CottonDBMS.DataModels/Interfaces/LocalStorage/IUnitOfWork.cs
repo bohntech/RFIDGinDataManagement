@@ -1,6 +1,7 @@
 ﻿//Licensed under MIT License see LICENSE.TXT in project root folder
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,16 @@ namespace CottonDBMS.Interfaces
         ITruckRepository TruckRepository { get; }
         IDocumentsToProcessRepository DocumentsToProcessRepository { get; }
         IEntityRepository<SyncedSettings> SyncedSettingsRepo { get; }
+        IEntityRepository<TruckRegistrationEntity> TruckRegistrationsRepository { get; }
+        ILoadScanRepository LoadScanRepository { get; }
+        IBaleScanRepository BaleScanRepository { get; }
+        IBaleRepository BalesRepository { get; }
+        IFeederScanRepository FeederScanRepository { get; }
+        IEntityRepository<ModuleOwnershipEntity> ModuleOwnershipRepository { get; }
         IAggregateEventRepository AggregateEventRepository { get; }
         IEntityRepository<TruckListsDownloaded> TruckListsDownloadedRepo { get; }
+        IGinLoadRepository GinLoadRepository { get;  }
         void BackupDB(string toFileName);
+        DataTable GetDataTable(string query);
     }
 }

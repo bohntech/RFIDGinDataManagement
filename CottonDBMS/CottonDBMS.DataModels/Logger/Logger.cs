@@ -72,9 +72,9 @@ namespace CottonDBMS.Logging
                 try
                 {
                     string contents = string.Format("{0} {1} {2} {3}\r\n", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString().PadLeft(10, ' '), DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss:fff"), type.PadRight(10), message);
-                    Console.WriteLine(contents);
+                    //Console.WriteLine(contents);
                     bufferedMessages.Add(contents);                    
-                    if (bufferedMessages.Count() > 1000) CleanUpNoLoc(); 
+                    if (bufferedMessages.Count() > 2000) CleanUpNoLoc(); 
                 }
                 catch (Exception exc)
                 {

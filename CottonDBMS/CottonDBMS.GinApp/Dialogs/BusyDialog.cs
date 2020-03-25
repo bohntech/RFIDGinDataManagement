@@ -49,6 +49,7 @@ namespace CottonDBMS.GinApp.Dialogs
                 this.Top = parent.Location.Y + ((parent.Height - this.Height) / 2);
                 lblMessage.Text = msg;
                 this.Show();
+                this.Focus();
                 this.UpdateZOrder();
                 this.Update();
             }
@@ -66,6 +67,7 @@ namespace CottonDBMS.GinApp.Dialogs
             else
             {
                 lblMessage.Text = msg;
+                this.Focus();
                 this.UpdateZOrder();
                 this.Update();
             }           
@@ -77,12 +79,12 @@ namespace CottonDBMS.GinApp.Dialogs
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    this.Close();
+                    this.Hide();
                 });
             }
             else
             {
-                this.Close();
+                this.Hide();
             }
         }
             

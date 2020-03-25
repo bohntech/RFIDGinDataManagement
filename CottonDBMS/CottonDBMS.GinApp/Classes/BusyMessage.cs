@@ -11,15 +11,19 @@ namespace CottonDBMS.GinApp.Classes
 {
     public static class BusyMessage
     {
+        public static bool open = false;
         
         public static event EventHandler OnBusyMessageShown;
 
         public static event EventHandler OnBusyMessageClosed;
 
-        private static BusyDialog dialog = new BusyDialog();                
+        private static BusyDialog dialog =  new BusyDialog();
 
         public static void Show(string message, Form theForm)
         {
+            if (open)
+                UpdateMessage(message);
+
             if (theForm.InvokeRequired)
             {
                 theForm.Invoke((MethodInvoker)delegate
@@ -29,9 +33,13 @@ namespace CottonDBMS.GinApp.Classes
             }
             else
             {
+               
+                    //if (dialog == null)
+                    //    dialog = new BusyDialog();
 
-                dialog = new BusyDialog();
-                dialog.ShowMessage(message, theForm);
+                    open = true;
+                    dialog.ShowMessage(message, theForm);
+               
                 if (OnBusyMessageShown != null)
                 {
                     OnBusyMessageShown(null, new EventArgs());
@@ -43,12 +51,17 @@ namespace CottonDBMS.GinApp.Classes
         {
             if (dialog.InvokeRequired)
             {
-                UpdateMessage(message);
+                dialog.Invoke((MethodInvoker)delegate
+                {
+                    UpdateMessage(message);
+                });
             }
             else
             {
-                dialog.UpdateMessage(message);
-            }            
+              
+                    dialog.UpdateMessage(message);
+                
+            }
         }
 
         public static void Close()
@@ -60,9 +73,11 @@ namespace CottonDBMS.GinApp.Classes
                     Close();
                 });
             }
-            else {
+            else
+            {
+                open = false;
+                dialog.Hide();
 
-                dialog.Close();
                 if (OnBusyMessageClosed != null)
                 {
                     OnBusyMessageClosed(null, new EventArgs());

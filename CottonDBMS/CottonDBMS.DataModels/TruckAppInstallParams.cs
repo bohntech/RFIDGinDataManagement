@@ -14,4 +14,10 @@ namespace CottonDBMS.DataModels
         public string LockCode { get; set; }
         public string TruckID { get; set; }
     }
+
+    public class BridgeInstallParams
+    {
+        public string EndPoint { get; set; }
+        public string Key { get; set; }        
+    }
 }

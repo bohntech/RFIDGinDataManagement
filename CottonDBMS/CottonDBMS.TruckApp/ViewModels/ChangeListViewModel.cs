@@ -316,7 +316,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 }
                 else
                 {
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         //load farms for producer and default to select one
                         Farms.Clear();
@@ -370,7 +370,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 }
                 else
                 {
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         //load farms for producer and default to select one
                         Fields.Clear();
@@ -423,7 +423,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 }
                 else
                 {
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         //load farms for producer and default to select one
                         PickupLists.Clear();
@@ -493,7 +493,7 @@ namespace CottonDBMS.TruckApp.ViewModels
 
             if (!HasErrors)
             {
-                using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     string clientName = "";
                     if (ShowNewProducerText) clientName = NewProducerText.Trim();
@@ -594,7 +594,7 @@ namespace CottonDBMS.TruckApp.ViewModels
 
         public void Initialize()
         {
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 NewFarmText = "";
                 ListName = "";

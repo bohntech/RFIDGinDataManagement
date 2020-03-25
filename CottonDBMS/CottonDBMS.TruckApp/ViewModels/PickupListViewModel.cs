@@ -389,7 +389,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             FieldLong = 0.000;
             HasCheckedModules = false;
 
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 if (InitiatingEvent != null)  //find the list based on serial number
                 {
@@ -425,7 +425,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             try
             {
                 //LOAD DATA BASED ON LIST ID    
-                using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                 {
                     pickupList = uow.PickupListRepository.GetById(listId, "Field.Farm.Client", "AssignedModules");
                     syncedSettings = uow.SyncedSettingsRepo.GetAll().FirstOrDefault();
@@ -582,7 +582,7 @@ namespace CottonDBMS.TruckApp.ViewModels
                 Task.Run(() =>
                 {
                     Logging.Logger.Log("DEBUG", "Processing tag loading message from pickup list " + msg.SerialNumber);
-                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+                    using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
                     {
                         System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                         {

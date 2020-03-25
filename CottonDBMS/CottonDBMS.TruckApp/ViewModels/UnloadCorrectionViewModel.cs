@@ -119,7 +119,7 @@ namespace CottonDBMS.TruckApp.ViewModels
             ModulesOnTruck = new ObservableCollection<ModuleViewModel>();
             BadSerials = new ObservableCollection<ModuleViewModel>();
             
-            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var uow = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 activeList = uow.PickupListRepository.GetById(ActiveListID, new string[] { "AssignedModules", "Field.Farm.Client" });
                 Farm = activeList.FarmName;

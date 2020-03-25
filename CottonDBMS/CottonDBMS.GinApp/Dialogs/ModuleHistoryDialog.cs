@@ -49,5 +49,6 @@ namespace CottonDBMS.GinApp.Dialogs
         {
             this.Close();
         }
+       
     }
 }

@@ -71,9 +71,33 @@ namespace CottonDBMS.GinApp.Dialogs
                         if (!string.IsNullOrEmpty(dataObj.LoadNumber))  lblLoad.Text = dataObj.LoadNumber;
                         else lblLoad.Text = "Not assigned";
 
+                        tbGinTicketLoadNumber.Text = dataObj.GinTagLoadNumber;
                         tbLatitude.Text = dataObj.Latitude.ToString();
                         tbLongitude.Text = dataObj.Longitude.ToString();
                         lblImportedLoad.Text = dataObj.ImportedLoadNumber;
+
+                        lblDiameter.Text = dataObj.HIDDiameterInches.NullableToStringHighPrecision();
+                        lblFieldArea.Text = dataObj.HIDFieldAreaAcres.NullableToStringHighPrecision();
+                        lblIncrementalArea.Text = dataObj.HIDIncrementalAreaAcres.NullableToStringHighPrecision();
+                        lblModuleWeight.Text = dataObj.HIDModuleWeightLBS.NullableToStringHighPrecision();
+                        lblMoisturePercent.Text = dataObj.HIDMoisture.NullableToString();
+                        lblOperator.Text = dataObj.HIDOperator;
+                        lblProducerID.Text = dataObj.HIDProducerID;
+                        lblSeasonTotal.Text = dataObj.HIDSeasonTotal.NullableToString();                        
+                        lblVariety.Text = dataObj.HIDVariety;
+
+                        lblHIDFieldTotal.Text = dataObj.HIDFieldTotal.NullableToString();
+                        lblGinID.Text = dataObj.HIDGinID;
+                        lblMachinePIN.Text = dataObj.HIDMachinePIN;
+                        lblHIDDropLat.Text = dataObj.HIDDropLat.ToString();
+                        lblHIDDropLong.Text = dataObj.HIDDropLong.ToString();
+                        lblHIDLat.Text = dataObj.HIDLat.ToString();
+                        lblHIDLong.Text = dataObj.HIDLong.ToString();
+                        //lblHIDWrapLat.Text = dataObj.HIDWrapLat.ToString();
+                        //lblHIDWrapLong.Text = dataObj.HIDWrapLong.ToString();
+                        lblHIDTimestamp.Text = dataObj.HIDTimestamp.HasValue ? dataObj.HIDTimestamp.Value.ToLocalTime().ToString("MM/dd/yyyy hh:mm:ss tt") : "";
+
+
                         tbNotes.Text = (dataObj.Notes ?? "");
                         tbModuleID.Text = (dataObj.ModuleId ?? "");
                         //tbStatus
@@ -85,6 +109,18 @@ namespace CottonDBMS.GinApp.Dialogs
                         tbLatitude.Text = string.Empty;
                         tbLongitude.Text = string.Empty;
                         lblImportedLoad.Text = string.Empty;
+
+                        lblDiameter.Text = string.Empty;
+                        lblFieldArea.Text = string.Empty;
+                        lblIncrementalArea.Text = string.Empty;
+                        lblModuleWeight.Text = string.Empty;
+                        lblMoisturePercent.Text = string.Empty;
+                        lblOperator.Text = string.Empty;
+                        lblProducerID.Text = string.Empty;
+                        lblSeasonTotal.Text = string.Empty;
+                        lblVariety.Text = string.Empty;
+
+
                         tbModuleID.Text = "--";
                         tbNotes.Text = "";
                     }
@@ -137,14 +173,32 @@ namespace CottonDBMS.GinApp.Dialogs
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
-            BusyMessage.Show("Saving...", this.FindForm());
+        {   
             try
             {
                 ValidateForm();
                 if (!hasError)
                 {
+
+                    if (dataObj != null && !string.IsNullOrWhiteSpace(dataObj.GinTagLoadNumber) && string.IsNullOrWhiteSpace(tbGinTicketLoadNumber.Text))
+                    {
+                        if (MessageBox.Show("You have removed the gin ticket load number from this module.  Are you sure you want to save?  This will remove the module from gin ticket load " + dataObj.GinTagLoadNumber + ".", "Confirm", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                            return;
+                    }
+
+                   
                     using (var uow = UnitOfWorkFactory.CreateUnitOfWork()) {
+
+                        var ginLoadId = uow.GinLoadRepository.GetLoadIdForGinTicketNumber(tbGinTicketLoadNumber.Text.Trim());
+
+                        if (string.IsNullOrEmpty(ginLoadId) && !string.IsNullOrWhiteSpace(tbGinTicketLoadNumber.Text))
+                        {
+                            if (MessageBox.Show("You have entered a gin ticket load number that does not yet have a matching load record from the scale bridge.  Are you sure you want to save? ", "Confirm", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                                return;
+                        }
+
+
+                        BusyMessage.Show("Saving...", this.FindForm());
                         BaseEntity selectedStatus = (BaseEntity)tbStatus.SelectedItem;
                         ModuleStatus selectedModuleStatus = (ModuleStatus)int.Parse(selectedStatus.Id);
                         ModuleEntity existingModule = null;
@@ -163,6 +217,7 @@ namespace CottonDBMS.GinApp.Dialogs
                         var farm = farmSelector1.GetOrCreateFarmEntity(client);
                         var field = fieldSelector1.GetOrCreateFieldEntity(farm);
                         
+                        
                         string truck = (cboTruck.SelectedIndex > 0) ? ((BaseEntity)cboTruck.SelectedItem).Name : "";
                         string driver = (cboDriver.SelectedIndex > 0) ? ((BaseEntity)cboDriver.SelectedItem).Name : "";
                         
@@ -176,6 +231,8 @@ namespace CottonDBMS.GinApp.Dialogs
                         existingModule.Longitude = double.Parse(tbLongitude.Text);
                         existingModule.ModuleStatus = selectedModuleStatus;
                         existingModule.Notes = tbNotes.Text.Trim();
+                        existingModule.GinLoadId = ginLoadId;
+                        existingModule.GinTagLoadNumber = tbGinTicketLoadNumber.Text.Trim();
 
                         ModuleHistoryEntity historyItem = new ModuleHistoryEntity
                         {
@@ -362,6 +419,11 @@ namespace CottonDBMS.GinApp.Dialogs
                     hasError = true;
                 }
             }
+        }
+
+        private void tbGinTicketLoadNumber_Validating(object sender, CancelEventArgs e)
+        {
+            
         }
     }
 }

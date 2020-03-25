@@ -309,6 +309,19 @@ SOFTWARE.";
             {
                  reportPage1.LoadData();
             }
+            else if (appTabs.TabPages.IndexOf(tabGinLoads) == appTabs.SelectedIndex)
+            {
+                ginLoadsPage1.LoadData();
+            }
+            else if (appTabs.TabPages.IndexOf(tabBales) == appTabs.SelectedIndex)
+            {
+                balesPage.LoadData();
+            }
+            else if (appTabs.TabPages.IndexOf(tabPBIMapping) == appTabs.SelectedIndex)
+            {
+                balesPage.LoadData();
+            }
+
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

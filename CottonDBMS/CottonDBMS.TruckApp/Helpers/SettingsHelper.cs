@@ -16,7 +16,7 @@ namespace CottonDBMS.TruckApp.Helpers
         public static void PersistSettingsToAppData()
         {
 
-            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWork>(Guid.NewGuid().ToString()))
+            using (var dp = SimpleIoc.Default.GetInstance<IUnitOfWorkFactory>().CreateUnitOfWork())
             {
                 PersistSettingsToAppData(dp);
             }                

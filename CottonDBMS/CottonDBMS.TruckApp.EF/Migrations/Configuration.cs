@@ -11,7 +11,7 @@ namespace CottonDBMS.Data.EF.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(CottonDBMS.EF.AppDBContext context)

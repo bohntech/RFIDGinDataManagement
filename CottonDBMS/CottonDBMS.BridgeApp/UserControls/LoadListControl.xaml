@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="CottonDBMS.BridgeApp.UserControls.LoadListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CottonDBMS.BridgeApp.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="cvsLoads" Source="{Binding GinLoads}" 
+                           Filter="CollectionViewSource_Filter">
+        </CollectionViewSource>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource LayoutGrid}" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15" />
+            <ColumnDefinition Width="*" />            
+            <ColumnDefinition Width="15" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" >
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content="Start Date" Padding="0,5,0,0"/>
+                <DatePicker SelectedDate="{Binding StartDate}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <Label Content="End Date" Margin="0,0,0,0" Padding="0,5,0,0"/>
+                <DatePicker   SelectedDate="{Binding EndDate}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                <CheckBox Content="Show only auto-entered loads" Margin="0,24,15,0" IsChecked="{Binding ShowOnlyAuto}" />
+            </StackPanel>
+            <Button Content="Apply" HorizontalAlignment="Center" Height="30" Padding="5,5,5,5" Margin="0,17,0,10" Click="Button_Click"></Button>
+        </StackPanel>
+        <TextBlock Grid.Column="1" Grid.Row="2" Foreground="Red" Padding="0,0,0,0" Text="*Load scanning is disabled while viewing and editing loads."></TextBlock>
+        <DataGrid x:Name="dgItems" Grid.Column="1" Grid.Row="4"  FontSize="14" SelectedItem="{Binding SelectedItem}" SelectionMode="Single" SelectionUnit="FullRow" ItemsSource="{Binding Source={StaticResource cvsLoads}}" AreRowDetailsFrozen="True" CanUserAddRows="False" CanUserDeleteRows="False"   AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="DataGrid_MouseDoubleClick">                    
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Created" Binding="{Binding Created}" MinWidth="150"    />
+                <DataGridTextColumn Header="Updated" Binding="{Binding Updated}" MinWidth="150"    />
+                <DataGridTextColumn Header="Gin Tag" Binding="{Binding GinTicketLoadNumber}" MinWidth="150"   />
+                <DataGridTextColumn Header="Truck" Binding="{Binding TruckID}" MinWidth="150"/>
+                <DataGridTextColumn Header="Gross Weight" Binding="{Binding GrossWeight}" MinWidth="150"/>
+                <DataGridTextColumn Header="Client" Binding="{Binding Client}" MinWidth="150"   />
+                <DataGridTextColumn Header="Farm" Binding="{Binding Farm}" MinWidth="150"/>
+                <DataGridTextColumn Header="Field" Binding="{Binding Field}" MinWidth="150"/>
+                <DataGridTextColumn Header="S/Ns" Binding="{Binding SerialNumbers}" MinWidth="150"/>
+                <DataGridTextColumn Header="Bridge Load Number" Binding="{Binding BridgeLoadNumber}" MinWidth="150"/>
+                <DataGridTextColumn Header="Yard Row" Binding="{Binding Location}" MinWidth="150"/>
+                <DataGridTextColumn Header="Picked By" Binding="{Binding Picker}" MinWidth="150"/>
+                <DataGridTextColumn Header="Trailer #" Binding="{Binding Trailer}" MinWidth="150"/>
+                <DataGridTextColumn Header="Variety" Binding="{Binding Variety}" MinWidth="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Column="1" Grid.Row="5" Content="Close List" Width="150" Margin="15" Command="{Binding CloseCommand}" ></Button>
+    </Grid>
+</UserControl>

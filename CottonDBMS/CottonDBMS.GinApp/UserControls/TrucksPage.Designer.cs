@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCreateInstallPackage = new System.Windows.Forms.Button();
             this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.btnEditSelected = new System.Windows.Forms.Button();
             this.btnAddTruck = new System.Windows.Forms.Button();
@@ -40,7 +41,11 @@
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TruckID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoadPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCreateInstallPackage = new System.Windows.Forms.Button();
+            this.RFIDTagId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TareWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OwnerPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsSemi = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlGrid.SuspendLayout();
@@ -58,6 +63,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(946, 45);
             this.panel1.TabIndex = 0;
+            // 
+            // btnCreateInstallPackage
+            // 
+            this.btnCreateInstallPackage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateInstallPackage.Location = new System.Drawing.Point(386, 3);
+            this.btnCreateInstallPackage.Name = "btnCreateInstallPackage";
+            this.btnCreateInstallPackage.Size = new System.Drawing.Size(240, 35);
+            this.btnCreateInstallPackage.TabIndex = 6;
+            this.btnCreateInstallPackage.Text = "Create Truck Installer Package";
+            this.btnCreateInstallPackage.UseVisualStyleBackColor = true;
+            this.btnCreateInstallPackage.Click += new System.EventHandler(this.btnCreateInstallPackage_Click);
             // 
             // btnDeleteSelected
             // 
@@ -132,7 +148,12 @@
             this.Selected,
             this.Id,
             this.TruckID,
-            this.LoadPrefix});
+            this.LoadPrefix,
+            this.RFIDTagId,
+            this.TareWeight,
+            this.OwnerName,
+            this.OwnerPhone,
+            this.IsSemi});
             this.dataGridTrucks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridTrucks.Location = new System.Drawing.Point(10, 0);
             this.dataGridTrucks.MultiSelect = false;
@@ -176,16 +197,50 @@
             this.LoadPrefix.ReadOnly = true;
             this.LoadPrefix.Width = 200;
             // 
-            // btnCreateInstallPackage
+            // RFIDTagId
             // 
-            this.btnCreateInstallPackage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateInstallPackage.Location = new System.Drawing.Point(386, 3);
-            this.btnCreateInstallPackage.Name = "btnCreateInstallPackage";
-            this.btnCreateInstallPackage.Size = new System.Drawing.Size(240, 35);
-            this.btnCreateInstallPackage.TabIndex = 6;
-            this.btnCreateInstallPackage.Text = "Create Truck Installer Package";
-            this.btnCreateInstallPackage.UseVisualStyleBackColor = true;
-            this.btnCreateInstallPackage.Click += new System.EventHandler(this.btnCreateInstallPackage_Click);
+            this.RFIDTagId.DataPropertyName = "RFIDTagId";
+            this.RFIDTagId.HeaderText = "RFID Tag";
+            this.RFIDTagId.MinimumWidth = 150;
+            this.RFIDTagId.Name = "RFIDTagId";
+            this.RFIDTagId.ReadOnly = true;
+            this.RFIDTagId.Width = 200;
+            // 
+            // TareWeight
+            // 
+            this.TareWeight.DataPropertyName = "TareWeight";
+            this.TareWeight.HeaderText = "Tare Weight";
+            this.TareWeight.MinimumWidth = 150;
+            this.TareWeight.Name = "TareWeight";
+            this.TareWeight.ReadOnly = true;
+            this.TareWeight.Width = 150;
+            // 
+            // OwnerName
+            // 
+            this.OwnerName.DataPropertyName = "OwnerName";
+            this.OwnerName.HeaderText = "Owner";
+            this.OwnerName.Name = "OwnerName";
+            this.OwnerName.ReadOnly = true;
+            // 
+            // OwnerPhone
+            // 
+            this.OwnerPhone.DataPropertyName = "OwnerPhone";
+            this.OwnerPhone.HeaderText = "Owner Phone";
+            this.OwnerPhone.MinimumWidth = 150;
+            this.OwnerPhone.Name = "OwnerPhone";
+            this.OwnerPhone.ReadOnly = true;
+            this.OwnerPhone.Width = 200;
+            // 
+            // IsSemi
+            // 
+            this.IsSemi.DataPropertyName = "IsSemi";
+            this.IsSemi.FalseValue = "False";
+            this.IsSemi.HeaderText = "Split weigh?";
+            this.IsSemi.MinimumWidth = 200;
+            this.IsSemi.Name = "IsSemi";
+            this.IsSemi.ReadOnly = true;
+            this.IsSemi.TrueValue = "True";
+            this.IsSemi.Width = 200;
             // 
             // TrucksPage
             // 
@@ -213,10 +268,15 @@
         private System.Windows.Forms.Panel pnlGrid;
         private System.Windows.Forms.DataGridView dataGridTrucks;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnCreateInstallPackage;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn TruckID;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoadPrefix;
-        private System.Windows.Forms.Button btnCreateInstallPackage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RFIDTagId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TareWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OwnerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OwnerPhone;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsSemi;
     }
 }
